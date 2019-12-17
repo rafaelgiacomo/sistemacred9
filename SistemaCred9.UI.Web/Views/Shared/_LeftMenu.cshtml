@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">Navegação principal</li>
+            @Html.MenuDropDown("Cadastros",
+                new[] { "Condomínios", "Torres", "Apartamentos", "Vagas" },
+                new[] { "Index", "Index", "Index", "Index" },
+                new[] { "Condominio", "Torre", "Apartamento", "Vaga" })
+            @Html.MenuItem("Sorteios", "Index", "Sorteio")
+
+        </ul>
+    </section>
+</aside>

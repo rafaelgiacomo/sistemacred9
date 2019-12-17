@@ -1,0 +1,16 @@
+Raelson
+=====================
+Sistema	
+	-Criar ViewModels e ajustar JQuery Validation com Data Annotation
+	-Registrar Mappers
+	-Tratamento de erros no cadastro das entidades
+	-Ajustar todas as funções de CRUD das entidades
+
+	-como deixar unique no nome do arquivo --> Fluent API
+	-Tratamento de erros na ContaController
+
+	-Verificar UsuarioId extra na tabela funcionarios
+
+	-Associação de imagens com os cadastros
+	-Fazer dispose em todas as controllers
+	-Criar actions Details (Scafolding)

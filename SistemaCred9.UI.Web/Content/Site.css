@@ -1,0 +1,79 @@
+﻿body {
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default 
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+*/
+
+table img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+li img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#galeria img{
+    max-width: 200px;
+    max-height: 150px;
+    margin: 5px;
+}
+
+.chart-legend li span{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+}
+
+.chart-legend ul {
+    list-style-type: none;
+    font-size: 10px;
+    padding-left: 25px;
+}
+
+.grafico1 > div > div:nth-child(1) {
+    width:50%;
+    height:50%;
+    display: inline-block;
+}
+
+.grafico1 > div > div:nth-child(2) {
+    width:49%;
+    display: inline-block;
+}
+
+.grafico1 {
+    height: 176px;
+}
+
+.grafico2 {
+    height: 700px;
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border-color: red !important;
+}

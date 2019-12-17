@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LogOn</title>
+
+    @Styles.Render("~/Content/css")
+
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="~/Content/NewBiz/img/logo_small.png" class="img-responsive">
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Faça login para iniciar sua sessão</p>
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group has-feedback">
+                    <input type="text" name="Login" class="form-control" placeholder="Login" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="Senha" class="form-control" placeholder="Senha" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <a href="#">Esqueci minha senha</a><br>
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                    </div><!-- /.col -->
+                </div>
+                <p class="text-red">@ViewBag.Mensagem</p>
+            }
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
+
+</body>
+</html>

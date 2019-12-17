@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "SistemaCred9";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="~/Content/NewBiz/img/logo_app.png" rel="icon">
+    <link href="~/Content/NewBiz/img/img/logo_app.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="~/Content/NewBiz/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="~/Content/NewBiz/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/NewBiz/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Content/NewBiz/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/Content/NewBiz/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Content/NewBiz/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/Content/NewBiz/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+      Theme Name: NewBiz
+      Theme URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
+      Author: BootstrapMade.com
+      License: https://bootstrapmade.com/license/
+    ======================================================= -->
+</head>
+
+<body>
+
+    <!--==========================
+    Header
+    ============================-->
+    <header id="header" class="fixed-top">
+        <div class="container">
+
+            <div class="logo float-left">
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+                <a href="#intro" class="scrollto"><img src="~/Content/NewBiz/img/logo_nome.png" alt="" class=""></a>
+            </div>
+
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="#intro">Home</a></li>
+                    <li><a href="#about">Nossa Solução</a></li>
+                    <li><a href="#services">Funcionalidades</a></li>
+                    <li><a href="#portfolio">Clientes</a></li>
+                    <li><a href="#contact">Entre em Contato</a></li>
+                    <li>@Html.ActionLink("Acesso ao sistema", "Index", "Condominio")</li>
+                </ul>
+            </nav><!-- .main-nav -->
+
+        </div>
+    </header><!-- #header -->
+
+    @RenderBody()
+
+    <!--==========================
+      Footer
+    ============================-->
+    <footer id="footer">
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>SistemaCred9</strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+                -->
+                Desenvolvido por <a href="https://bootstrapmade.com/">RG Consultoria</a>
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- Uncomment below i you want to use a preloader -->
+    <!-- <div id="preloader"></div> -->
+    <!-- JavaScript Libraries -->
+    <script src="~/Content/NewBiz/lib/jquery/jquery.min.js"></script>
+    <script src="~/Content/NewBiz/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Content/NewBiz/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/NewBiz/lib/easing/easing.min.js"></script>
+    <script src="~/Content/NewBiz/lib/mobile-nav/mobile-nav.js"></script>
+    <script src="~/Content/NewBiz/lib/wow/wow.min.js"></script>
+    <script src="~/Content/NewBiz/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/Content/NewBiz/lib/counterup/counterup.min.js"></script>
+    <script src="~/Content/NewBiz/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Content/NewBiz/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Content/NewBiz/lib/lightbox/js/lightbox.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="~/Content/NewBiz/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="~/Content/NewBiz/js/main.js"></script>
+
+</body>
+</html>
