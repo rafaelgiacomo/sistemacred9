@@ -199,6 +199,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
+    <Compile Include="Controllers\VendaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +215,11 @@
     <Compile Include="Security\PermissaoProvider.cs" />
     <Compile Include="Security\PermissoesFiltro.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Usuario\UsuarioIndexViewModel.cs" />
+    <Compile Include="ViewModels\Usuario\UsuarioViewModel.cs" />
+    <Compile Include="ViewModels\Venda\VendaIndexViewModel.cs" />
+    <Compile Include="ViewModels\Venda\VendaStatusHistoricoViewModel.cs" />
+    <Compile Include="ViewModels\Venda\VendaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE\AdminLTE.css" />
@@ -261,93 +268,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Imagens\logo.png" />
-    <Content Include="Content\Imagens\logo_alternativo_mini.png" />
-    <Content Include="Content\NewBiz\contactform\contactform.js" />
-    <Content Include="Content\NewBiz\contactform\Readme.txt" />
-    <Content Include="Content\NewBiz\css\scss-files.txt" />
-    <Content Include="Content\NewBiz\css\style.css" />
-    <Content Include="Content\NewBiz\img\about-extra-1.svg" />
-    <Content Include="Content\NewBiz\img\about-extra-2.svg" />
-    <Content Include="Content\NewBiz\img\about-img.svg" />
-    <Content Include="Content\NewBiz\img\apple-touch-icon.png" />
-    <Content Include="Content\NewBiz\img\clients\client-1.png" />
-    <Content Include="Content\NewBiz\img\clients\client-2.png" />
-    <Content Include="Content\NewBiz\img\clients\client-3.png" />
-    <Content Include="Content\NewBiz\img\clients\client-4.png" />
-    <Content Include="Content\NewBiz\img\clients\client-5.png" />
-    <Content Include="Content\NewBiz\img\clients\client-6.png" />
-    <Content Include="Content\NewBiz\img\clients\client-7.png" />
-    <Content Include="Content\NewBiz\img\clients\client-8.png" />
-    <Content Include="Content\NewBiz\img\favicon.png" />
-    <Content Include="Content\NewBiz\img\intro-bg.png" />
-    <Content Include="Content\NewBiz\img\intro-img.svg" />
-    <Content Include="Content\NewBiz\img\logo_alternativo.png" />
-    <Content Include="Content\NewBiz\img\logo_app.png" />
-    <Content Include="Content\NewBiz\img\logo_nome.png" />
-    <Content Include="Content\NewBiz\img\logo_small.png" />
-    <Content Include="Content\NewBiz\img\portfolio\app1.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\app2.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\app3.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\card1.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\card2.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\card3.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\web1.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\web2.jpg" />
-    <Content Include="Content\NewBiz\img\portfolio\web3.jpg" />
-    <Content Include="Content\NewBiz\img\team-1.jpg" />
-    <Content Include="Content\NewBiz\img\team-2.jpg" />
-    <Content Include="Content\NewBiz\img\team-3.jpg" />
-    <Content Include="Content\NewBiz\img\team-4.jpg" />
-    <Content Include="Content\NewBiz\img\testimonial-1.jpg" />
-    <Content Include="Content\NewBiz\img\testimonial-2.jpg" />
-    <Content Include="Content\NewBiz\img\testimonial-3.jpg" />
-    <Content Include="Content\NewBiz\img\testimonial-4.jpg" />
-    <Content Include="Content\NewBiz\img\testimonial-5.jpg" />
-    <Content Include="Content\NewBiz\index.html" />
-    <Content Include="Content\NewBiz\js\main.js" />
-    <Content Include="Content\NewBiz\lib\animate\animate.css" />
-    <Content Include="Content\NewBiz\lib\animate\animate.min.css" />
-    <Content Include="Content\NewBiz\lib\bootstrap\css\bootstrap.css" />
-    <Content Include="Content\NewBiz\lib\bootstrap\css\bootstrap.min.css" />
-    <Content Include="Content\NewBiz\lib\bootstrap\js\bootstrap.bundle.min.js" />
-    <Content Include="Content\NewBiz\lib\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Content\NewBiz\lib\counterup\counterup.min.js" />
-    <Content Include="Content\NewBiz\lib\easing\easing.js" />
-    <Content Include="Content\NewBiz\lib\easing\easing.min.js" />
-    <Content Include="Content\NewBiz\lib\font-awesome\css\font-awesome.css" />
-    <Content Include="Content\NewBiz\lib\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Content\NewBiz\lib\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\NewBiz\lib\ionicons\css\ionicons.css" />
-    <Content Include="Content\NewBiz\lib\ionicons\css\ionicons.min.css" />
-    <Content Include="Content\NewBiz\lib\ionicons\fonts\ionicons.svg" />
-    <Content Include="Content\NewBiz\lib\isotope\isotope.pkgd.js" />
-    <Content Include="Content\NewBiz\lib\isotope\isotope.pkgd.min.js" />
-    <Content Include="Content\NewBiz\lib\jquery\jquery-migrate.min.js" />
-    <Content Include="Content\NewBiz\lib\jquery\jquery.min.js" />
-    <Content Include="Content\NewBiz\lib\lightbox\css\lightbox.css" />
-    <Content Include="Content\NewBiz\lib\lightbox\css\lightbox.min.css" />
-    <Content Include="Content\NewBiz\lib\lightbox\images\close.png" />
-    <Content Include="Content\NewBiz\lib\lightbox\images\loading.gif" />
-    <Content Include="Content\NewBiz\lib\lightbox\images\next.png" />
-    <Content Include="Content\NewBiz\lib\lightbox\images\prev.png" />
-    <Content Include="Content\NewBiz\lib\lightbox\js\lightbox.js" />
-    <Content Include="Content\NewBiz\lib\lightbox\js\lightbox.min.js" />
-    <Content Include="Content\NewBiz\lib\mobile-nav\mobile-nav.js" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\ajax-loader.gif" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.carousel.css" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.carousel.min.css" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.theme.default.css" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.theme.default.min.css" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.theme.green.css" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.theme.green.min.css" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\assets\owl.video.play.png" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\owl.carousel.js" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\owl.carousel.min.js" />
-    <Content Include="Content\NewBiz\lib\waypoints\waypoints.min.js" />
-    <Content Include="Content\NewBiz\lib\wow\wow.js" />
-    <Content Include="Content\NewBiz\lib\wow\wow.min.js" />
-    <Content Include="Content\NewBiz\Readme.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -417,17 +337,6 @@
     <Content Include="Scripts\AdminLTE\plugins\select2\select2.js" />
     <Content Include="Scripts\AdminLTE\plugins\select2\select2.min.css" />
     <Content Include="Scripts\AdminLTE\plugins\select2\select2.min.js" />
-    <Content Include="Content\NewBiz\img\header-bg.psd" />
-    <Content Include="Content\NewBiz\img\logo.psd" />
-    <Content Include="Content\NewBiz\lib\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\NewBiz\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\NewBiz\lib\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\NewBiz\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\NewBiz\lib\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Content\NewBiz\lib\ionicons\fonts\ionicons.eot" />
-    <Content Include="Content\NewBiz\lib\ionicons\fonts\ionicons.ttf" />
-    <Content Include="Content\NewBiz\lib\ionicons\fonts\ionicons.woff" />
-    <Content Include="Content\NewBiz\lib\owlcarousel\LICENSE" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Safira.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -992,15 +901,22 @@
     <Content Include="Views\Shared\_Erro.cshtml" />
     <Content Include="Views\Home\Erro.cshtml" />
     <Content Include="Views\Conta\LogOn.cshtml" />
-    <Content Include="Views\Shared\_CondominioMenu.cshtml" />
     <Content Include="Views\Shared\_ReportsLayout.cshtml" />
     <Content Include="Views\Shared\_SiteLayout.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Adicionar.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
+    <Content Include="Views\Usuario\Excluir.cshtml" />
+    <Content Include="Views\Usuario\Erro.cshtml" />
+    <Content Include="Views\Venda\Index.cshtml" />
+    <Content Include="Views\Venda\Adicionar.cshtml" />
+    <Content Include="Views\Venda\MudarStatus.cshtml" />
+    <Content Include="Views\Venda\Ver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
     <Folder Include="Content\Downloads\" />
     <Folder Include="Content\Uploads\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -1011,6 +927,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
+      <Project>{2EBD064B-57F9-40F4-8600-303825AAFAB9}</Project>
+      <Name>SistemaCred9.Modelo</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

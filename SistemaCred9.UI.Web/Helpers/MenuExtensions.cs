@@ -38,7 +38,7 @@ namespace SistemaCred9.Web.UI.Helpers
         }
 
         public static MvcHtmlString MenuDropDown(this HtmlHelper htmlHelper, string text, string[] texts, string[] actions,
-            string[] controllers)
+            string[] controllers, object[] values)
         {
             var li = new TagBuilder("li");
             var ul = new TagBuilder("ul");
@@ -56,7 +56,7 @@ namespace SistemaCred9.Web.UI.Helpers
             //Adicionando os Itens do submenu
             for (int i = 0; i < texts.Length; i++)
             {
-                innerHtmlUl.Append(MenuItem(htmlHelper, texts[i], actions[i], controllers[i]));
+                innerHtmlUl.Append(MenuItem(htmlHelper, texts[i], actions[i], controllers[i], values[i], false));
             }
             ul.InnerHtml = innerHtmlUl.ToString();
 
@@ -87,7 +87,7 @@ namespace SistemaCred9.Web.UI.Helpers
 
             a.MergeAttribute("href", "#");
             i.AddCssClass("fa fa-angle-left pull-right");
-            span.InnerHtml = "Cadastros";
+            span.InnerHtml = text;
 
             innerHtmlA.Append(span);
             innerHtmlA.Append(i);

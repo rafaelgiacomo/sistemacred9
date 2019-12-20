@@ -45,5 +45,11 @@
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="VendaNegocio.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Repositorio\SistemaCred9.Repositorio.csproj">
+      <Project>{693A773D-F303-4ADE-8852-0CBBABE01AA2}</Project>
+      <Name>SistemaCred9.Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

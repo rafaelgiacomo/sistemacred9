@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Security;
 using System.Configuration;
+using SistemaCred9.Modelo;
 
 namespace SistemaCred9.Web.UI.Security
 {
@@ -30,7 +31,7 @@ namespace SistemaCred9.Web.UI.Security
             //}
             //catch 
             //{
-            return new string[] { };
+            return Role.Roles;
             //}            
         }
 

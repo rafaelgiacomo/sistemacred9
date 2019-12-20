@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SistemaCred9.Repositorio.UnitOfWork;
 
 namespace SistemaCred9.Negocio
 {
-    class UsuarioNegocio
+    public class UsuarioNegocio
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public UsuarioNegocio(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
     }
 }

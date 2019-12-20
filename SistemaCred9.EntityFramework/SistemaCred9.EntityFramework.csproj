@@ -51,11 +51,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\Cred9DbContext.cs" />
+    <Compile Include="Mapping\UsuarioMap.cs" />
+    <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\VendaStatusHistoricoMap.cs" />
+    <Compile Include="Mapping\VendaMap.cs" />
+    <Compile Include="Migrations\201912200308392_CriacaoBanco.cs" />
+    <Compile Include="Migrations\201912200308392_CriacaoBanco.designer.cs">
+      <DependentUpon>201912200308392_CriacaoBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
+      <Project>{2EBD064B-57F9-40F4-8600-303825AAFAB9}</Project>
+      <Name>SistemaCred9.Modelo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201912200308392_CriacaoBanco.resx">
+      <DependentUpon>201912200308392_CriacaoBanco.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

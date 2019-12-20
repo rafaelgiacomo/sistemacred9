@@ -3,6 +3,7 @@
     public enum TipoUsuarioEnum
     {
         Operador = 1,
-        BackOffice = 2
+        BackOffice = 2,
+        Coordenador = 3
     }
 }

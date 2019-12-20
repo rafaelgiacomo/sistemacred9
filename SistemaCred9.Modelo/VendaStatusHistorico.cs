@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaCred9.Modelo
 {
-    public class VendaStatusHistorico
+    public class VendaStatusHistorico : EntitadeBase
     {
-        public int Id { get; set; }
-
         public int VendaId { get; set; }
 
         public DateTime Data { get; set; }
 
-        public VendaStatusEnum Status { get; set; }
+        public int StatusId { get; set; }
 
         public string Observacao { get; set; }
 
         public int UsuarioId { get; set; }
 
-        public Venda Venda { get; set; }
+        public virtual Usuario Usuario { get; set; }
+
+        public virtual Venda Venda { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace SistemaCred9.Web.UI.Controllers
                 //            return Redirect(returnUrl);
                 //        }
                 FormsAuthentication.SetAuthCookie(form["Login"], false);
-                return RedirectToAction("Index", "Condominio");
+                return RedirectToAction("Index", "Home");
                 //    }
                 //}
 

@@ -1,0 +1,75 @@
+﻿@model SistemaCred9.Web.UI.ViewModels.Venda.VendaIndexViewModel
+
+@{
+    ViewBag.TitleSmall = "Vendas";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Adicionar", "Adicionar", "Venda", new { @class = "btn btn-primary btn-block margin-bottom" })
+
+    </div>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Usuarios Cadastrados</h3>
+            </div>
+            <div class="box-body">
+
+                <table id="usuarios" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Usuario</th>
+                            <th>Status</th>
+                            <th>Cliente</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Vendas)
+                        {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.UsuarioId</td>
+                            <td>@item.Status</td>
+                            <td>Nome do Cliente</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", "Venda", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
+                                @Html.ActionLink("Excluir", "Excluir", "Venda", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                @Html.ActionLink("Permissões", "Permissoes", "Venda", new { @entidadeId = item.Id }, new { @class = "btn btn-default btn-xs" })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Usuario</th>
+                            <th>Status</th>
+                            <th>Cliente</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+
+@section scripts
+{
+    <link href="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#usuarios').DataTable({
+                language: {
+                    "url": 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json'
+                }
+            });
+        });
+    </script>
+}

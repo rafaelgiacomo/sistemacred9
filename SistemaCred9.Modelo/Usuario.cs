@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SistemaCred9.Modelo
 {
-    public class Usuario
+    public class Usuario : EntitadeBase
     {
-        public int Id { get; set; }
-
         public string Nome { get; set; }
 
         public string Email { get; set; }
@@ -18,6 +12,10 @@ namespace SistemaCred9.Modelo
 
         public string Senha { get; set; }
 
-        public TipoUsuarioEnum TipoUsuario { get; set; }
+        public int TipoUsuarioId { get; set; }
+
+        public virtual ICollection<Role> Roles { get; set; }
+
+        public virtual ICollection<Venda> Vendas { get; set; }
     }
 }

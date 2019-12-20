@@ -1,0 +1,68 @@
+﻿@model SistemaCred9.Web.UI.ViewModels.Venda.VendaStatusHistoricoViewModel
+
+
+@{
+    ViewBag.TitleSmall = "Mudar Status Venda";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Informe os dados de usuário</h3>
+            </div>
+            @using (Html.BeginForm("MudarStatus", "Venda", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="box-body">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Novo Status</label><br />
+                                @Html.DropDownListFor(model => model.StatusSelecionado,
+                                    Model.ListaStatus, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.StatusSelecionado)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.Observacao,
+                                new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        @rows = 10,
+                                        @columns = 80
+                                    }
+                                })
+
+                                @Html.ValidationMessageFor(model => model.Observacao)
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <input type="reset" value="Limpar" class="btn btn-warning" />
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info pull-right" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="row">
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
