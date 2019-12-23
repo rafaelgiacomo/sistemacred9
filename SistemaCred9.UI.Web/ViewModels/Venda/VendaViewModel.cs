@@ -2,6 +2,7 @@
 using SistemaCred9.Web.UI.ViewModels.Usuario;
 using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace SistemaCred9.Web.UI.ViewModels.Venda
 {
@@ -21,7 +22,9 @@ namespace SistemaCred9.Web.UI.ViewModels.Venda
 
         public DateTime Data { get; set; }
 
-        public VendaStatusEnum Status { get; set; }
+        public int StatusId { get; set; }
+
+        public string StatusDescricao { get { return ((VendaStatusEnum)StatusId).ToString(); } }
 
         public ICollection<VendaStatusHistorico> Historico { get; set; }
     }

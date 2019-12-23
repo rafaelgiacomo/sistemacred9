@@ -1,4 +1,5 @@
-﻿using SistemaCred9.Repositorio.UnitOfWork;
+﻿using SistemaCred9.Modelo;
+using SistemaCred9.Repositorio.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,15 @@ namespace SistemaCred9.Negocio
             _unitOfWork = unitOfWork;
         }
 
+        public void Adicionar(Venda entidade)
+        {
+            _unitOfWork.Venda.Adicionar(entidade);
+            _unitOfWork.Salvar();
+        }
 
+        public List<Venda> ListarVendasPorStatus(int status)
+        {
+            return _unitOfWork.Venda.Listar(x => x.StatusId == status);
+        }
     }
 }

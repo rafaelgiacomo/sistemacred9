@@ -13,11 +13,12 @@ namespace SistemaCred9.Modelo
         public static readonly string[] Roles =
         {
             // Operador
-		    Operador, BackOffice, Coordenador
+		    Operador, BackOffice, Coordenador, Administrador
         };
 
-        public const string Operador = "OPERADOR";
-        public const string BackOffice = "BACKOFFICE";
-        public const string Coordenador = "COORDENADOR";
+        public const string Operador = "Operador";
+        public const string BackOffice = "BackOffice";
+        public const string Coordenador = "Coordenador";
+        public const string Administrador = "Administrador";
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SistemaCred9.Modelo;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace SistemaCred9.Web.UI.ViewModels.Usuario
@@ -31,6 +32,6 @@ namespace SistemaCred9.Web.UI.ViewModels.Usuario
         [Required(ErrorMessage = "Selecione um tipo de usuario")]
         public int TipoUsuarioId { get; set; }
 
-        public string TipoUsuarioDescricao { get; set; }
+        public string TipoUsuarioDescricao { get { return ((TipoUsuarioEnum)TipoUsuarioId).ToString(); } }
     }
 }

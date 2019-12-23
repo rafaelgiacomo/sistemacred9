@@ -33,7 +33,7 @@
                             <td>@item.Nome</td>
                             <td>@item.NomeUsuario</td>
                             <td>@item.Email</td>
-                            <td>Tipo Usuario.</td>
+                            <td>@item.TipoUsuarioDescricao </td>
                             <td>
                                 @Html.ActionLink("Editar", "Editar", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
                                 @Html.ActionLink("Excluir", "Excluir", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })

@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.TitleSmall = "Mudar Status Venda";
+    ViewBag.TitleSmall = "Mudar Status de Venda";
 }
 
 <div class="row">
@@ -21,10 +21,20 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label class="control-label">Novo Status</label><br />
-                                @Html.DropDownListFor(model => model.StatusSelecionado,
+                                @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label" })
+
+                                <hr />
+
+                                @Model.ClienteId
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Mudar Venda para o Status</label><br />
+                                @Html.DropDownListFor(model => model.StatusId,
                                     Model.ListaStatus, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.StatusSelecionado)
+                                @Html.ValidationMessageFor(model => model.StatusId)
                             </div>
                         </div>
 
@@ -32,16 +42,7 @@
                             <div class="col-md-12">
                                 @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label" })
 
-                                @Html.EditorFor(model => model.Observacao,
-                                new
-                                {
-                                    htmlAttributes = new
-                                    {
-                                        @class = "form-control",
-                                        @rows = 10,
-                                        @columns = 80
-                                    }
-                                })
+                                @Html.TextAreaFor(m => m.Observacao, new { @class = "form-control", @rows = 10 })
 
                                 @Html.ValidationMessageFor(model => model.Observacao)
                             </div>

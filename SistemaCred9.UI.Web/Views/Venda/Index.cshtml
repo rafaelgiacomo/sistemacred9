@@ -1,7 +1,7 @@
 ﻿@model SistemaCred9.Web.UI.ViewModels.Venda.VendaIndexViewModel
 
 @{
-    ViewBag.TitleSmall = "Vendas";
+    ViewBag.TitleSmall = "Vendas - " + Model.StatusAtual;
 }
 
 <div class="row">
@@ -31,13 +31,12 @@
                         {
                         <tr>
                             <td>@item.Id</td>
-                            <td>@item.UsuarioId</td>
-                            <td>@item.Status</td>
-                            <td>Nome do Cliente</td>
+                            <td>@item.Usuario.NomeUsuario</td>
+                            <td>@item.StatusDescricao</td>
+                            <td>@item.ClienteId</td>
                             <td>
                                 @Html.ActionLink("Editar", "Editar", "Venda", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
                                 @Html.ActionLink("Excluir", "Excluir", "Venda", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })
-                                @Html.ActionLink("Permissões", "Permissoes", "Venda", new { @entidadeId = item.Id }, new { @class = "btn btn-default btn-xs" })
                             </td>
                         </tr>
                         }

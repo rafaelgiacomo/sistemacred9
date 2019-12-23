@@ -43,6 +43,11 @@ namespace SistemaCred9.Negocio
             return _unitOfWork.Usuario.Listar(x => x.NomeUsuario.Equals(login)).FirstOrDefault();
         }
 
+        public List<Usuario> ListarTodosSemAdm()
+        {
+            return _unitOfWork.Usuario.Listar(x => x.TipoUsuarioId != (int) TipoUsuarioEnum.Administrador);
+        }
+
         public List<Usuario> ListarTodos()
         {
             return _unitOfWork.Usuario.Listar(x => x.Id == x.Id);

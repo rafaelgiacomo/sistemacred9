@@ -11,12 +11,12 @@ namespace SistemaCred9.Web.UI.ViewModels.Venda
 
         public DateTime Data { get; set; }
 
-        public int StatusSelecionado { get; set; }
-
-        public SelectList ListaStatus { get; set; }
+        public int StatusId { get; set; }
 
         public string Observacao { get; set; }
 
         public int UsuarioId { get; set; }
+
+        public SelectList ListaStatus { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Index()
         {
             var viewModel = new UsuarioIndexViewModel();
-            viewModel.Usuarios = Mapper.Map<List<UsuarioViewModel>>(_usuarioNegocio.ListarTodos());
+            viewModel.Usuarios = Mapper.Map<List<UsuarioViewModel>>(_usuarioNegocio.ListarTodosSemAdm());
 
             return View(viewModel);
         }
