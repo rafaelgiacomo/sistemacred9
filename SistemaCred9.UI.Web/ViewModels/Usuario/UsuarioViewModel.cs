@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace SistemaCred9.Web.UI.ViewModels.Usuario
@@ -15,14 +11,17 @@ namespace SistemaCred9.Web.UI.ViewModels.Usuario
         public string Nome { get; set; }
 
         [Required]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Login")]
         public string NomeUsuario { get; set; }
 
         [Required]
         public string Senha { get; set; }
 
+        [System.ComponentModel.DataAnnotations.Compare("Senha")]
         [Required(ErrorMessage = "O campor confirmar senha é obrigatório")]
         public string ConfirmarSenha { get; set; }
 
@@ -30,6 +29,8 @@ namespace SistemaCred9.Web.UI.ViewModels.Usuario
         public SelectList TipoUsuario { get; set; }
 
         [Required(ErrorMessage = "Selecione um tipo de usuario")]
-        public int TipoUsuarioSelecionado { get; set; }
+        public int TipoUsuarioId { get; set; }
+
+        public string TipoUsuarioDescricao { get; set; }
     }
 }

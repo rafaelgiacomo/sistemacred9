@@ -1,4 +1,5 @@
 ﻿using SistemaCred9.Modelo;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SistemaCred9.EntityFramework.Mapping
@@ -10,6 +11,9 @@ namespace SistemaCred9.EntityFramework.Mapping
             ToTable("Role");
 
             HasKey(t => t.Id);
+
+            Property(t => t.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             Property(t => t.Descricao)
                 .IsRequired();

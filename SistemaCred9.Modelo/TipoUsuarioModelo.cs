@@ -14,6 +14,8 @@ namespace SistemaCred9.Modelo
         public const string BACKOFFICE = "BackOffice";
         public const int COORDENADOR_ID = 3;
         public const string COORDENADOR = "Coordenador";
+        public const int ADM_ID = 3;
+        public const string ADM = "Administrador";
 
         public static List<TipoUsuarioModelo> ListarTodos()
         {
@@ -22,10 +24,12 @@ namespace SistemaCred9.Modelo
             var pr1 = new TipoUsuarioModelo() { Id = OPERADOR_ID, Descricao = OPERADOR };
             var pr2 = new TipoUsuarioModelo() { Id = BACKOFFICE_ID, Descricao = BACKOFFICE };
             var pr3 = new TipoUsuarioModelo() { Id = COORDENADOR_ID, Descricao = COORDENADOR };
+            var pr4 = new TipoUsuarioModelo() { Id = ADM_ID, Descricao = ADM };
 
             lista.Add(pr1);
             lista.Add(pr2);
             lista.Add(pr3);
+            lista.Add(pr4);
 
             return lista;
         }

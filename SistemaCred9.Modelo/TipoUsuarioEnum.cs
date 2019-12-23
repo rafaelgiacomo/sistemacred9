@@ -4,6 +4,7 @@
     {
         Operador = 1,
         BackOffice = 2,
-        Coordenador = 3
+        Coordenador = 3,
+        Administrador = 4
     }
 }

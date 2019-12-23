@@ -9,7 +9,7 @@ namespace SistemaCred9.Web.UI.Security
 {
     public class PermissaoProvider : RoleProvider
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DbCondVagas"].ConnectionString;
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["Cred9DbContext"].ConnectionString;
 
         public override bool IsUserInRole(string username, string roleName)
         {

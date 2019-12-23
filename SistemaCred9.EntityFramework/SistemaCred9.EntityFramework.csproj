@@ -56,9 +56,13 @@
     <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\VendaStatusHistoricoMap.cs" />
     <Compile Include="Mapping\VendaMap.cs" />
-    <Compile Include="Migrations\201912200308392_CriacaoBanco.cs" />
-    <Compile Include="Migrations\201912200308392_CriacaoBanco.designer.cs">
-      <DependentUpon>201912200308392_CriacaoBanco.cs</DependentUpon>
+    <Compile Include="Migrations\201912230010149_CriacaoInicialBanco.cs" />
+    <Compile Include="Migrations\201912230010149_CriacaoInicialBanco.designer.cs">
+      <DependentUpon>201912230010149_CriacaoInicialBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912230250128_UsuarioUnico.cs" />
+    <Compile Include="Migrations\201912230250128_UsuarioUnico.designer.cs">
+      <DependentUpon>201912230250128_UsuarioUnico.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,8 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912200308392_CriacaoBanco.resx">
-      <DependentUpon>201912200308392_CriacaoBanco.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912230010149_CriacaoInicialBanco.resx">
+      <DependentUpon>201912230010149_CriacaoInicialBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912230250128_UsuarioUnico.resx">
+      <DependentUpon>201912230250128_UsuarioUnico.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

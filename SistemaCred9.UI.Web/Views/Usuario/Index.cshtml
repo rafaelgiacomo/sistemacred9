@@ -22,22 +22,23 @@
                             <th>Nome</th>
                             <th>Login</th>
                             <th>E-mail</th>
+                            <th>Tipo Usuario</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Usuarios)
                         {
-                            <tr>
-                                <td>@item.Nome</td>
-                                <td>@item.NomeUsuario</td>
-                                <td>@item.Email</td>
-                                <td>
-                                    @Html.ActionLink("Editar", "Editar", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
-                                    @Html.ActionLink("Excluir", "Excluir", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })
-                                    @Html.ActionLink("Permissões", "Permissoes", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-default btn-xs" })
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@item.Nome</td>
+                            <td>@item.NomeUsuario</td>
+                            <td>@item.Email</td>
+                            <td>Tipo Usuario.</td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
+                                @Html.ActionLink("Excluir", "Excluir", "Usuario", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                            </td>
+                        </tr>
                         }
 
                     </tbody>
@@ -46,6 +47,7 @@
                             <th>Nome</th>
                             <th>Login</th>
                             <th>E-mail</th>
+                            <th>Tipo Usuario</th>
                             <th></th>
                         </tr>
                     </tfoot>

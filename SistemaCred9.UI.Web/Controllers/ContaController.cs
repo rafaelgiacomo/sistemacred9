@@ -1,4 +1,8 @@
-﻿using System;
+﻿using SistemaCred9.EntityFramework.Context;
+using SistemaCred9.Modelo;
+using SistemaCred9.Negocio;
+using SistemaCred9.Repositorio.UnitOfWork;
+using System;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -8,11 +12,11 @@ namespace SistemaCred9.Web.UI.Controllers
     public class ContaController : BaseController
     {
 
-        //private readonly UsuarioBusiness _usuarioBus;
+        private readonly UsuarioNegocio _usuarioBus;
 
         public ContaController()
         {
-            //_usuarioBus = new UsuarioBusiness(_connectionString);
+            _usuarioBus = new UsuarioNegocio(new UnitOfWork(new Cred9DbContext()));
         }
 
         public ActionResult LogOn()
@@ -26,30 +30,29 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             try
             {
-                //UsuarioModel usuario = _usuarioBus.SelecionarPorLogin(form["Login"]);
-                //UsuarioModel usuario = null;
+                Usuario usuario = _usuarioBus.SelecionarPorLogin(form["Login"]);
 
-                //if (usuario != null)
-                //{
-                //    if (usuario.VerificarSenha(form["Senha"], usuario.Senha))
-                //    {
-                //        FormsAuthentication.SetAuthCookie(usuario.Login, false);
+                if (usuario != null)
+                {
+                    if (usuario.VerificarSenha(form["Senha"], usuario.Senha))
+                    {
+                        FormsAuthentication.SetAuthCookie(usuario.NomeUsuario, false);
 
-                //        if (Url.IsLocalUrl(returnUrl)
-                //            && returnUrl.Length > 1
-                //            && returnUrl.StartsWith("/")
-                //            && !returnUrl.StartsWith("//")
-                //            && !returnUrl.StartsWith("/\\"))
-                //        {
-                //            return Redirect(returnUrl);
-                //        }
-                FormsAuthentication.SetAuthCookie(form["Login"], false);
-                return RedirectToAction("Index", "Home");
-                //    }
-                //}
+                        if (Url.IsLocalUrl(returnUrl)
+                            && returnUrl.Length > 1
+                            && returnUrl.StartsWith("/")
+                            && !returnUrl.StartsWith("//")
+                            && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
 
-                //ViewBag.Mensagem = "Login ou Senha inválido";
-                //return View();
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                ViewBag.Mensagem = "Login ou Senha inválido";
+                return View();
             }
             catch (Exception ex)
             {

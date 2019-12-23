@@ -11,6 +11,12 @@ namespace SistemaCred9.EntityFramework.Mapping
 
             HasKey(t => t.Id);
 
+            HasIndex(t => t.Email)
+                .IsUnique();
+
+            HasIndex(t => t.NomeUsuario)
+                .IsUnique();
+
             Property(t => t.Email)
                 .HasMaxLength(250)
                 .IsRequired();
@@ -24,7 +30,7 @@ namespace SistemaCred9.EntityFramework.Mapping
                 .IsRequired();
 
             Property(t => t.Senha)
-                .HasMaxLength(20)
+                .HasMaxLength(1000)
                 .IsRequired();
 
             Property(t => t.TipoUsuarioId)

@@ -1,17 +1,18 @@
 ﻿namespace SistemaCred9.EntityFramework.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CriacaoBanco : DbMigration
+    public partial class CriacaoInicialBanco : DbMigration
     {
         public override void Up()
         {
+            Sql("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
+
             CreateTable(
                 "dbo.Role",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Descricao = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -24,7 +25,7 @@
                         Nome = c.String(nullable: false, maxLength: 150),
                         Email = c.String(nullable: false, maxLength: 250),
                         NomeUsuario = c.String(nullable: false, maxLength: 50),
-                        Senha = c.String(nullable: false, maxLength: 20),
+                        Senha = c.String(nullable: false, maxLength: 1000),
                         TipoUsuarioId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -72,11 +73,18 @@
                 .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.UsuarioId)
                 .Index(t => t.RoleId);
-            
+
+            Sql(@"INSERT INTO Role (Id, Descricao) VALUES (1, 'Operador')
+                  INSERT INTO Role (Id, Descricao) VALUES (2, 'BackOffice')
+                  INSERT INTO Role (Id, Descricao) VALUES (3, 'Coordenador')
+                  INSERT INTO Role (Id, Descricao) VALUES (4, 'Administrador')");
+
         }
         
         public override void Down()
         {
+            Sql("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
+
             DropForeignKey("dbo.Venda", "UsuarioId", "dbo.Usuario");
             DropForeignKey("dbo.VendaStatusHistorico", "VendaId", "dbo.Venda");
             DropForeignKey("dbo.VendaStatusHistorico", "UsuarioId", "dbo.Usuario");
@@ -92,6 +100,11 @@
             DropTable("dbo.Venda");
             DropTable("dbo.Usuario");
             DropTable("dbo.Role");
+
+            Sql(@"DELETE FROM Role WHERE Id = 1
+                  DELETE FROM Role WHERE Id = 2
+                  DELETE FROM Role WHERE Id = 3
+                  DELETE FROM Role WHERE Id = 4");
         }
     }
 }

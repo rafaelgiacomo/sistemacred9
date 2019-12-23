@@ -10,7 +10,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Informe os dados de usuário</h3>
             </div>
-            @using (Html.BeginForm("Adicionar", "Usuario", FormMethod.Post))
+            @using (Html.BeginForm("Editar", "Usuario", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="box-body">
@@ -56,6 +56,24 @@
                             </div>
                         </div>
 
+                        @* Campo Nome Email *@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Email,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            @placeholder = "E-mail",
+                                        }
+                                })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+
                         @* Campo Senha *@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-3" })
@@ -97,9 +115,9 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label class="control-label">Tipo de Usuário</label><br />
-                                @Html.DropDownListFor(model => model.TipoUsuarioSelecionado,
+                                @Html.DropDownListFor(model => model.TipoUsuarioId,
                                     Model.TipoUsuario, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.TipoUsuarioSelecionado)
+                                @Html.ValidationMessageFor(model => model.TipoUsuarioId)
                             </div>
                         </div>
 

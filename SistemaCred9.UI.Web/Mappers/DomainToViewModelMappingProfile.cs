@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using SistemaCred9.Modelo;
+using SistemaCred9.Web.UI.ViewModels.Usuario;
 
 namespace SistemaCred9.Web.UI.Mappers
 {
@@ -11,7 +13,8 @@ namespace SistemaCred9.Web.UI.Mappers
 
         protected override void Configure()
         {
-            //Mapper.CreateMap<CondominioModel, CondominioViewModel>();
+            Mapper.CreateMap<Usuario, UsuarioViewModel>();
+            Mapper.CreateMap<Usuario, TrocarSenhaViewModel>();
         }
 
     }
