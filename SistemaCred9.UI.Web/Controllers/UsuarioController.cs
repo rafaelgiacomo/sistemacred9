@@ -4,6 +4,7 @@ using SistemaCred9.Modelo;
 using SistemaCred9.Negocio;
 using SistemaCred9.Repositorio.UnitOfWork;
 using SistemaCred9.Web.UI.Security;
+using SistemaCred9.Web.UI.ViewModels.Shared;
 using SistemaCred9.Web.UI.ViewModels.Usuario;
 using System;
 using System.Collections.Generic;
@@ -15,27 +16,53 @@ namespace SistemaCred9.Web.UI.Controllers
     public class UsuarioController : BaseController
     {
         private readonly UsuarioNegocio _usuarioNegocio;
+        private readonly VendaNegocio _vendaNegocio;
+        private readonly TarefaNegocio _tarefaNegocio;
 
         public UsuarioController()
         {
             var unitOfWork = new UnitOfWork(new Cred9DbContext());
+            var unitOfWorkPanorama = new RepositorioPanorama.UnitOfWork(_connectionString);
+
             _usuarioNegocio = new UsuarioNegocio(unitOfWork);
+            _vendaNegocio = new VendaNegocio(unitOfWork);
+            _tarefaNegocio = new TarefaNegocio(unitOfWorkPanorama, unitOfWork);
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
+        [PermissoesFiltro(Roles = Role.USUARIO_INDEX)]
         public ActionResult Index()
         {
             var viewModel = new UsuarioIndexViewModel();
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+            {
+                usuarioId = usuario.Id;
+            }
+
             viewModel.Usuarios = Mapper.Map<List<UsuarioViewModel>>(_usuarioNegocio.ListarTodosSemAdm());
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
+        [PermissoesFiltro(Roles = Role.USUARIO_ADICIONAR)]
         public ActionResult Adicionar()
         {
             var viewModel = new UsuarioViewModel();
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+            {
+                usuarioId = usuario.Id;
+            }
+
             viewModel.TipoUsuario = new SelectList(TipoUsuarioModelo.ListarTodos(), "Id", "Descricao");
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -58,13 +85,22 @@ namespace SistemaCred9.Web.UI.Controllers
             }
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
+        [PermissoesFiltro(Roles = Role.USUARIO_EDITAR)]
         public ActionResult Editar(int entidadeId)
         {
             var entidade = _usuarioNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<UsuarioViewModel>(entidade);
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+            {
+                usuarioId = usuario.Id;
+            }
 
             viewModel.TipoUsuario = new SelectList(TipoUsuarioModelo.ListarTodos(), "Id", "Descricao");
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -87,11 +123,21 @@ namespace SistemaCred9.Web.UI.Controllers
             }
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
+        [PermissoesFiltro(Roles = Role.USUARIO_EXCLUIR)]
         public ActionResult Excluir(int entidadeId)
         {
             var entidade = _usuarioNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<UsuarioViewModel>(entidade);
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+            {
+                usuarioId = usuario.Id;
+            }
+
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -118,6 +164,12 @@ namespace SistemaCred9.Web.UI.Controllers
             {
                 //Recupera Usuario Logado
                 var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+                int? usuarioId = null;
+
+                if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+                {
+                    usuarioId = usuario.Id;
+                }
 
                 if (usuario == null)
                 {
@@ -128,7 +180,10 @@ namespace SistemaCred9.Web.UI.Controllers
                 TrocarSenhaViewModel viewModel =
                     Mapper.Map<Usuario, TrocarSenhaViewModel>(usuario);
 
+                viewModel.Login = usuario.NomeUsuario;
                 viewModel.Senha = string.Empty;
+                viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+                viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
                 return View(viewModel);
             }
@@ -145,6 +200,14 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             try
             {
+                var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+                int? usuarioId = null;
+
+                if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+                {
+                    usuarioId = usuario.Id;
+                }
+
                 if (ModelState.IsValid)
                 {
                     Usuario entidade = _usuarioNegocio.SelecionarPorId(viewModel.Id);
@@ -156,6 +219,9 @@ namespace SistemaCred9.Web.UI.Controllers
                     return RedirectToAction("SenhaAlterada");
                 }
 
+                viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+                viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
+
                 return View(viewModel);
             }
             catch (Exception ex)
@@ -163,6 +229,24 @@ namespace SistemaCred9.Web.UI.Controllers
                 TempData["mensagem"] = ex.Message;
                 return RedirectToAction("Erro");
             }
+        }
+
+        public ActionResult SenhaAlterada()
+        {
+            var viewModel = new BaseViewModel();
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Administrador
+                && usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Coordenador)
+            {
+                usuarioId = usuario.Id;
+            }
+
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
+
+            return View(viewModel);
         }
 
     }

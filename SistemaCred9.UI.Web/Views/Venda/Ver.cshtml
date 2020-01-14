@@ -1,7 +1,93 @@
-﻿
+﻿@model SistemaCred9.Web.UI.ViewModels.Venda.VendaViewModel
+
 @{
-    ViewBag.Title = "Ver";
+    ViewBag.TitleSmall = "Ver dados da venda";
 }
 
-<h2>Ver</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Dados da Venda</h3>
+            </div>
 
+            <div class="box-body">
+
+                <div class="form-horizontal">
+
+                    <h4 class="text-green">Detalhes da venda</h4>
+                    <hr />
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label" })
+
+                            <hr />@Model.ClienteId
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.StatusDescricao, htmlAttributes: new { @class = "control-label" })
+
+                            <hr />@Model.StatusDescricao
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.Usuario.NomeUsuario, htmlAttributes: new { @class = "control-label" })
+
+                            <hr />@Model.Usuario.NomeUsuario
+                        </div>
+
+                    </div>
+
+                    <br /><br />
+                    <h4 class="text-green">Histórico</h4>
+                    <hr />
+
+                    @foreach (var item in Model.Historico)
+                    {
+                        <h4 class="text-blue">@item.StatusDescricao</h4>
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => item.Usuario.NomeUsuario, htmlAttributes: new { @class = "control-label" })
+
+                                <hr />@item.Usuario.NomeUsuario
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => item.StatusId, htmlAttributes: new { @class = "control-label" })
+
+                                <hr />@item.StatusDescricao
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => item.Data, htmlAttributes: new { @class = "control-label" })
+
+                                <hr />@item.Data
+                            </div>
+
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => item.Observacao, htmlAttributes: new { @class = "control-label" })
+
+                                <hr />@item.Observacao
+                            </div>
+                        </div>
+                        <hr />
+                        <br />
+                    }
+
+                    <div class="box-footer">
+                        @Html.ActionLink("Editar", "Editar", new { @clienteId = Model.Id },
+                            new { @class = "btn btn-success" })
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info pull-right" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,11 @@
 ﻿using SistemaCred9.Modelo;
+using SistemaCred9.Web.UI.ViewModels.Shared;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace SistemaCred9.Web.UI.ViewModels.Usuario
 {
-    public class UsuarioViewModel
+    public class UsuarioViewModel : BaseViewModel
     {
         public int Id { get; set; }
 
@@ -33,5 +34,10 @@ namespace SistemaCred9.Web.UI.ViewModels.Usuario
         public int TipoUsuarioId { get; set; }
 
         public string TipoUsuarioDescricao { get { return ((TipoUsuarioEnum)TipoUsuarioId).ToString(); } }
+
+        public UsuarioViewModel() : base()
+        {
+
+        }
     }
 }

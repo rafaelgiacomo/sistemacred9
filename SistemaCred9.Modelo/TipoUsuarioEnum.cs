@@ -5,6 +5,7 @@
         Operador = 1,
         BackOffice = 2,
         Coordenador = 3,
-        Administrador = 4
+        Administrador = 4,
+        AdmInterna = 5
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SistemaCred9.EntityFramework.Mapping;
 using SistemaCred9.Modelo;
+using SistemaCred9.Modelo.Panorama;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -25,6 +26,8 @@ namespace SistemaCred9.EntityFramework.Context
 
         public IDbSet<VendaStatusHistorico> VendaHistorico { get; set; }
 
+        public IDbSet<Contrato> Contratos { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -35,6 +38,7 @@ namespace SistemaCred9.EntityFramework.Context
             modelBuilder.Configurations.Add(new VendaStatusHistoricoMap());
             modelBuilder.Configurations.Add(new UsuarioMap());
             modelBuilder.Configurations.Add(new RoleMap());
+            modelBuilder.Configurations.Add(new ContratoMap());
         }
     }
 }

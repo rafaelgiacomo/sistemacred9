@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TarefaNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="VendaNegocio.cs" />
   </ItemGroup>
@@ -49,6 +50,10 @@
     <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
       <Project>{2EBD064B-57F9-40F4-8600-303825AAFAB9}</Project>
       <Name>SistemaCred9.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SistemaCred9.RepositorioPanorama\SistemaCred9.RepositorioPanorama.csproj">
+      <Project>{7f98da68-24e9-409d-96c7-d7dfad1825b3}</Project>
+      <Name>SistemaCred9.RepositorioPanorama</Name>
     </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Repositorio\SistemaCred9.Repositorio.csproj">
       <Project>{693A773D-F303-4ADE-8852-0CBBABE01AA2}</Project>

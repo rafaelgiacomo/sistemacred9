@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
+    <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\VendaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -216,6 +217,8 @@
     <Compile Include="Security\PermissaoProvider.cs" />
     <Compile Include="Security\PermissoesFiltro.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Shared\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Tarefa\TarefaIndexViewModel.cs" />
     <Compile Include="ViewModels\Usuario\TrocarSenhaViewModel.cs" />
     <Compile Include="ViewModels\Usuario\UsuarioIndexViewModel.cs" />
     <Compile Include="ViewModels\Usuario\UsuarioViewModel.cs" />
@@ -915,6 +918,8 @@
     <Content Include="Views\Venda\MudarStatus.cshtml" />
     <Content Include="Views\Venda\Ver.cshtml" />
     <Content Include="Views\Usuario\TrocarSenha.cshtml" />
+    <Content Include="Views\Usuario\SenhaAlterada.cshtml" />
+    <Content Include="Views\Tarefa\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
@@ -943,6 +948,10 @@
     <ProjectReference Include="..\SistemaCred9.Negocio\SistemaCred9.Negocio.csproj">
       <Project>{4320471E-BC61-46F5-82C2-991C5E56FE50}</Project>
       <Name>SistemaCred9.Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SistemaCred9.RepositorioPanorama\SistemaCred9.RepositorioPanorama.csproj">
+      <Project>{7f98da68-24e9-409d-96c7-d7dfad1825b3}</Project>
+      <Name>SistemaCred9.RepositorioPanorama</Name>
     </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Repositorio\SistemaCred9.Repositorio.csproj">
       <Project>{693A773D-F303-4ADE-8852-0CBBABE01AA2}</Project>

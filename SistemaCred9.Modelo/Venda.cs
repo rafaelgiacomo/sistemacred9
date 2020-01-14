@@ -7,7 +7,6 @@ namespace SistemaCred9.Modelo
     {
         public int ClienteId { get; set; }
 
-
         public int UsuarioId { get; set; }
 
         public DateTime Data { get; set; }

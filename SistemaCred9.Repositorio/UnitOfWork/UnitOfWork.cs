@@ -23,6 +23,7 @@ namespace SistemaCred9.Repositorio.UnitOfWork
 
         #region private
 
+        private IContratoRepositorio _contratoRepositorio;
         private IUsuarioRepositorio _usuarioRepositorio;
         private IRoleRepositorio _roleRepositorio;
         private IVendaRepositorio _vendaRepositorio;
@@ -31,6 +32,10 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         #endregion
 
         #region public 
+
+        public IContratoRepositorio Contrato =>
+            _contratoRepositorio ?? (_contratoRepositorio =
+                new ContratoRepositorio(_dbContext));
 
         public IRoleRepositorio Role =>
             _roleRepositorio ?? (_roleRepositorio =

@@ -34,6 +34,7 @@ namespace SistemaCred9.Web.UI.Helpers
             }
 
             li.InnerHtml = htmlHelper.ActionLink(text, action, controller, list, null).ToHtmlString();
+            
             return MvcHtmlString.Create(li.ToString());
         }
 

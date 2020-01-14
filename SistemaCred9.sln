@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.Web.UI", "Sist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.Repositorio", "SistemaCred9.Repositorio\SistemaCred9.Repositorio.csproj", "{693A773D-F303-4ADE-8852-0CBBABE01AA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.RepositorioPanorama", "SistemaCred9.RepositorioPanorama\SistemaCred9.RepositorioPanorama.csproj", "{7F98DA68-24E9-409D-96C7-D7DFAD1825B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{693A773D-F303-4ADE-8852-0CBBABE01AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{693A773D-F303-4ADE-8852-0CBBABE01AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{693A773D-F303-4ADE-8852-0CBBABE01AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F98DA68-24E9-409D-96C7-D7DFAD1825B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F98DA68-24E9-409D-96C7-D7DFAD1825B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F98DA68-24E9-409D-96C7-D7DFAD1825B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F98DA68-24E9-409D-96C7-D7DFAD1825B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

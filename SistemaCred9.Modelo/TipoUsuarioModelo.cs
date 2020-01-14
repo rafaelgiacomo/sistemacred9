@@ -8,13 +8,13 @@ namespace SistemaCred9.Modelo
 
         public string Descricao { get; set; }
 
-        public const int OPERADOR_ID = 1;
+        public const int OPERADOR_ID = (int)TipoUsuarioEnum.Operador;
         public const string OPERADOR = "Operador";
-        public const int BACKOFFICE_ID = 2;
+        public const int BACKOFFICE_ID = (int)TipoUsuarioEnum.BackOffice;
         public const string BACKOFFICE = "BackOffice";
-        public const int COORDENADOR_ID = 3;
+        public const int COORDENADOR_ID = (int)TipoUsuarioEnum.Coordenador;
         public const string COORDENADOR = "Coordenador";
-        public const int ADM_ID = 3;
+        public const int ADM_ID = (int)TipoUsuarioEnum.Administrador;
         public const string ADM = "Administrador";
 
         public static List<TipoUsuarioModelo> ListarTodos()
@@ -33,6 +33,5 @@ namespace SistemaCred9.Modelo
 
             return lista;
         }
-
     }
 }

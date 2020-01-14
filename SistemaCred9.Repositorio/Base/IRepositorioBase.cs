@@ -14,5 +14,6 @@ namespace SistemaCred9.Repositorio.Base
         IEnumerable<TEntidade> Adicionar(IEnumerable<TEntidade> entidades);
         void Atualizar(TEntidade entidade);
         TEntidade Deletar(int id);
+        int Quantidade(Expression<Func<TEntidade, bool>> predicate);
     }
 }

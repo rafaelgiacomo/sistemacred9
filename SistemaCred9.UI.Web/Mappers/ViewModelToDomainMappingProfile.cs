@@ -17,6 +17,7 @@ namespace SistemaCred9.Web.UI.Mappers
             Mapper.CreateMap<UsuarioViewModel, Usuario>();
             Mapper.CreateMap<TrocarSenhaViewModel, Usuario>();
             Mapper.CreateMap<VendaViewModel, Venda>();
+            Mapper.CreateMap<VendaStatusHistoricoViewModel, VendaStatusHistorico>();
         }
 
     }

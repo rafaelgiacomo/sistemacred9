@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\Cred9DbContext.cs" />
+    <Compile Include="Mapping\ContratoMap.cs" />
     <Compile Include="Mapping\UsuarioMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\VendaStatusHistoricoMap.cs" />
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\201912230250128_UsuarioUnico.cs" />
     <Compile Include="Migrations\201912230250128_UsuarioUnico.designer.cs">
       <DependentUpon>201912230250128_UsuarioUnico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001131636515_ControleTarefasPanorama.cs" />
+    <Compile Include="Migrations\202001131636515_ControleTarefasPanorama.designer.cs">
+      <DependentUpon>202001131636515_ControleTarefasPanorama.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912230250128_UsuarioUnico.resx">
       <DependentUpon>201912230250128_UsuarioUnico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001131636515_ControleTarefasPanorama.resx">
+      <DependentUpon>202001131636515_ControleTarefasPanorama.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -44,6 +44,12 @@ namespace SistemaCred9.EntityFramework.Mapping
                     cs.MapRightKey("RoleId");
                     cs.ToTable("UsuarioRole");
                 });
+
+            HasMany(c => c.Contratos)
+                .WithRequired(x => x.Usuario)
+                .HasForeignKey(x => x.UsuarioId)
+                .WillCascadeOnDelete(false);
+
         }
     }
 }

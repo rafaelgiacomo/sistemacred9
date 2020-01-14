@@ -16,38 +16,60 @@ namespace SistemaCred9.Web.UI.Controllers
     {
         private readonly VendaNegocio _vendaNegocio;
         private readonly UsuarioNegocio _usuarioNegocio;
+        private readonly TarefaNegocio _tarefaNegocio;
 
         public VendaController()
         {
             var unitOfWork = new UnitOfWork(new Cred9DbContext());
+            var unitOfWorkPanorama = new RepositorioPanorama.UnitOfWork(_connectionString);
+
             _vendaNegocio = new VendaNegocio(unitOfWork);
             _usuarioNegocio = new UsuarioNegocio(unitOfWork);
+            _tarefaNegocio = new TarefaNegocio(unitOfWorkPanorama, unitOfWork);
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
-        [PermissoesFiltro(Roles = Role.Operador)]
-        [PermissoesFiltro(Roles = Role.BackOffice)]
-        [PermissoesFiltro(Roles = Role.Administrador)]
+        [PermissoesFiltro(Roles = Role.VENDA_INDEX)]
         public ActionResult Index(int? statusId)
         {
             var viewModel = new VendaIndexViewModel();
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+            {
+                usuarioId = usuario.Id;
+            }
 
             if (!statusId.HasValue)
                 statusId = (int) VendaStatusEnum.AguardandoDocumento;
 
+            
+
             viewModel.StatusAtual = ((VendaStatusEnum)statusId).ToString();
-            viewModel.Vendas = Mapper.Map<List<VendaViewModel>>(_vendaNegocio.ListarVendasPorStatus(statusId.Value));
+            viewModel.Vendas = Mapper.Map<List<VendaViewModel>>(_vendaNegocio.ListarVendasPorStatus(statusId.Value, usuarioId));
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
-        [PermissoesFiltro(Roles = Role.Operador)]
-        [PermissoesFiltro(Roles = Role.BackOffice)]
-        [PermissoesFiltro(Roles = Role.Administrador)]
+        [PermissoesFiltro(Roles = Role.VENDA_ADICIONAR)]
         public ActionResult Adicionar()
         {
-            return View();
+            var viewModel = new VendaViewModel();
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Administrador
+                && usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Coordenador)
+            {
+                usuarioId = usuario.Id;
+            }
+
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -79,18 +101,75 @@ namespace SistemaCred9.Web.UI.Controllers
             }
             else
             {
-                ViewBag.Mensagem = "Não foi possível adicionar o Usuario.";
+                ViewBag.Mensagem = "Não foi possível adicionar Venda.";
                 return RedirectToAction("Erro");
             }
         }
 
-        [PermissoesFiltro(Roles = Role.Coordenador)]
-        [PermissoesFiltro(Roles = Role.Operador)]
-        [PermissoesFiltro(Roles = Role.BackOffice)]
-        [PermissoesFiltro(Roles = Role.Administrador)]
-        public ActionResult MudarStatus()
+        [PermissoesFiltro(Roles = Role.VENDA_MUDAR_STATUS)]
+        public ActionResult MudarStatus(int entidadeId)
         {
-            return View();
+            var viewModel = new VendaStatusHistoricoViewModel();
+            var vendaViewModel = Mapper.Map<VendaViewModel>(_vendaNegocio.Obter(entidadeId));
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Administrador
+                && usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Coordenador)
+            {
+                usuarioId = usuario.Id;
+            }
+
+            viewModel.VendaId = entidadeId;
+            viewModel.Venda = vendaViewModel;
+            viewModel.ListaStatus = new SelectList(VendaStatusModelo.ListarTodos(), "Id", "Descricao");
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult MudarStatus(VendaStatusHistoricoViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var entidade = Mapper.Map<VendaStatusHistorico>(viewModel);
+                var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+
+                entidade.Data = DateTime.Now;
+                entidade.UsuarioId = usuario.Id;
+
+                _vendaNegocio.AdicionarStatus(entidade);
+
+                return RedirectToAction("Index", new { });
+            }
+
+            return View(viewModel);
+        }
+
+        public ActionResult Ver(int entidadeId)
+        {
+            var venda = _vendaNegocio.Obter(entidadeId);
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            int? usuarioId = null;
+
+            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
+            {
+                usuarioId = usuario.Id;
+            }
+
+            if (venda == null)
+            {
+                ViewBag.Mensagem = "Não foi possível adicionar o Usuario.";
+                return RedirectToAction("Erro");
+            }
+
+            var viewModel = Mapper.Map<VendaViewModel>(venda);
+            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
+            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
+
+            return View(viewModel);
         }
     }
 }

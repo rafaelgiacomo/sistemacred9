@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Security;
 using System.Configuration;
 using SistemaCred9.Modelo;
+using SistemaCred9.Negocio;
+using SistemaCred9.EntityFramework.Context;
+using SistemaCred9.Repositorio.UnitOfWork;
 
 namespace SistemaCred9.Web.UI.Security
 {
@@ -18,21 +20,21 @@ namespace SistemaCred9.Web.UI.Security
 
         public override string[] GetRolesForUser(string username)
         {
-            //try
-            //{
-            //    UsuarioBusiness usuarioBus = new UsuarioBusiness(_connectionString);
+            try
+            {
+                UsuarioNegocio usuarioBus = new UsuarioNegocio(new UnitOfWork(new Cred9DbContext()));
 
-            //    UsuarioModel usuario = usuarioBus.SelecionarPorLoginComRoles(username);
+                var usuario = usuarioBus.SelecionarPorLogin(username);
 
-            //    if (usuario == null)
-            //        return new string[] { };
+                if (usuario == null)
+                    return new string[] { };
 
-            //    return usuario.Roles.Select(role => role.Descricao).ToArray();
-            //}
-            //catch 
-            //{
-            return Role.Roles;
-            //}            
+                return Role.RolesPorTipoUsuario((TipoUsuarioEnum) usuario.TipoUsuarioId);
+            }
+            catch(Exception ex)
+            {
+                return Role.Roles;
+            }
         }
 
         public override void CreateRole(string roleName)

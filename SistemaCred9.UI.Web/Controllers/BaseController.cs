@@ -9,7 +9,7 @@ namespace SistemaCred9.Web.UI.Controllers
 {
     public class BaseController : Controller, IDisposable
     {
-        public readonly string _connectionString = ConfigurationManager.ConnectionStrings["Cred9DbContext"].ConnectionString;
+        public readonly string _connectionString = ConfigurationManager.ConnectionStrings["DbPanorama"].ConnectionString;
 
         public BaseController()
         {

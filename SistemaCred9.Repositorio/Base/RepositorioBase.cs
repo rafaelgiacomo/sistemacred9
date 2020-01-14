@@ -61,5 +61,10 @@ namespace SistemaCred9.Repositorio.Base
         {
             return DbSet.Find(id);
         }
+
+        public virtual int Quantidade(Expression<Func<TEntidade, bool>> predicate)
+        {
+            return DbSet.Count(predicate);
+        }
     }
 }
