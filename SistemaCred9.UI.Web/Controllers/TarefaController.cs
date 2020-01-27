@@ -63,6 +63,7 @@ namespace SistemaCred9.Web.UI.Controllers
 
             viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
             viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
+            viewModel.StatusMudanca = _tarefaNegocio.ListarStatusTarefaParaMudanca(31, statusTarefaId);
             viewModel.StatusIdAtual = statusTarefaId;
             viewModel.OpcaoProprietarioSelecionado = opcaoProprietarioSelecionado.Value;
             viewModel.StatusAtual = _tarefaNegocio.SelecionarStatusTarefa(statusTarefaId).Descricao;

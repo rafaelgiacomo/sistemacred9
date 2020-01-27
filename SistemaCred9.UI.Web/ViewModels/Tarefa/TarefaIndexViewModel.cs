@@ -10,11 +10,14 @@ namespace SistemaCred9.Web.UI.ViewModels.Tarefa
 
         public List<Contrato> Contratos { get; set; }
 
+        public List<StatusTarefa> StatusMudanca { get; set; }
+
         public int OpcaoProprietarioSelecionado { get; set; }
 
         public TarefaIndexViewModel()
         {
             Contratos = new List<Contrato>();
+            StatusMudanca = new List<StatusTarefa>();
         }
     }
 }

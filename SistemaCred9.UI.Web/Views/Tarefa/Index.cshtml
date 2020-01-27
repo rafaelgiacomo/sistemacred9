@@ -45,6 +45,7 @@
                             <th>Usuário</th>
                             <th>Data de Lançamento</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,8 +78,16 @@
                                             new { @statusTarefaId = Model.StatusIdAtual, @numContrato = item.NumContrato },
                                             new { @class = "btn btn-danger btn-xs" })
                                     }
-
-</tr>
+                                </td>
+                                <td>
+                                    @foreach (var mud in Model.StatusMudanca)
+                                    {
+                                        @Html.ActionLink(mud.Descricao, "MudarStatus", "Tarefa",
+                                            new { @contratoId = item.NumContrato, @statusTarefaId = mud.Id },
+                                            new { @class = "btn btn-default btn-xs", @style = "margin: 5px;" })
+                                    }
+                                </td>
+                            </tr>
                         }
                     </tbody>
                     <tfoot>
@@ -87,6 +96,7 @@
                             <th>Contrato</th>
                             <th>Usuário</th>
                             <th>Data de Lançamento</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </tfoot>

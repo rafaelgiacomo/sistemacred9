@@ -209,6 +209,7 @@
     </Compile>
     <Compile Include="Helpers\JsonExtension.cs" />
     <Compile Include="Helpers\MenuExtensions.cs" />
+    <Compile Include="Helpers\MenuItem.cs" />
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\ViewModelToDomainMappingProfile.cs" />

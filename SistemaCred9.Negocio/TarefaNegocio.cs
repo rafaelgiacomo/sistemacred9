@@ -37,6 +37,11 @@ namespace SistemaCred9.Negocio
             return listaComContrato;
         }
 
+        public List<StatusTarefa> ListarStatusTarefaParaMudanca(int tarefaId, int statusTarefaId)
+        {
+            return _unitOfWorkPanorama.StatusTarefa.ListarStatusTarefasDiposniveisParaMudar(tarefaId, statusTarefaId);
+        }
+
         public void AssumirContrato(int usuarioId, Contrato contrato)
         {
             contrato.UsuarioId = usuarioId;

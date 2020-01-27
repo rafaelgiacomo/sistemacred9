@@ -36,8 +36,7 @@
                         new { statusId = (int)VendaStatusEnum.CalculoOk }, new { statusId = (int)VendaStatusEnum.RepassandoProposta },
                         new { statusId = (int)VendaStatusEnum.CanceladoRepasseProposta }, new { statusId = (int)VendaStatusEnum.PosVenda },
                         new { statusId = (int)VendaStatusEnum.PosVendaOK }, new { statusId = (int)VendaStatusEnum.RegistroProposta },
-                        new { statusId = (int)VendaStatusEnum.PropostaRegistrada }
-            })
+                        new { statusId = (int)VendaStatusEnum.PropostaRegistrada } })
 
             @Html.MenuDropDown("Tarefas",
                 Model.ArrayNomesStatusTarefa(),

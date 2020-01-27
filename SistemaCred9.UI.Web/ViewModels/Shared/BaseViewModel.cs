@@ -10,6 +10,8 @@ namespace SistemaCred9.Web.UI.ViewModels.Shared
 
         public int StatusIdAtual { get; set; }
 
+        public string MenuAtual { get; set; }
+
         public List<StatusTarefa> ListaStatusTarefa { get; set; }
 
 
