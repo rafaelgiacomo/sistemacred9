@@ -19,7 +19,7 @@ namespace SistemaCred9.Modelo
             VENDA_INDEX, VENDA_ADICIONAR, VENDA_EDITAR, VENDA_MUDAR_STATUS, VENDA_EXCLUIR,
 
             //Tarefa
-            TAREFA_INDEX, TAREFA_ASSUMIR, TAREFA_DEVOLVER
+            TAREFA_INDEX, TAREFA_ASSUMIR, TAREFA_DEVOLVER, TAREFA_MUDAR_STATUS
         };
 
         //Usuario
@@ -39,6 +39,7 @@ namespace SistemaCred9.Modelo
         public const string TAREFA_INDEX = "TAREFA_INDEX";
         public const string TAREFA_ASSUMIR = "TAREFA_ASSUMIR";
         public const string TAREFA_DEVOLVER = "TAREFA_DEVOLVER";
+        public const string TAREFA_MUDAR_STATUS = "TAREFA_MUDAR_STATUS";
 
         public static string[] RolesPorTipoUsuario(TipoUsuarioEnum tipoUsuario)
         {
@@ -71,7 +72,7 @@ namespace SistemaCred9.Modelo
             {
                 return new string[]
                 {
-                    TAREFA_INDEX, TAREFA_ASSUMIR, TAREFA_DEVOLVER
+                    TAREFA_INDEX, TAREFA_ASSUMIR, TAREFA_DEVOLVER, TAREFA_MUDAR_STATUS
                 };
             }
 

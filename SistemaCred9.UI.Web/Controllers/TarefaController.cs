@@ -102,5 +102,21 @@ namespace SistemaCred9.Web.UI.Controllers
 
             return RedirectToAction("Index", new { opcaoProprietarioSelecionado = 1, statusTarefaId = statusTarefaId });
         }
+
+        [PermissoesFiltro(Roles = Role.TAREFA_DEVOLVER)]
+        public ActionResult MudarStatus(int statusTarefaId, int numContrato)
+        {
+            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
+            var contrato = _tarefaNegocio.ListarContratosDoUsuarioPorStatus(31, statusTarefaId, usuario.Id).Where(x => x.NumContrato == numContrato).FirstOrDefault();
+
+            if (contrato == null)
+            {
+                throw new Exception("Não foi possível encontrar o contrato informado. Tente Novamente!");
+            }
+
+            _tarefaNegocio.DevolverContrato(usuario.Id, contrato);
+
+            return RedirectToAction("Index", new { opcaoProprietarioSelecionado = 1, statusTarefaId = statusTarefaId });
+        }
     }
 }

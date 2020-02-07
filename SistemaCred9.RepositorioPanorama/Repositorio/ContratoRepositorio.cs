@@ -54,6 +54,39 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
             }
         }
 
+        //public void MudarStatusContrato(Contrato contrato)
+        //{
+        //    try
+        //    {
+        //        string sql = @"insert into historico_tarefa_status (tarefa_execucao_id, historico_status_id, informacao, valor_comissao_id, data_previsao)
+        //                        values (@tarefa_execucao_id, @historico_status_id, @informacao, @valor_comissao_id, @data_previsao)";
+        //        List<Contrato> lista = new List<Contrato>();
+
+        //        //sql = sql.Replace("@tarefaId", tarefaId.ToString());
+        //        //sql = sql.Replace("@statusTarefaId", statusTarefaId.ToString());
+
+        //        var reader = _context.ExecuteSqlCommandWithReturn(sql);
+
+        //        while (reader.Read())
+        //        {
+        //            var ben = ReaderParaObjeto(reader);
+
+        //            if (ben != null)
+        //            {
+        //                lista.Add(ben);
+        //            }
+        //        }
+
+        //        reader.Close();
+
+        //        return lista;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
+
         public int QtdContratosPorStatus(int tarefaId, int statusTarefaId)
         {
             try

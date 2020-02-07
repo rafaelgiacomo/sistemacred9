@@ -60,6 +60,11 @@ namespace SistemaCred9.Negocio
             _unitOfWork.Salvar();
         }
 
+        public void MudarStatusContrato(Contrato contrato)
+        {
+
+        }
+
         public List<Contrato> ListarContratosSemDonoPorStatus(int tarefaId, int statusTarefaId)
         {
             var listaCompleta = _unitOfWorkPanorama.Contratos.ListaContratosPorStatus(tarefaId, statusTarefaId);
