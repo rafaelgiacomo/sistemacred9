@@ -92,7 +92,6 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
             var contrato = _tarefaNegocio.ListarContratosDoUsuarioPorStatus(31, statusTarefaId, usuario.Id).Where(x => x.NumContrato == numContrato).FirstOrDefault();
-
             if (contrato == null)
             {
                 throw new Exception("Não foi possível encontrar o contrato informado. Tente Novamente!");
