@@ -129,7 +129,7 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
         {
             var entidade = new StatusTarefa();
 
-            entidade.Id = int.Parse(reader["status_proposta_id"].ToString());
+            entidade.Id = int.Parse(reader["id"].ToString());
             entidade.Descricao = reader["descricao"].ToString();
             entidade.Cor = reader["cor"].ToString();
 
