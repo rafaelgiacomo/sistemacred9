@@ -46,6 +46,11 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
 
                 reader.Close();
 
+                foreach (var item in lista)
+                {
+                    BuscaTarefaExecucaoId(item);
+                }
+
                 return lista;
             }
             catch (Exception ex)
@@ -54,38 +59,29 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
             }
         }
 
-        //public void MudarStatusContrato(Contrato contrato)
-        //{
-        //    try
-        //    {
-        //        string sql = @"insert into historico_tarefa_status (tarefa_execucao_id, historico_status_id, informacao, valor_comissao_id, data_previsao)
-        //                        values (@tarefa_execucao_id, @historico_status_id, @informacao, @valor_comissao_id, @data_previsao)";
-        //        List<Contrato> lista = new List<Contrato>();
+        private void BuscaTarefaExecucaoId(Contrato contrato)
+        {
+            try
+            {
+                string sql = @"select id from tarefa_execucao where relacao='emprestimo' and relacao_id in(select id from emprestimo e where e.cliente_id=@clienteId and e.contrato=@contratoId)";
+                List<Contrato> lista = new List<Contrato>();
 
-        //        //sql = sql.Replace("@tarefaId", tarefaId.ToString());
-        //        //sql = sql.Replace("@statusTarefaId", statusTarefaId.ToString());
+                sql = sql.Replace("@clienteId", contrato.ClienteId.ToString());
+                sql = sql.Replace("@contratoId", contrato.NumContrato.ToString());
 
-        //        var reader = _context.ExecuteSqlCommandWithReturn(sql);
+                var reader = _context.ExecuteSqlCommandWithReturn(sql);
 
-        //        while (reader.Read())
-        //        {
-        //            var ben = ReaderParaObjeto(reader);
+                if (reader.Read())
+                {
+                    contrato.StatusTarefaExecucaoId = int.Parse(reader[0].ToString());
+                }
 
-        //            if (ben != null)
-        //            {
-        //                lista.Add(ben);
-        //            }
-        //        }
-
-        //        reader.Close();
-
-        //        return lista;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return null;
-        //    }
-        //}
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
         public int QtdContratosPorStatus(int tarefaId, int statusTarefaId)
         {

@@ -69,6 +69,10 @@
     <Compile Include="Migrations\202001131636515_ControleTarefasPanorama.designer.cs">
       <DependentUpon>202001131636515_ControleTarefasPanorama.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002141926201_TarefaExecucao.cs" />
+    <Compile Include="Migrations\202002141926201_TarefaExecucao.designer.cs">
+      <DependentUpon>202002141926201_TarefaExecucao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001131636515_ControleTarefasPanorama.resx">
       <DependentUpon>202001131636515_ControleTarefasPanorama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141926201_TarefaExecucao.resx">
+      <DependentUpon>202002141926201_TarefaExecucao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

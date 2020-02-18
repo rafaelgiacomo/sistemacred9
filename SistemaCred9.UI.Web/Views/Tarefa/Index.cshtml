@@ -1,4 +1,5 @@
 ﻿@model SistemaCred9.Web.UI.ViewModels.Tarefa.TarefaIndexViewModel
+@using System.Configuration;
 
 @{
     ViewBag.TitleSmall = "Tarefas - " + Model.StatusAtual;
@@ -82,9 +83,17 @@
                                 <td>
                                     @foreach (var mud in Model.StatusMudanca)
                                     {
-                                        @Html.ActionLink(mud.Descricao, "MudarStatus", "Tarefa",
+                                        var server = ConfigurationManager.AppSettings["ServerPanorama"];
+                                        var strHref = "http://@server/tarefa.do?action=incluirNovoStatus&codigo=@statusTarefaId&idTarefaExecucao=@idTarefaExecucao";
+                                        strHref = strHref.Replace("@server", server);
+                                        strHref = strHref.Replace("@statusTarefaId", mud.Id.ToString());
+                                        strHref = strHref.Replace("@idTarefaExecucao", item.StatusTarefaExecucaoId.ToString());
+
+                                        <a href="@strHref">@mud.Descricao</a>
+
+                                        @*@Html.ActionLink(mud.Descricao, "MudarStatus", "Tarefa",
                                             new { @contratoId = item.NumContrato, @statusTarefaId = mud.Id },
-                                            new { @class = "btn btn-default btn-xs", @style = "margin: 5px;" })
+                                            new { @class = "btn btn-default btn-xs", @style = "margin: 5px;" })*@
                                     }
                                 </td>
                             </tr>

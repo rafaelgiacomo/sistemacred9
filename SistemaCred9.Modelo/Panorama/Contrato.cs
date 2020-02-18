@@ -10,6 +10,8 @@ namespace SistemaCred9.Modelo.Panorama
 
         public int UsuarioId { get; set; }
 
+        public int StatusTarefaExecucaoId { get; set; }
+
         public DateTime DataLancamento { get; set; }
 
         public virtual Usuario Usuario { get; set; }
