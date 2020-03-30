@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SistemaCred9.Infra.Interface;
 using SistemaCred9.Modelo.Panorama;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,12 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
     public class TarefaRepositorio
     {
         private readonly Context _context;
+        private readonly ILogger _log;
 
-        public TarefaRepositorio(Context context)
+        public TarefaRepositorio(Context context, ILogger log)
         {
             _context = context;
+            _log = log;
         }
 
         public Tarefa Selecionar(int id)

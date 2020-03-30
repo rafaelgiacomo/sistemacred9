@@ -19,14 +19,13 @@ namespace SistemaCred9.EntityFramework.Context
         }
 
         public IDbSet<Usuario> Usuarios { get; set; }
-
         public IDbSet<Role> Permissoes { get; set; }
-
         public IDbSet<Venda> Venda { get; set; }
-
         public IDbSet<VendaStatusHistorico> VendaHistorico { get; set; }
-
         public IDbSet<Contrato> Contratos { get; set; }
+        public IDbSet<Filtro> Filtro { get; set; }
+        public IDbSet<FiltroEspecie> FiltroEspecies { get; set; }
+        public IDbSet<FiltroBanco> FiltroBancos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -39,6 +38,9 @@ namespace SistemaCred9.EntityFramework.Context
             modelBuilder.Configurations.Add(new UsuarioMap());
             modelBuilder.Configurations.Add(new RoleMap());
             modelBuilder.Configurations.Add(new ContratoMap());
+            modelBuilder.Configurations.Add(new FiltroMap());
+            modelBuilder.Configurations.Add(new FiltroEspecieMap());
+            modelBuilder.Configurations.Add(new FiltroBancoMap());
         }
     }
 }

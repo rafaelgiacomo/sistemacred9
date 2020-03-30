@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SistemaCred9.Infra.Interface;
 using SistemaCred9.Modelo.Panorama;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
     public class BeneficioRepositorio
     {
         private readonly Context _context;
-        //private readonly ILogger _log;
+        private readonly ILogger _log;
 
         #region Parametros
         public const string ESPECIE = "especie";
@@ -16,9 +17,10 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
         public const string P_CLIENTE_ID = "MinDataNascimento";
         #endregion
 
-        public BeneficioRepositorio(Context context)
+        public BeneficioRepositorio(Context context, ILogger log)
         {
             _context = context;
+            _log = log;
         }
 
         public List<Beneficio> ConsultaBeneficioPorClienteId(int idCliente)

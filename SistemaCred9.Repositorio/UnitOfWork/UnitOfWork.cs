@@ -28,6 +28,9 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         private IRoleRepositorio _roleRepositorio;
         private IVendaRepositorio _vendaRepositorio;
         private IVendaStatusHistoricoRepositorio _vendaStatusHistoricoRepositorio;
+        private IFiltroRepositorio _filtroRepositorio;
+        private IFiltroEspecieRepositorio _FiltroEspecieRepositorio;
+        private IFiltroBancoRepositorio _filtroBancoRepositorio;
 
         #endregion
 
@@ -52,6 +55,18 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         public IVendaStatusHistoricoRepositorio VendaStatusHistorico =>
             _vendaStatusHistoricoRepositorio ?? (_vendaStatusHistoricoRepositorio =
                 new VendaStatusHistoricoRepositorio(_dbContext));
+
+        public IFiltroRepositorio Filtro =>
+            _filtroRepositorio ?? (_filtroRepositorio =
+                new FiltroRepositorio(_dbContext));
+
+        public IFiltroEspecieRepositorio FiltroEspecie =>
+            _FiltroEspecieRepositorio ?? (_FiltroEspecieRepositorio =
+                new FiltroEspecieRepositorio(_dbContext));
+
+        public IFiltroBancoRepositorio FiltroBanco =>
+            _filtroBancoRepositorio ?? (_filtroBancoRepositorio =
+                new FiltroBancoRepositorio(_dbContext));
 
         #endregion
 

@@ -41,18 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Panorama\AgrupamentoNegocio.cs" />
+    <Compile Include="Panorama\ClienteNegocio.cs" />
+    <Compile Include="FiltroBancoNegocio.cs" />
+    <Compile Include="FiltroEspecieNegocio.cs" />
+    <Compile Include="FiltroNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TarefaNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="VendaNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Infra\SistemaCred9.Infra.csproj">
+      <Project>{f687c1e5-4031-488a-a533-95e722e2c8e1}</Project>
+      <Name>SistemaCred9.Infra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
       <Project>{2EBD064B-57F9-40F4-8600-303825AAFAB9}</Project>
       <Name>SistemaCred9.Modelo</Name>
     </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.RepositorioPanorama\SistemaCred9.RepositorioPanorama.csproj">
-      <Project>{7f98da68-24e9-409d-96c7-d7dfad1825b3}</Project>
+      <Project>{7F98DA68-24E9-409D-96C7-D7DFAD1825B3}</Project>
       <Name>SistemaCred9.RepositorioPanorama</Name>
     </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Repositorio\SistemaCred9.Repositorio.csproj">

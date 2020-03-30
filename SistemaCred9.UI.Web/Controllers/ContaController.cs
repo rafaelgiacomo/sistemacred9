@@ -1,7 +1,4 @@
-﻿using SistemaCred9.EntityFramework.Context;
-using SistemaCred9.Modelo;
-using SistemaCred9.Negocio;
-using SistemaCred9.Repositorio.UnitOfWork;
+﻿using SistemaCred9.Modelo;
 using System;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -11,12 +8,8 @@ namespace SistemaCred9.Web.UI.Controllers
     [AllowAnonymous]
     public class ContaController : BaseController
     {
-
-        private readonly UsuarioNegocio _usuarioBus;
-
         public ContaController()
         {
-            _usuarioBus = new UsuarioNegocio(new UnitOfWork(new Cred9DbContext()));
         }
 
         public ActionResult LogOn()
@@ -30,7 +23,7 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             try
             {
-                Usuario usuario = _usuarioBus.SelecionarPorLogin(form["Login"]);
+                Usuario usuario = _usuarioNegocio.SelecionarPorLogin(form["Login"]);
 
                 if (usuario != null)
                 {

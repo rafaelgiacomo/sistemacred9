@@ -13,10 +13,10 @@
         <ul class="sidebar-menu">
             <li class="header">Navegação principal</li>
             @Html.MenuDropDown("Cadastros",
-                new[] { "Usuarios" },
-                new[] { "Index" },
-                new[] { "Usuario" },
-                new[] { "" })
+                new[] { "Usuarios", "Filtros", "Espécies", "Bancos" },
+                new[] { "Index", "Index", "Index", "Index" },
+                new[] { "Usuario", "Filtro", "Especie", "Banco" },
+                new[] { "", "", "", "" })
 
             @Html.MenuDropDown("Vendas",
          new[] { Model.ArrayQtdPorStatus[0] + " - Aguardando Documento", Model.ArrayQtdPorStatus[1] + " - Documento Pendente",

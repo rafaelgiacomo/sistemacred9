@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SistemaCred9.Infra.Interface;
 using SistemaCred9.Modelo.Panorama;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
     public class EmprestimoRepositorio
     {
         private readonly Context _context;
+        private readonly ILogger _log;
 
         #region Parametros
         public const string ID = "id";
@@ -20,9 +22,10 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
         public const string P_CLIENTE_ID = "@ClienteId";
         #endregion
 
-        public EmprestimoRepositorio(Context context)
+        public EmprestimoRepositorio(Context context, ILogger log)
         {
             _context = context;
+            _log = log;
         }
 
         public List<Emprestimo> ConsultaEmprestimosPorBeneficioId(int idBeneficio)

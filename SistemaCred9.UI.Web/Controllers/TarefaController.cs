@@ -1,14 +1,9 @@
-﻿using AutoMapper;
-using SistemaCred9.EntityFramework.Context;
+﻿using SistemaCred9.EntityFramework.Context;
 using SistemaCred9.Modelo;
-using SistemaCred9.Negocio;
 using SistemaCred9.Repositorio.UnitOfWork;
 using SistemaCred9.Web.UI.Security;
-using SistemaCred9.Web.UI.ViewModels.Shared;
 using SistemaCred9.Web.UI.ViewModels.Tarefa;
-using SistemaCred9.Web.UI.ViewModels.Usuario;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,18 +12,9 @@ namespace SistemaCred9.Web.UI.Controllers
     [Authorize]
     public class TarefaController : BaseController
     {
-        private readonly UsuarioNegocio _usuarioNegocio;
-        private readonly VendaNegocio _vendaNegocio;
-        private readonly TarefaNegocio _tarefaNegocio;
-
         public TarefaController()
         {
             var unitOfWork = new UnitOfWork(new Cred9DbContext());
-            var unitOfWorkPanorama = new RepositorioPanorama.UnitOfWork(_connectionString);
-
-            _vendaNegocio = new VendaNegocio(unitOfWork);
-            _usuarioNegocio = new UsuarioNegocio(unitOfWork);
-            _tarefaNegocio = new TarefaNegocio(unitOfWorkPanorama, unitOfWork);
         }
 
         [PermissoesFiltro(Roles = Role.TAREFA_INDEX)]

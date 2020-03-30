@@ -18,6 +18,9 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         IUsuarioRepositorio Usuario { get; }
         IVendaRepositorio Venda { get; }
         IVendaStatusHistoricoRepositorio VendaStatusHistorico { get; }
+        IFiltroRepositorio Filtro { get; }
+        IFiltroEspecieRepositorio FiltroEspecie { get; }
+        IFiltroBancoRepositorio FiltroBanco { get; }
 
         #endregion
     }
