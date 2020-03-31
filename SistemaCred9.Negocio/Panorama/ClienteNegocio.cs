@@ -291,7 +291,7 @@ namespace SistemaCred9.Negocio
                     if ((int)porcentagem > porcentAnterior)
                     {
                         porcentAnterior = (int)porcentagem;
-                        _log.EscreveLinha(porcentAnterior + " % dos beneficios validados de " + clientes.Count);
+                        _log.EscreveLinha(porcentAnterior + " % dos clientes validados de " + clientes.Count);
                     }
 
                     if (!EhClienteDentroDoPerfil(cl, filtro))
@@ -327,12 +327,7 @@ namespace SistemaCred9.Negocio
 
                             if (!string.IsNullOrEmpty(e.Banco))
                             {
-                                bruto = e.ValorParcela / f.Coeficiente;
-                                liquido = bruto - e.Saldo;
-
-                                if (e.Saldo > 0
-                                    && liquido >= (e.Saldo * 0.05)
-                                    && e.ValorParcela >= f.MinParcela
+                                if (e.ValorParcela >= f.MinParcela
                                     && e.Prazo == f.Prazo
                                     && e.ParcelasEmAberto >= f.MinParcelasEmAberto
                                     && e.ParcelasEmAberto <= f.MaxParcelasEmAberto
@@ -340,6 +335,20 @@ namespace SistemaCred9.Negocio
                                 {
                                     dentroPerfil = true;
                                 }
+
+                                //bruto = e.ValorParcela / f.Coeficiente;
+                                //liquido = bruto - e.Saldo;
+
+                                //if (e.Saldo > 0
+                                //    && liquido >= (e.Saldo * 0.05)
+                                //    && e.ValorParcela >= f.MinParcela
+                                //    && e.Prazo == f.Prazo
+                                //    && e.ParcelasEmAberto >= f.MinParcelasEmAberto
+                                //    && e.ParcelasEmAberto <= f.MaxParcelasEmAberto
+                                //    && e.Banco.Contains(f.Banco))
+                                //{
+                                //    dentroPerfil = true;
+                                //}
                             }
 
                             unit.LogFiltro.SalvarLog(new LogFiltro()

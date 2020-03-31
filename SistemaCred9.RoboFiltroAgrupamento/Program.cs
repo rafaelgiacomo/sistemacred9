@@ -60,12 +60,6 @@ namespace SistemaCred9.RoboFiltroAgrupamento
                         Cor = "cde9e0"
                     };
 
-                    var agpTelefone = new Agrupamento()
-                    {
-                        Descricao = nomeRobo + " (Telefones Desatualizados) " + "" + data,
-                        Cor = "cde9e0"
-                    };
-
                     logger.PulaLinhas(1);
                     logger.EscreveLinha("=== RECUPERANDO BENEFICIOS DE CADA CLIENTE...");
                     cliBus.ConsultaBeneficiosClientes(clientes);
@@ -87,8 +81,6 @@ namespace SistemaCred9.RoboFiltroAgrupamento
                     logger.EscreveLinha("OK - AGRUPAMENTO CRIADO: " + agp.Descricao + " - Código " + agp.Id);
                     agpBus.AdicionarAgrupamento(agpFora);
                     logger.EscreveLinha("OK - AGRUPAMENTO CRIADO: " + agpFora.Descricao + " - Código " + agpFora.Id);
-                    agpBus.AdicionarAgrupamento(agpTelefone);
-                    logger.EscreveLinha("OK - AGRUPAMENTO CRIADO: " + agpTelefone.Descricao + " - Código " + agpTelefone.Id);
                     logger.PulaLinhas(1);
 
                     logger.EscreveLinha("ADICIONANDO CLIENTES NOS AGRUPAMENTOS...");
@@ -114,16 +106,8 @@ namespace SistemaCred9.RoboFiltroAgrupamento
 
                             if (c.Ativado)
                             {
-                                if (!agpBus.ConsultaClientePresente(c.Id, parametros.Filtro.AgrupamentosRestricao[0]))
-                                {
-                                    //Cliente valido que precisa atualizar telfone
-                                    agpBus.AdicionarClienteNoAgrupamento(agpTelefone.Id, c.Id);
-                                }
-                                else
-                                {
-                                    //Cliente valido que não precisa atualizar telefone
-                                    agpBus.AdicionarClienteNoAgrupamento(agp.Id, c.Id);
-                                }
+                                //Cliente valido que não precisa atualizar telefone
+                                agpBus.AdicionarClienteNoAgrupamento(agp.Id, c.Id);
                             }
                             else
                             {
@@ -173,7 +157,7 @@ namespace SistemaCred9.RoboFiltroAgrupamento
                     {
                         Console.WriteLine(item.Id + " - " + item.Descricao);
                     }
-                    
+
                     Console.WriteLine("");
                     Console.WriteLine("");
                     Console.WriteLine("DIGITE O CODIGO DO FILTRO: ");
@@ -224,11 +208,11 @@ namespace SistemaCred9.RoboFiltroAgrupamento
         {
             ParametrosRobo param = new ParametrosRobo(filtroSelecionado);
 
-            #pragma warning disable CS0618 // O tipo ou membro é obsoleto
+#pragma warning disable CS0618 // O tipo ou membro é obsoleto
 
             param.LeAgrupamentosDeRestricao(ConfigurationSettings.AppSettings["paramsAgrupamentos"].ToString());
 
-            #pragma warning restore CS0618 // O tipo ou membro é obsoleto
+#pragma warning restore CS0618 // O tipo ou membro é obsoleto
 
             return param;
         }
