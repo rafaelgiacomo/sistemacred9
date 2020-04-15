@@ -161,7 +161,7 @@ namespace SistemaCred9.Web.UI.Controllers
 
             if (venda == null)
             {
-                ViewBag.Mensagem = "Não foi possível adicionar o Usuario.";
+                ViewBag.Mensagem = "Não foi possível visualizar a Venda.";
                 return RedirectToAction("Erro");
             }
 
@@ -170,6 +170,21 @@ namespace SistemaCred9.Web.UI.Controllers
             viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
+        }
+
+        public ActionResult Excluir(int entidadeId)
+        {
+            var venda = _vendaNegocio.Obter(entidadeId);
+
+            if (venda == null)
+            {
+                ViewBag.Mensagem = "Não foi possível excluir a Venda.";
+                return RedirectToAction("Erro");
+            }
+
+            _vendaNegocio.Excluir(entidadeId);
+
+            return RedirectToAction("Index");
         }
     }
 }

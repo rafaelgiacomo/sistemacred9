@@ -23,6 +23,20 @@ namespace SistemaCred9.Negocio
             _unitOfWork.Salvar();
         }
 
+        public void Excluir(int id)
+        {
+            var hist = _unitOfWork.VendaStatusHistorico.Listar(x => x.VendaId == id);
+
+            foreach (var item in hist)
+            {
+                _unitOfWork.VendaStatusHistorico.Deletar(item.Id);
+            }
+
+            _unitOfWork.Venda.Deletar(id);
+
+            _unitOfWork.Salvar();
+        }
+
         public Venda Obter(int id)
         {
             return _unitOfWork.Venda.Obter(id);
