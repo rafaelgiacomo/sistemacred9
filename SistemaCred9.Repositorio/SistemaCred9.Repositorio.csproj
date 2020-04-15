@@ -54,7 +54,13 @@
     <Compile Include="Base\IRepositorioBase.cs" />
     <Compile Include="Base\RepositorioBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\FiltroBancoRepositorio.cs" />
+    <Compile Include="Repositorios\FiltroEspecieRepositorio.cs" />
+    <Compile Include="Repositorios\FiltroRepositorio.cs" />
     <Compile Include="Repositorios\Interfaces\IContratoRepositorio.cs" />
+    <Compile Include="Repositorios\Interfaces\IFiltroBancoRepositorio.cs" />
+    <Compile Include="Repositorios\Interfaces\IFiltroEspecieRepositorio.cs" />
+    <Compile Include="Repositorios\Interfaces\IFiltroRepositorio.cs" />
     <Compile Include="Repositorios\Interfaces\IRoleRepositorio.cs" />
     <Compile Include="Repositorios\Interfaces\IUsuarioRepositorio.cs" />
     <Compile Include="Repositorios\Interfaces\IVendaStatusHistoricoRepositorio.cs" />

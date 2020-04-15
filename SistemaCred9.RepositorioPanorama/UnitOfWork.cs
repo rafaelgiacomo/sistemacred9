@@ -1,26 +1,32 @@
-﻿using SistemaCred9.RepositorioPanorama.Repositorio;
+﻿using SistemaCred9.Infra.Interface;
+using SistemaCred9.RepositorioPanorama.Repositorio;
 using System;
 
 namespace SistemaCred9.RepositorioPanorama
 {
     public class UnitOfWork : IDisposable
     {
-
-        private readonly string _connectionString;
         private readonly Context _context;
+        private readonly ILogger _logger;
 
         #pragma warning disable 649
+        private ClienteRepositorio _clienteRepositorio;
+        private StatusTelemarketingRepositorio _statusRepositorio;
+        private AgrupamentoRepositorio _agrupamentoRepositorio;
         private BeneficioRepositorio _beneficioRepositorio;
         private EmprestimoRepositorio _emprestimoRepositorio;
+        private TelefoneRepositorio _telefoneRepositorio;
+        private LogFiltroRepositorio _logFiltroRepositorio;
         private TarefaRepositorio _tarefaRepositorio;
         private StatusTarefaRepositorio _statusTarefaRepositorio;
         private ContratoRepositorio _contratoRepositorio;
+        
         #pragma warning restore 649
 
-        public UnitOfWork(string connectionString)
+        public UnitOfWork(string connectionString, ILogger logger)
         {
-            _connectionString = connectionString;
             _context = new Context(connectionString);
+            _logger = logger;
             _context.AbrirConexao();
         }
 
@@ -54,6 +60,53 @@ namespace SistemaCred9.RepositorioPanorama
             _context.FecharConexao();
         }
 
+        public ClienteRepositorio Clientes
+        {
+            get
+            {
+                if (_clienteRepositorio == null)
+                {
+                    _clienteRepositorio = new ClienteRepositorio(_context, _logger);
+                }
+                return _clienteRepositorio;
+            }
+        }
+
+        public AgrupamentoRepositorio Agrupamentos
+        {
+            get
+            {
+                if (_agrupamentoRepositorio == null)
+                {
+                    _agrupamentoRepositorio = new AgrupamentoRepositorio(_context, _logger);
+                }
+                return _agrupamentoRepositorio;
+            }
+        }
+
+        public TelefoneRepositorio Telefones
+        {
+            get
+            {
+                if (_telefoneRepositorio == null)
+                {
+                    _telefoneRepositorio = new TelefoneRepositorio(_context, _logger);
+                }
+                return _telefoneRepositorio;
+            }
+        }
+
+        public LogFiltroRepositorio LogFiltro
+        {
+            get
+            {
+                if (_logFiltroRepositorio == null)
+                {
+                    _logFiltroRepositorio = new LogFiltroRepositorio(_context, _logger);
+                }
+                return _logFiltroRepositorio;
+            }
+        }
 
         public BeneficioRepositorio Beneficios
         {
@@ -61,7 +114,7 @@ namespace SistemaCred9.RepositorioPanorama
             {
                 if (_beneficioRepositorio == null)
                 {
-                    _beneficioRepositorio = new BeneficioRepositorio(_context);
+                    _beneficioRepositorio = new BeneficioRepositorio(_context, _logger);
                 }
                 return _beneficioRepositorio;
             }
@@ -73,7 +126,7 @@ namespace SistemaCred9.RepositorioPanorama
             {
                 if (_emprestimoRepositorio == null)
                 {
-                    _emprestimoRepositorio = new EmprestimoRepositorio(_context);
+                    _emprestimoRepositorio = new EmprestimoRepositorio(_context, _logger);
                 }
                 return _emprestimoRepositorio;
             }
@@ -85,7 +138,7 @@ namespace SistemaCred9.RepositorioPanorama
             {
                 if (_tarefaRepositorio == null)
                 {
-                    _tarefaRepositorio = new TarefaRepositorio(_context);
+                    _tarefaRepositorio = new TarefaRepositorio(_context, _logger);
                 }
                 return _tarefaRepositorio;
             }
@@ -97,9 +150,21 @@ namespace SistemaCred9.RepositorioPanorama
             {
                 if (_statusTarefaRepositorio == null)
                 {
-                    _statusTarefaRepositorio = new StatusTarefaRepositorio(_context);
+                    _statusTarefaRepositorio = new StatusTarefaRepositorio(_context, _logger);
                 }
                 return _statusTarefaRepositorio;
+            }
+        }
+
+        public StatusTelemarketingRepositorio Status
+        {
+            get
+            {
+                if (_statusRepositorio == null)
+                {
+                    _statusRepositorio = new StatusTelemarketingRepositorio(_context, _logger);
+                }
+                return _statusRepositorio;
             }
         }
 
@@ -109,7 +174,7 @@ namespace SistemaCred9.RepositorioPanorama
             {
                 if (_contratoRepositorio == null)
                 {
-                    _contratoRepositorio = new ContratoRepositorio(_context);
+                    _contratoRepositorio = new ContratoRepositorio(_context, _logger); ;
                 }
                 return _contratoRepositorio;
             }

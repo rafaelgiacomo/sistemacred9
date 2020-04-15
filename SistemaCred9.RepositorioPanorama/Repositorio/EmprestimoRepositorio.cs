@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SistemaCred9.Infra.Interface;
 using SistemaCred9.Modelo.Panorama;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
     public class EmprestimoRepositorio
     {
         private readonly Context _context;
+        private readonly ILogger _log;
 
         #region Parametros
         public const string ID = "id";
@@ -17,12 +19,15 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
         public const string PARCELAS_EM_ABERTO = "numero_parcelas_aberto";
         public const string VALOR_PARCELA = "valor_margem";
         public const string SALDO = "valor_refinanciamento";
+        public const string PRIMEIRO_VENCIMENTO = "primeiro_vencimento";
+        public const string LIBERADO_EM = "liberado_em";
         public const string P_CLIENTE_ID = "@ClienteId";
         #endregion
 
-        public EmprestimoRepositorio(Context context)
+        public EmprestimoRepositorio(Context context, ILogger log)
         {
             _context = context;
+            _log = log;
         }
 
         public List<Emprestimo> ConsultaEmprestimosPorBeneficioId(int idBeneficio)
@@ -31,7 +36,8 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
             {
                 List<Emprestimo> emprestimos = new List<Emprestimo>();
                 string sql = "select c.id, c.banco, c.numero_parcelas, c.numero_parcelas_aberto, " +
-                    "c.valor_margem, c.valor_refinanciamento from consignado c where c.beneficio_id = @IdBeneficio";
+                    "c.valor_margem, c.valor_refinanciamento, c.primeiro_vencimento, c.liberado_em" +
+                    " from consignado c where c.beneficio_id = @IdBeneficio";
 
                 sql = sql.Replace("@IdBeneficio", idBeneficio.ToString());
 
@@ -65,9 +71,18 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
                 var prazo = reader[PRAZO].ToString();
                 var saldo = reader[SALDO].ToString();
                 var valorParcela = reader[VALOR_PARCELA].ToString();
+                var primeiroVencimento = reader[PRIMEIRO_VENCIMENTO].ToString();
+                var liberadoEm = reader[LIBERADO_EM].ToString();
 
                 entidade.Id = int.Parse(reader[ID].ToString());
                 entidade.Banco = reader[BANCO].ToString();
+
+                
+                if (!string.IsNullOrEmpty(liberadoEm))
+                    entidade.DataLiberadoEm = DateTime.Parse(liberadoEm);
+
+                if (!string.IsNullOrEmpty(primeiroVencimento))
+                    entidade.DataPrimeiroVencimento = DateTime.Parse(primeiroVencimento);
 
                 if (!string.IsNullOrEmpty(parcelasAberto))
                     entidade.ParcelasEmAberto = int.Parse(parcelasAberto);

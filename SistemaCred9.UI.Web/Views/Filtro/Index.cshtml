@@ -1,0 +1,95 @@
+﻿@model SistemaCred9.Web.UI.ViewModels.Filtro.FiltroIndexViewModel
+
+@{
+    ViewBag.TitleSmall = "Filtros";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Adicionar", "Adicionar", "Filtro", new { @class = "btn btn-primary btn-block margin-bottom" })
+
+    </div>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Filtros Cadastrados</h3>
+            </div>
+            <div class="box-body">
+
+                <table id="filtros" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Agrupamento Panorama</th>
+                            <th>Limite Max Registros</th>
+                            <th>Data Nascimento Mínima</th>
+                            <th>Bancos</th>
+                            <th>Espécies descartadas</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Filtros)
+                        {
+                        <tr>
+                            <td>@item.Descricao</td>
+                            <td>@item.AgrupamentoDescricao</td>
+                            <td>@item.LimiteRegistros</td>
+                            <td>@item.MinDataNascimento</td>
+                            <td>
+                                <ul>
+                                    @foreach (var b in item.BancosSelecionados)
+                                    {
+                                        <li>@b</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach (var e in item.EspeciesSelecionadas)
+                                    {
+                                        <li>@e</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", "Filtro", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
+                                @Html.ActionLink("Excluir", "Excluir", "Filtro", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Agrupamento Panorama</th>
+                            <th>Limite Max Registros</th>
+                            <th>Data Nascimento Mínima</th>
+                            <th>Bancos</th>
+                            <th>Espécies descartadas</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+
+@section scripts
+{
+    <link href="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#filtros').DataTable({
+                language: {
+                    "url": 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json'
+                }
+            });
+        });
+    </script>
+}

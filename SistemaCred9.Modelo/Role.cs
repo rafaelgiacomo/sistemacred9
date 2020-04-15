@@ -19,7 +19,16 @@ namespace SistemaCred9.Modelo
             VENDA_INDEX, VENDA_ADICIONAR, VENDA_EDITAR, VENDA_MUDAR_STATUS, VENDA_EXCLUIR,
 
             //Tarefa
-            TAREFA_INDEX, TAREFA_ASSUMIR, TAREFA_DEVOLVER, TAREFA_MUDAR_STATUS
+            TAREFA_INDEX, TAREFA_ASSUMIR, TAREFA_DEVOLVER, TAREFA_MUDAR_STATUS,
+
+            // Espécie
+		    ESPECIE_INDEX, ESPECIE_ADICIONAR, ESPECIE_EDITAR, ESPECIE_EXCLUIR,
+
+            // Banco
+		    BANCO_INDEX, BANCO_ADICIONAR, BANCO_EDITAR, BANCO_EXCLUIR,
+
+            // Filtro
+		    FILTRO_INDEX, FILTRO_ADICIONAR, FILTRO_EDITAR, FILTRO_EXCLUIR,
         };
 
         //Usuario
@@ -40,6 +49,24 @@ namespace SistemaCred9.Modelo
         public const string TAREFA_ASSUMIR = "TAREFA_ASSUMIR";
         public const string TAREFA_DEVOLVER = "TAREFA_DEVOLVER";
         public const string TAREFA_MUDAR_STATUS = "TAREFA_MUDAR_STATUS";
+
+        //Especie
+        public const string ESPECIE_INDEX = "ESPECIE_INDEX";
+        public const string ESPECIE_ADICIONAR = "ESPECIE_ADICIONAR";
+        public const string ESPECIE_EDITAR = "ESPECIE_EDITAR";
+        public const string ESPECIE_EXCLUIR = "ESPECIE_EXCLUIR";
+
+        //Banco
+        public const string BANCO_INDEX = "BANCO_INDEX";
+        public const string BANCO_ADICIONAR = "BANCO_ADICIONAR";
+        public const string BANCO_EDITAR = "BANCO_EDITAR";
+        public const string BANCO_EXCLUIR = "BANCO_EXCLUIR";
+
+        //Filtro
+        public const string FILTRO_INDEX = "FILTRO_INDEX";
+        public const string FILTRO_ADICIONAR = "FILTRO_ADICIONAR";
+        public const string FILTRO_EDITAR = "FILTRO_EDITAR";
+        public const string FILTRO_EXCLUIR = "FILTRO_EXCLUIR";
 
         public static string[] RolesPorTipoUsuario(TipoUsuarioEnum tipoUsuario)
         {

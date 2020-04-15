@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\Cred9DbContext.cs" />
+    <Compile Include="Mapping\FiltroEspecieMap.cs" />
+    <Compile Include="Mapping\FiltroBancoMap.cs" />
+    <Compile Include="Mapping\FiltroMap.cs" />
     <Compile Include="Mapping\ContratoMap.cs" />
     <Compile Include="Mapping\UsuarioMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
@@ -72,6 +75,10 @@
     <Compile Include="Migrations\202002141926201_TarefaExecucao.cs" />
     <Compile Include="Migrations\202002141926201_TarefaExecucao.designer.cs">
       <DependentUpon>202002141926201_TarefaExecucao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003292120237_FiltroPorBanco.cs" />
+    <Compile Include="Migrations\202003292120237_FiltroPorBanco.designer.cs">
+      <DependentUpon>202003292120237_FiltroPorBanco.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002141926201_TarefaExecucao.resx">
       <DependentUpon>202002141926201_TarefaExecucao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003292120237_FiltroPorBanco.resx">
+      <DependentUpon>202003292120237_FiltroPorBanco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

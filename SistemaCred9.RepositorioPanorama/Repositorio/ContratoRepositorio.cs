@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using SistemaCred9.Infra.Interface;
 using SistemaCred9.Modelo.Panorama;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
     public class ContratoRepositorio
     {
         private readonly Context _context;
+        private readonly ILogger _log;
 
         #region Parametros
         public const string CLIENTE_ID = "cliente_id";
@@ -15,9 +17,10 @@ namespace SistemaCred9.RepositorioPanorama.Repositorio
         public const string DATA_LANCAMENTO = "data_lancamento";
         #endregion
 
-        public ContratoRepositorio(Context context)
+        public ContratoRepositorio(Context context, ILogger log)
         {
             _context = context;
+            _log = log;
         }
 
         public List<Contrato> ListaContratosPorStatus(int tarefaId, int statusTarefaId)

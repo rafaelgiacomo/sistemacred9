@@ -198,9 +198,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\FiltroController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
+    <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
+    <Compile Include="Controllers\EspecieController.cs" />
     <Compile Include="Controllers\VendaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,6 +221,12 @@
     <Compile Include="Security\PermissaoProvider.cs" />
     <Compile Include="Security\PermissoesFiltro.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Banco\BancoIndexViewModel.cs" />
+    <Compile Include="ViewModels\Banco\BancoViewModel.cs" />
+    <Compile Include="ViewModels\Especie\EspecieIndexViewModel.cs" />
+    <Compile Include="ViewModels\Especie\EspecieViewModel.cs" />
+    <Compile Include="ViewModels\Filtro\FiltroIndexViewModel.cs" />
+    <Compile Include="ViewModels\Filtro\FiltroViewModel.cs" />
     <Compile Include="ViewModels\Shared\BaseViewModel.cs" />
     <Compile Include="ViewModels\Tarefa\TarefaIndexViewModel.cs" />
     <Compile Include="ViewModels\Usuario\TrocarSenhaViewModel.cs" />
@@ -922,12 +931,28 @@
     <Content Include="Views\Usuario\TrocarSenha.cshtml" />
     <Content Include="Views\Usuario\SenhaAlterada.cshtml" />
     <Content Include="Views\Tarefa\Index.cshtml" />
+    <Content Include="Views\Especie\Adicionar.cshtml" />
+    <Content Include="Views\Especie\Editar.cshtml" />
+    <Content Include="Views\Especie\Erro.cshtml" />
+    <Content Include="Views\Especie\Excluir.cshtml" />
+    <Content Include="Views\Especie\Index.cshtml" />
+    <Content Include="Views\Banco\Adicionar.cshtml" />
+    <Content Include="Views\Filtro\Editar.cshtml" />
+    <Content Include="Views\Filtro\Erro.cshtml" />
+    <Content Include="Views\Filtro\Excluir.cshtml" />
+    <Content Include="Views\Filtro\Index.cshtml" />
+    <Content Include="Views\Filtro\Adicionar.cshtml" />
+    <Content Include="Views\Banco\Editar.cshtml" />
+    <Content Include="Views\Banco\Erro.cshtml" />
+    <Content Include="Views\Banco\Excluir.cshtml" />
+    <Content Include="Views\Banco\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
     <Folder Include="Content\Downloads\" />
     <Folder Include="Content\Uploads\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -942,6 +967,10 @@
     <ProjectReference Include="..\SistemaCred9.EntityFramework\SistemaCred9.EntityFramework.csproj">
       <Project>{9C4F15FD-7DEA-48D0-A89A-C0568752133D}</Project>
       <Name>SistemaCred9.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SistemaCred9.Infra\SistemaCred9.Infra.csproj">
+      <Project>{F687C1E5-4031-488A-A533-95E722E2C8E1}</Project>
+      <Name>SistemaCred9.Infra</Name>
     </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
       <Project>{2EBD064B-57F9-40F4-8600-303825AAFAB9}</Project>

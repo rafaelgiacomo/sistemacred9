@@ -63,17 +63,26 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\AgrupamentoRepositorio.cs" />
     <Compile Include="Repositorio\BeneficioRepositorio.cs" />
+    <Compile Include="Repositorio\ClienteRepositorio.cs" />
     <Compile Include="Repositorio\EmprestimoRepositorio.cs" />
     <Compile Include="Repositorio\ContratoRepositorio.cs" />
+    <Compile Include="Repositorio\LogFiltroRepositorio.cs" />
     <Compile Include="Repositorio\StatusTarefaRepositorio.cs" />
+    <Compile Include="Repositorio\StatusTelemarketingRepositorio.cs" />
     <Compile Include="Repositorio\TarefaRepositorio.cs" />
+    <Compile Include="Repositorio\TelefoneRepositorio.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Infra\SistemaCred9.Infra.csproj">
+      <Project>{f687c1e5-4031-488a-a533-95e722e2c8e1}</Project>
+      <Name>SistemaCred9.Infra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
       <Project>{2ebd064b-57f9-40f4-8600-303825aafab9}</Project>
       <Name>SistemaCred9.Modelo</Name>
