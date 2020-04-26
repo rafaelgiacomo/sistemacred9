@@ -45,7 +45,9 @@
     <Compile Include="EscritorArquivo.cs" />
     <Compile Include="GeradorCsvDiscador.cs" />
     <Compile Include="Interface\IEscritorArquivo.cs" />
+    <Compile Include="Interface\ILeitorArquivo.cs" />
     <Compile Include="Interface\ILogger.cs" />
+    <Compile Include="LeitorArquivo.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerConsole.cs" />
     <Compile Include="ParametrosRobo.cs" />

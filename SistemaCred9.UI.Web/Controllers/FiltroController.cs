@@ -47,7 +47,7 @@ namespace SistemaCred9.Web.UI.Controllers
             foreach (var item in listaFiltros)
             {
                 var agp = _agrupamentoNegocio.Obter(item.CodAgrupamento);
-                var itemVm = new FiltroViewModel()
+                var itemVm = new ContratoRelatorioViewModel()
                 {
                     Id = item.Id,
                     Descricao = item.Descricao,
@@ -87,7 +87,7 @@ namespace SistemaCred9.Web.UI.Controllers
         [PermissoesFiltro(Roles = Role.FILTRO_ADICIONAR)]
         public ActionResult Adicionar()
         {
-            var viewModel = new FiltroViewModel();
+            var viewModel = new ContratoRelatorioViewModel();
             var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
             int? usuarioId = null;
 
@@ -106,7 +106,7 @@ namespace SistemaCred9.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Adicionar(FiltroViewModel viewModel)
+        public ActionResult Adicionar(ContratoRelatorioViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +140,7 @@ namespace SistemaCred9.Web.UI.Controllers
             var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
             int? usuarioId = null;
 
-            var viewModel = new FiltroViewModel()
+            var viewModel = new ContratoRelatorioViewModel()
             {
                 Id = entidade.Id,
                 Descricao = entidade.Descricao,
@@ -165,7 +165,7 @@ namespace SistemaCred9.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(FiltroViewModel viewModel)
+        public ActionResult Editar(ContratoRelatorioViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -185,7 +185,7 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Excluir(int entidadeId)
         {
             var entidade = _filtroNegocio.SelecionarPorId(entidadeId);
-            var viewModel = Mapper.Map<FiltroViewModel>(entidade);
+            var viewModel = Mapper.Map<ContratoRelatorioViewModel>(entidade);
             var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
             int? usuarioId = null;
 

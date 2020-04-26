@@ -21,6 +21,8 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         IFiltroRepositorio Filtro { get; }
         IFiltroEspecieRepositorio FiltroEspecie { get; }
         IFiltroBancoRepositorio FiltroBanco { get; }
+        IContratoRelatorioRepositorio ContratoRelatorio { get; }
+        ITabelaComissaoRepositorio TabelaComissao { get; }
 
         #endregion
     }

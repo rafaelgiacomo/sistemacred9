@@ -3,6 +3,7 @@ using SistemaCred9.Modelo;
 using SistemaCred9.Web.UI.ViewModels.Banco;
 using SistemaCred9.Web.UI.ViewModels.Especie;
 using SistemaCred9.Web.UI.ViewModels.Filtro;
+using SistemaCred9.Web.UI.ViewModels.TabelaComissao;
 using SistemaCred9.Web.UI.ViewModels.Usuario;
 using SistemaCred9.Web.UI.ViewModels.Venda;
 
@@ -17,13 +18,15 @@ namespace SistemaCred9.Web.UI.Mappers
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Usuario, UsuarioViewModel>();
-            Mapper.CreateMap<Usuario, TrocarSenhaViewModel>();
-            Mapper.CreateMap<Venda, VendaViewModel>();
-            Mapper.CreateMap<VendaStatusHistorico, VendaStatusHistoricoViewModel>();
-            Mapper.CreateMap<FiltroEspecie, EspecieViewModel>();
-            Mapper.CreateMap<FiltroBanco, BancoViewModel>();
-            CreateMap<Filtro, FiltroViewModel>();
+            CreateMap<Usuario, UsuarioViewModel>();
+            CreateMap<Usuario, TrocarSenhaViewModel>();
+            CreateMap<Venda, VendaViewModel>();
+            CreateMap<VendaStatusHistorico, VendaStatusHistoricoViewModel>();
+            CreateMap<FiltroEspecie, EspecieViewModel>();
+            CreateMap<FiltroBanco, BancoViewModel>();
+            CreateMap<Filtro, ContratoRelatorioViewModel>();
+            CreateMap<TabelaComissao, TabelaComissaoViewModel>();
+            CreateMap<ContratoRelatorio, ContratoRelatorioViewModel>();
         }
 
     }

@@ -1,0 +1,72 @@
+﻿@model SistemaCred9.Web.UI.ViewModels.TabelaComissao.TabelaComissaoIndexViewModel
+
+@{
+    ViewBag.TitleSmall = "Tabelas de Comissão";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Adicionar", "Adicionar", "TabelaComissao", new { @class = "btn btn-primary btn-block margin-bottom" })
+
+    </div>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Tabelas de Comissão</h3>
+            </div>
+            <div class="box-body">
+
+                <table id="tabelaComissao" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Valor de Comissão</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListaTabelaComissao)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Descricao</td>
+                                <td>@item.ValorComissao</td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Editar", "TabelaComissao", new { @entidadeId = item.Id }, new { @class = "btn btn-success btn-xs" })
+                                    @Html.ActionLink("Excluir", "Excluir", "TabelaComissao", new { @entidadeId = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Valor de Comissão</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+
+@section scripts
+{
+    <link href="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabelaComissao').DataTable({
+                language: {
+                    "url": 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json'
+                }
+            });
+        });
+    </script>
+}

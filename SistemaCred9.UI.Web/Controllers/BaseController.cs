@@ -17,15 +17,17 @@ namespace SistemaCred9.Web.UI.Controllers
         public readonly UsuarioNegocio _usuarioNegocio;
         public readonly VendaNegocio _vendaNegocio;
         public readonly TarefaNegocio _tarefaNegocio;
+        public readonly UnitOfWork _unitOfWork;
+        public readonly RepositorioPanorama.UnitOfWork _unitOfWorkPanorama;
 
         public BaseController()
         {
-            var unitOfWork = new UnitOfWork(new Cred9DbContext());
-            var unitOfWorkPanorama = new RepositorioPanorama.UnitOfWork(_connectionString, new LoggerConsole());
+            _unitOfWork = new UnitOfWork(new Cred9DbContext());
+            _unitOfWorkPanorama = new RepositorioPanorama.UnitOfWork(_connectionString, new LoggerConsole());
 
-            _usuarioNegocio = new UsuarioNegocio(unitOfWork);
-            _vendaNegocio = new VendaNegocio(unitOfWork);
-            _tarefaNegocio = new TarefaNegocio(unitOfWorkPanorama, unitOfWork);
+            _usuarioNegocio = new UsuarioNegocio(_unitOfWork);
+            _vendaNegocio = new VendaNegocio(_unitOfWork);
+            _tarefaNegocio = new TarefaNegocio(_unitOfWorkPanorama, _unitOfWork);
         }
 
         public ActionResult Erro()

@@ -52,10 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\Cred9DbContext.cs" />
+    <Compile Include="Mapping\ContratoRelatorioMap.cs" />
     <Compile Include="Mapping\FiltroEspecieMap.cs" />
     <Compile Include="Mapping\FiltroBancoMap.cs" />
     <Compile Include="Mapping\FiltroMap.cs" />
     <Compile Include="Mapping\ContratoMap.cs" />
+    <Compile Include="Mapping\TabelaComissaoMap.cs" />
     <Compile Include="Mapping\UsuarioMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\VendaStatusHistoricoMap.cs" />
@@ -79,6 +81,10 @@
     <Compile Include="Migrations\202003292120237_FiltroPorBanco.cs" />
     <Compile Include="Migrations\202003292120237_FiltroPorBanco.designer.cs">
       <DependentUpon>202003292120237_FiltroPorBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004261507192_RelatorioFinanceiroPorTabelaComissao.cs" />
+    <Compile Include="Migrations\202004261507192_RelatorioFinanceiroPorTabelaComissao.designer.cs">
+      <DependentUpon>202004261507192_RelatorioFinanceiroPorTabelaComissao.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003292120237_FiltroPorBanco.resx">
       <DependentUpon>202003292120237_FiltroPorBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004261507192_RelatorioFinanceiroPorTabelaComissao.resx">
+      <DependentUpon>202004261507192_RelatorioFinanceiroPorTabelaComissao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

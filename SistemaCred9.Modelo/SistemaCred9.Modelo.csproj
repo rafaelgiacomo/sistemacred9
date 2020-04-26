@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratoRelatorio.cs" />
     <Compile Include="EntitadeBase.cs" />
     <Compile Include="Filtro.cs" />
     <Compile Include="FiltroEspecie.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Panorama\Telefone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="TabelaComissao.cs" />
     <Compile Include="TipoUsuarioEnum.cs" />
     <Compile Include="TipoUsuarioModelo.cs" />
     <Compile Include="Usuario.cs" />

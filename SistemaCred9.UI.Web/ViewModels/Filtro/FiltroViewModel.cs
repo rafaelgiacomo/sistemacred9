@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SistemaCred9.Web.UI.ViewModels.Filtro
 {
-    public class FiltroViewModel : BaseViewModel
+    public class ContratoRelatorioViewModel : BaseViewModel
     {
         public int Id { get; set; }
 
@@ -40,14 +40,14 @@ namespace SistemaCred9.Web.UI.ViewModels.Filtro
         public List<FiltroEspecie> EspeciesDisponiveis { get; set; }
         public List<Agrupamento> ListaAgrupamentos { get; set; }
 
-        public FiltroViewModel() : base()
+        public ContratoRelatorioViewModel() : base()
         {
             BancosDisponiveis = new List<FiltroBanco>();
             EspeciesDisponiveis = new List<FiltroEspecie>();
             ListaAgrupamentos = new List<Agrupamento>();
         }
 
-        public FiltroViewModel(List<FiltroBanco> bancos, List<FiltroEspecie> especies) : base()
+        public ContratoRelatorioViewModel(List<FiltroBanco> bancos, List<FiltroEspecie> especies) : base()
         {
             BancosDisponiveis = bancos;
             EspeciesDisponiveis = especies;

@@ -29,6 +29,12 @@ namespace SistemaCred9.Modelo
 
             // Filtro
 		    FILTRO_INDEX, FILTRO_ADICIONAR, FILTRO_EDITAR, FILTRO_EXCLUIR,
+
+            // Tabela Comissao
+		    TABELA_COMISSAO_INDEX, TABELA_COMISSAO_ADICIONAR, TABELA_COMISSAO_EDITAR, TABELA_COMISSAO_EXCLUIR,
+
+            // Contra Relatorio
+		    CONTRATO_RELATORIO_INDEX, CONTRATO_RELATORIO_ADICIONAR, CONTRATO_RELATORIO_EDITAR, CONTRATO_RELATORIO_EXCLUIR
         };
 
         //Usuario
@@ -67,6 +73,18 @@ namespace SistemaCred9.Modelo
         public const string FILTRO_ADICIONAR = "FILTRO_ADICIONAR";
         public const string FILTRO_EDITAR = "FILTRO_EDITAR";
         public const string FILTRO_EXCLUIR = "FILTRO_EXCLUIR";
+
+        //Tabela Comissao
+        public const string TABELA_COMISSAO_INDEX = "TABELA_COMISSAO_INDEX";
+        public const string TABELA_COMISSAO_ADICIONAR = "TABELA_COMISSAO_ADICIONAR";
+        public const string TABELA_COMISSAO_EDITAR = "TABELA_COMISSAO_EDITAR";
+        public const string TABELA_COMISSAO_EXCLUIR = "TABELA_COMISSAO_EXCLUIR";
+
+        //Contrato Relatorio
+        public const string CONTRATO_RELATORIO_INDEX = "CONTRATO_RELATORIO_INDEX";
+        public const string CONTRATO_RELATORIO_ADICIONAR = "CONTRATO_RELATORIO_ADICIONAR";
+        public const string CONTRATO_RELATORIO_EDITAR = "CONTRATO_RELATORIO_EDITAR";
+        public const string CONTRATO_RELATORIO_EXCLUIR = "CONTRATO_RELATORIO_EXCLUIR";
 
         public static string[] RolesPorTipoUsuario(TipoUsuarioEnum tipoUsuario)
         {

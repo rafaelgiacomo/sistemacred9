@@ -1,0 +1,70 @@
+﻿@model SistemaCred9.Web.UI.ViewModels.TabelaComissao.TabelaComissaoViewModel
+
+@{
+    ViewBag.TitleSmall = "Adicionar Tabela Comissão";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Informe os dados da Tabela</h3>
+            </div>
+            @using (Html.BeginForm("Adicionar", "TabelaComissao", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="box-body">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Descricao,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            @placeholder = "Descrição da Tabela",
+                                        }
+                                })
+                                @Html.ValidationMessageFor(model => model.Descricao)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ValorComissao, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.ValorComissao,
+                                    new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            @placeholder = "Valor de Comissão da tabela",
+                                        }
+                                })
+                                @Html.ValidationMessageFor(model => model.ValorComissao)
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <input type="reset" value="Limpar" class="btn btn-warning" />
+                        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info pull-right" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

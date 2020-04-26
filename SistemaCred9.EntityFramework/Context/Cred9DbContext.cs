@@ -41,6 +41,8 @@ namespace SistemaCred9.EntityFramework.Context
             modelBuilder.Configurations.Add(new FiltroMap());
             modelBuilder.Configurations.Add(new FiltroEspecieMap());
             modelBuilder.Configurations.Add(new FiltroBancoMap());
+            modelBuilder.Configurations.Add(new ContratoRelatorioMap());
+            modelBuilder.Configurations.Add(new TabelaComissaoMap());
         }
     }
 }

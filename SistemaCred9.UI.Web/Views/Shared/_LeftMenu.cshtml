@@ -13,10 +13,10 @@
         <ul class="sidebar-menu">
             <li class="header">Navegação principal</li>
             @Html.MenuDropDown("Cadastros",
-                new[] { "Usuarios", "Filtros", "Espécies", "Bancos" },
-                new[] { "Index", "Index", "Index", "Index" },
-                new[] { "Usuario", "Filtro", "Especie", "Banco" },
-                new[] { "", "", "", "" })
+                new[] { "Usuarios", "Filtros", "Espécies", "Bancos", "Tabela Comissão" },
+                new[] { "Index", "Index", "Index", "Index", "Index" },
+                new[] { "Usuario", "Filtro", "Especie", "Banco", "TabelaComissao" },
+                new[] { "", "", "", "", "" })
 
             @Html.MenuDropDown("Vendas",
          new[] { Model.ArrayQtdPorStatus[0] + " - Aguardando Documento", Model.ArrayQtdPorStatus[1] + " - Documento Pendente",
@@ -43,6 +43,8 @@
                 Model.ArrayActionStatusTarefa(),
                 Model.ArrayControllerStatusTarefa(),
                 Model.ArrayParametrosStatusTarefa())
+
+            @Html.MenuItem("Financeiro", "Index", "Financeiro")
 
         </ul>
     </section>

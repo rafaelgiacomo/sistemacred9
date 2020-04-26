@@ -202,6 +202,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
+    <Compile Include="Controllers\FinanceiroController.cs" />
+    <Compile Include="Controllers\TabelaComissaoController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\EspecieController.cs" />
     <Compile Include="Controllers\VendaController.cs" />
@@ -228,6 +230,8 @@
     <Compile Include="ViewModels\Filtro\FiltroIndexViewModel.cs" />
     <Compile Include="ViewModels\Filtro\FiltroViewModel.cs" />
     <Compile Include="ViewModels\Shared\BaseViewModel.cs" />
+    <Compile Include="ViewModels\TabelaComissao\TabelaComissaoIndexViewModel.cs" />
+    <Compile Include="ViewModels\TabelaComissao\TabelaComissaoViewModel.cs" />
     <Compile Include="ViewModels\Tarefa\TarefaIndexViewModel.cs" />
     <Compile Include="ViewModels\Usuario\TrocarSenhaViewModel.cs" />
     <Compile Include="ViewModels\Usuario\UsuarioIndexViewModel.cs" />
@@ -946,12 +950,18 @@
     <Content Include="Views\Banco\Erro.cshtml" />
     <Content Include="Views\Banco\Excluir.cshtml" />
     <Content Include="Views\Banco\Index.cshtml" />
+    <Content Include="Views\TabelaComissao\Adicionar.cshtml" />
+    <Content Include="Views\TabelaComissao\Editar.cshtml" />
+    <Content Include="Views\TabelaComissao\Erro.cshtml" />
+    <Content Include="Views\TabelaComissao\Excluir.cshtml" />
+    <Content Include="Views\TabelaComissao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
     <Folder Include="Content\Downloads\" />
     <Folder Include="Content\Uploads\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Financeiro\" />
     <Folder Include="Views\Temp\" />
   </ItemGroup>
   <ItemGroup>
