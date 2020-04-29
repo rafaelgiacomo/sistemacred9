@@ -1,0 +1,54 @@
+﻿@model SistemaCred9.Web.UI.ViewModels.Financeiro.FinanceiroErroImportarViewModel
+
+@{
+    ViewBag.TitleSmall = "Ocorreu um ou mais erros ao realizar esta operação.";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Erros encontrados na planilha importada</h3>
+            </div>
+            <div class="box-body">
+
+                <table id="contratos" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Contrato</th>
+                            <th>Data Lançamento</th>
+                            <th>Tabela</th>
+                            <th>Percentual Comissão</th>
+                            <th>Cliente</th>
+                            <th>Assesor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListaContratos)
+                        {
+                            <tr>
+                                <td>@item.Contrato</td>
+                                <td>@item.DataLancamento</td>
+                                <td>@item.Tabela</td>
+                                <td>@item.PercentualComissao</td>
+                                <td>@item.NomeCliente</td>
+                                <td>@item.NomeAssessor</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Contrato</th>
+                            <th>Data Lançamento</th>
+                            <th>Tabela</th>
+                            <th>Percentual Comissão</th>
+                            <th>Cliente</th>
+                            <th>Assesor</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>

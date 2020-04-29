@@ -1,9 +1,10 @@
 ﻿using SistemaCred9.Infra.Interface;
+using System;
 using System.IO;
 
 namespace SistemaCred9.Infra
 {
-    public class LeitorArquivo : ILeitorArquivo
+    public class LeitorArquivo : ILeitorArquivo, IDisposable
     {
         public StreamReader reader { get; set; }
 
@@ -26,6 +27,11 @@ namespace SistemaCred9.Infra
         public void FecharLeitor()
         {
             reader.Close();
+        }
+
+        public void Dispose()
+        {
+            FecharLeitor();
         }
     }
 }

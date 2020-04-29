@@ -19,7 +19,7 @@ namespace SistemaCred9.EntityFramework.Mapping
                 .IsRequired();
 
             HasMany(x => x.Contratos)
-                .WithRequired(x => x.TabelaComissao)
+                .WithOptional(x => x.TabelaComissao)
                 .HasForeignKey(x => x.TabelaComissaoId)
                 .WillCascadeOnDelete(false);
         }

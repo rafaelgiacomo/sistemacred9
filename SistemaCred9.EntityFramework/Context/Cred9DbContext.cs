@@ -43,6 +43,7 @@ namespace SistemaCred9.EntityFramework.Context
             modelBuilder.Configurations.Add(new FiltroBancoMap());
             modelBuilder.Configurations.Add(new ContratoRelatorioMap());
             modelBuilder.Configurations.Add(new TabelaComissaoMap());
+            modelBuilder.Configurations.Add(new ContratoRelatorioPagamentoMap());
         }
     }
 }

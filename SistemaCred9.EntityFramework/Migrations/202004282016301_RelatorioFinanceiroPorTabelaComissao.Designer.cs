@@ -13,7 +13,7 @@ namespace SistemaCred9.EntityFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004261507192_RelatorioFinanceiroPorTabelaComissao"; }
+            get { return "202004282016301_RelatorioFinanceiroPorTabelaComissao"; }
         }
         
         string IMigrationMetadata.Source

@@ -33,6 +33,7 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         private IFiltroBancoRepositorio _filtroBancoRepositorio;
         private ITabelaComissaoRepositorio _tabelaComissaoRepositorio;
         private IContratoRelatorioRepositorio _contratoRelatorioRepositorio;
+        private IContratoRelatorioPagamentoRepositorio _contratoRelatorioPagamentoRepositorio;
 
         #endregion
 
@@ -77,6 +78,10 @@ namespace SistemaCred9.Repositorio.UnitOfWork
         public IContratoRelatorioRepositorio ContratoRelatorio =>
             _contratoRelatorioRepositorio ?? (_contratoRelatorioRepositorio =
                 new ContratoRelatorioRepositorio(_dbContext));
+
+        public IContratoRelatorioPagamentoRepositorio ContratoRelatorioPagamento =>
+            _contratoRelatorioPagamentoRepositorio ?? (_contratoRelatorioPagamentoRepositorio =
+                new ContratoRelatorioPagamentoRepositorio(_dbContext));
 
         #endregion
 

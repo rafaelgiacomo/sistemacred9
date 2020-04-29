@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContratoRelatorioNegocio.cs" />
     <Compile Include="Panorama\AgrupamentoNegocio.cs" />
     <Compile Include="Panorama\ClienteNegocio.cs" />
     <Compile Include="FiltroBancoNegocio.cs" />
@@ -53,6 +54,10 @@
     <Compile Include="VendaNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Core\SistemaCred9.Core.csproj">
+      <Project>{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}</Project>
+      <Name>SistemaCred9.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.Infra\SistemaCred9.Infra.csproj">
       <Project>{f687c1e5-4031-488a-a533-95e722e2c8e1}</Project>
       <Name>SistemaCred9.Infra</Name>

@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F687C1E5-4031-488A-A533-95E722E2C8E1}</ProjectGuid>
+    <ProjectGuid>{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SistemaCred9.Infra</RootNamespace>
-    <AssemblyName>SistemaCred9.Infra</AssemblyName>
+    <RootNamespace>SistemaCred9.Core</RootNamespace>
+    <AssemblyName>SistemaCred9.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.6.2\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,28 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EscritorArquivo.cs" />
-    <Compile Include="GeradorCsvDiscador.cs" />
-    <Compile Include="Interface\IEscritorArquivo.cs" />
-    <Compile Include="Interface\ILeitorArquivo.cs" />
-    <Compile Include="Interface\ILeitorArquivoContratoPagamento.cs" />
-    <Compile Include="Interface\ILogger.cs" />
-    <Compile Include="LeitorArquivo.cs" />
-    <Compile Include="LeitorContratoCorretoraArquivo.cs" />
-    <Compile Include="LeitorContratoPanoramaArquivo.cs" />
-    <Compile Include="LinhaErroArquivo.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="LoggerConsole.cs" />
-    <Compile Include="ParametrosRobo.cs" />
+    <Compile Include="Dto\ContratoRelatorioErroDto.cs" />
+    <Compile Include="Dto\ImportarPlanilhaPagamentosDto.cs" />
+    <Compile Include="Dto\ImportarPlanilhaDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resposta\BaseResponse.cs" />
+    <Compile Include="Resposta\DataResponse.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SistemaCred9.Core\SistemaCred9.Core.csproj">
-      <Project>{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}</Project>
-      <Name>SistemaCred9.Core</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SistemaCred9.Modelo\SistemaCred9.Modelo.csproj">
-      <Project>{2ebd064b-57f9-40f4-8600-303825aafab9}</Project>
+      <Project>{2EBD064B-57F9-40F4-8600-303825AAFAB9}</Project>
       <Name>SistemaCred9.Modelo</Name>
     </ProjectReference>
   </ItemGroup>

@@ -24,7 +24,7 @@
                         ValorEmprestimo = c.Single(),
                         TarefaExecucaoStatus = c.String(),
                         DataLancamento = c.DateTime(),
-                        TabelaComissaoId = c.Int(nullable: false),
+                        TabelaComissaoId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.TabelaComissao", t => t.TabelaComissaoId)

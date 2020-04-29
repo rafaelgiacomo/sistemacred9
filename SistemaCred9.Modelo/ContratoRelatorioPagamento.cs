@@ -2,22 +2,23 @@
 
 namespace SistemaCred9.Modelo
 {
-    public class ContratoRelatorio : EntitadeBase
+    public class ContratoRelatorioPagamento : EntitadeBase
     {
         public int Contrato { get; set; }
         public string Cpf { get; set; }
         public string NomeCliente { get; set; }
-        public string NomeAssessor { get; set; }
+        public string Produto { get; set; }
         public string Tabela { get; set; }
         public string Banco { get; set; }
-        public string BancoCredor { get; set; }
         public float PercentualComissao { get; set; }
-        public float ValorCalculo { get; set; }
+        public float ValorComissao { get; set; }
         public float ValorEmprestimo { get; set; }
-        public string TarefaExecucaoStatus { get; set; }
-        public DateTime? DataLancamento { get; set; }
+        public DateTime? DataComissao { get; set; }
+        public TipoPlanilhaEnum TipoPlanilha { get; set; }
         public int? TabelaComissaoId { get; set; }
+        public int? ContratoRelatorioId { get; set; }
 
-        public virtual TabelaComissao TabelaComissao { get; set; }
+        public virtual ContratoRelatorio ContratoRelatorio { get; set; }
+
     }
 }

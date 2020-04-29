@@ -24,9 +24,9 @@ namespace SistemaCred9.Web.UI.Mappers
             CreateMap<VendaStatusHistoricoViewModel, VendaStatusHistorico>();
             CreateMap<EspecieViewModel, FiltroEspecie>();
             CreateMap<BancoViewModel, FiltroBanco>();
-            CreateMap<ContratoRelatorioViewModel, Filtro>();
+            CreateMap<FiltroViewModel, Filtro>();
             CreateMap<TabelaComissaoViewModel, TabelaComissao>();
-            CreateMap<ContratoRelatorioViewModel, ContratoRelatorio>();
+            CreateMap<FiltroViewModel, ContratoRelatorio>();
         }
 
     }

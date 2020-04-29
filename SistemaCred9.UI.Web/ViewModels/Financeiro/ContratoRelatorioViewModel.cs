@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace SistemaCred9.Modelo
+namespace SistemaCred9.Web.UI.ViewModels.Financeiro
 {
-    public class ContratoRelatorio : EntitadeBase
+    public class ContratoRelatorioViewModel
     {
+        public int Id { get; set; }
         public int Contrato { get; set; }
         public string Cpf { get; set; }
         public string NomeCliente { get; set; }
@@ -15,9 +16,7 @@ namespace SistemaCred9.Modelo
         public float ValorCalculo { get; set; }
         public float ValorEmprestimo { get; set; }
         public string TarefaExecucaoStatus { get; set; }
-        public DateTime? DataLancamento { get; set; }
-        public int? TabelaComissaoId { get; set; }
-
-        public virtual TabelaComissao TabelaComissao { get; set; }
+        public DateTime DataLancamento { get; set; }
+        public int TabelaComissaoId { get; set; }
     }
 }

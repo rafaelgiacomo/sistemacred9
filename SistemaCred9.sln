@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.Web.UI", "Sist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.RoboFiltroAgrupamento", "SistemaCred9.RoboFiltroAgrupamento\SistemaCred9.RoboFiltroAgrupamento.csproj", "{A7A80366-9CCE-4812-8616-F857E772AA06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.Core", "SistemaCred9.Core\SistemaCred9.Core.csproj", "{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{A7A80366-9CCE-4812-8616-F857E772AA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7A80366-9CCE-4812-8616-F857E772AA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7A80366-9CCE-4812-8616-F857E772AA06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

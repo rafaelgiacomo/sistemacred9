@@ -5,11 +5,11 @@ namespace SistemaCred9.Web.UI.ViewModels.Filtro
 {
     public class FiltroIndexViewModel : BaseViewModel
     {
-        public List<ContratoRelatorioViewModel> Filtros { get; set; }
+        public List<FiltroViewModel> Filtros { get; set; }
 
         public FiltroIndexViewModel() : base()
         {
-            Filtros = new List<ContratoRelatorioViewModel>();
+            Filtros = new List<FiltroViewModel>();
         }
     }
 }

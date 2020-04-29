@@ -229,6 +229,11 @@
     <Compile Include="ViewModels\Especie\EspecieViewModel.cs" />
     <Compile Include="ViewModels\Filtro\FiltroIndexViewModel.cs" />
     <Compile Include="ViewModels\Filtro\FiltroViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\ContratoRelatorioErroViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\ContratoRelatorioViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\FinanceiroErroImportarViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\FinanceiroIndexViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\ImportarViewModel.cs" />
     <Compile Include="ViewModels\Shared\BaseViewModel.cs" />
     <Compile Include="ViewModels\TabelaComissao\TabelaComissaoIndexViewModel.cs" />
     <Compile Include="ViewModels\TabelaComissao\TabelaComissaoViewModel.cs" />
@@ -955,13 +960,16 @@
     <Content Include="Views\TabelaComissao\Erro.cshtml" />
     <Content Include="Views\TabelaComissao\Excluir.cshtml" />
     <Content Include="Views\TabelaComissao\Index.cshtml" />
+    <Content Include="Views\Financeiro\Index.cshtml" />
+    <Content Include="Views\Financeiro\Importar.cshtml" />
+    <Content Include="Views\Financeiro\Erro.cshtml" />
+    <Content Include="Views\Financeiro\ErroImportar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
     <Folder Include="Content\Downloads\" />
     <Folder Include="Content\Uploads\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Financeiro\" />
     <Folder Include="Views\Temp\" />
   </ItemGroup>
   <ItemGroup>
@@ -974,6 +982,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SistemaCred9.Core\SistemaCred9.Core.csproj">
+      <Project>{E46BD89B-DA09-407B-BFDD-6896B0BAD1CE}</Project>
+      <Name>SistemaCred9.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SistemaCred9.EntityFramework\SistemaCred9.EntityFramework.csproj">
       <Project>{9C4F15FD-7DEA-48D0-A89A-C0568752133D}</Project>
       <Name>SistemaCred9.EntityFramework</Name>
