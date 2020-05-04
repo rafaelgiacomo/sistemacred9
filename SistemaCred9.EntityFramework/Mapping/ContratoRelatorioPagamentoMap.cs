@@ -11,6 +11,8 @@ namespace SistemaCred9.EntityFramework.Mapping
 
             HasKey(t => t.Id);
 
+            HasIndex(t => t.Contrato);
+
             Property(t => t.Contrato)
                 .IsRequired();
 

@@ -1,4 +1,5 @@
-﻿using SistemaCred9.Core.Dto;
+﻿using AutoMapper;
+using SistemaCred9.Core.Dto;
 using SistemaCred9.EntityFramework.Context;
 using SistemaCred9.Modelo;
 using SistemaCred9.Negocio;
@@ -21,15 +22,28 @@ namespace SistemaCred9.Web.UI.Controllers
             _contratoNegocio = new ContratoRelatorioNegocio(unitOfWork);
         }
 
-        public ActionResult Index()
+        public ActionResult Index(bool? comPagamentos)
         {
-            var dataAtual = DateTime.Now;
-            var viewModel = new FinanceiroIndexViewModel();
+            try
+            {
+                var dataAtual = DateTime.Now;
+                var viewModel = new FinanceiroIndexViewModel();
 
-            viewModel.Ano = dataAtual.Year;
-            viewModel.Mes = dataAtual.Month;
+                if (!comPagamentos.HasValue)
+                {
+                    comPagamentos = true;
+                }
 
-            return View(viewModel);
+                viewModel.ComPagamento = comPagamentos.Value;
+                viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(comPagamentos.Value));
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                TempData["mensagem"] = ex.Message;
+                return RedirectToAction("Erro");
+            }
         }
 
         public ActionResult Importar()
@@ -66,6 +80,40 @@ namespace SistemaCred9.Web.UI.Controllers
                 }
 
                 return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["mensagem"] = ex.Message;
+                return RedirectToAction("Erro");
+            }
+        }
+
+        public ActionResult VerContrato(int entidadeId)
+        {
+            try
+            {
+                var response = _contratoNegocio.Obter(entidadeId);
+
+                if (response.Success)
+                {
+                    var viewModel = new VerContratoViewModel();
+
+                    viewModel.Contrato = response.Data.Contrato;
+                    viewModel.Cpf = response.Data.Cpf;
+                    viewModel.NomeCliente = response.Data.NomeCliente;
+                    viewModel.DataLancamento = response.Data.DataLancamento.HasValue ? response.Data.DataLancamento.Value.ToString("dd/MM/yyyy") : string.Empty;
+                    viewModel.NomeAssessor = response.Data.NomeAssessor;
+                    
+                    viewModel.ListaContratoPagamento = 
+                                            Mapper.Map<List<ContratoPagamentoViewModel>>(_contratoNegocio.ListarPagamentosDeContrato(viewModel.Contrato));
+
+                    return View(viewModel);
+                }
+                else
+                {
+                    TempData["mensagem"] = "Não foi possível encontrar registro";
+                    return RedirectToAction("Erro");
+                }
             }
             catch (Exception ex)
             {

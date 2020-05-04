@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using SistemaCred9.Core.Dto;
 using SistemaCred9.Modelo;
 using SistemaCred9.Web.UI.ViewModels.Banco;
 using SistemaCred9.Web.UI.ViewModels.Especie;
 using SistemaCred9.Web.UI.ViewModels.Filtro;
+using SistemaCred9.Web.UI.ViewModels.Financeiro;
 using SistemaCred9.Web.UI.ViewModels.TabelaComissao;
 using SistemaCred9.Web.UI.ViewModels.Usuario;
 using SistemaCred9.Web.UI.ViewModels.Venda;
@@ -26,7 +28,9 @@ namespace SistemaCred9.Web.UI.Mappers
             CreateMap<FiltroBanco, BancoViewModel>();
             CreateMap<Filtro, FiltroViewModel>();
             CreateMap<TabelaComissao, TabelaComissaoViewModel>();
-            CreateMap<ContratoRelatorio, FiltroViewModel>();
+            CreateMap<ContratoRelatorio, ContratoRelatorioViewModel>();
+            CreateMap<ContratoRelatorioPagamento, ContratoPagamentoViewModel>();
+            CreateMap<ContratoRelatorioDto, ContratoRelatorioViewModel>();
         }
 
     }

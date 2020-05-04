@@ -18,34 +18,34 @@
                 new[] { "Usuario", "Filtro", "Especie", "Banco", "TabelaComissao" },
                 new[] { "", "", "", "", "" })
 
-            @Html.MenuDropDown("Vendas",
-         new[] { Model.ArrayQtdPorStatus[0] + " - Aguardando Documento", Model.ArrayQtdPorStatus[1] + " - Documento Pendente",
-                        Model.ArrayQtdPorStatus[2] + " - Cancelado Falta Doc", Model.ArrayQtdPorStatus[3] + " - Documento Ok",
-                        Model.ArrayQtdPorStatus[4] + " - Aguardando Hiscon", Model.ArrayQtdPorStatus[5] + " - Hiscon OK",
-                        Model.ArrayQtdPorStatus[5] + " - Aguardando Calculo", Model.ArrayQtdPorStatus[7] + " - Cancelado Calculo",
-                        Model.ArrayQtdPorStatus[8] + " - Calculo Ok", Model.ArrayQtdPorStatus[9] + " - Repassando Proposta",
-                        Model.ArrayQtdPorStatus[10] + " - Cancelado Repasse", Model.ArrayQtdPorStatus[11] + " - Pos Venda",
-                        Model.ArrayQtdPorStatus[12] + " - Pos Venda Ok", Model.ArrayQtdPorStatus[13] + " - Registro Proposta",
-                        Model.ArrayQtdPorStatus[14] + " - Proposta Registrada"},
-         new[] { "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index" },
-         new[] { "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda" },
-         new[] { new { statusId = (int)VendaStatusEnum.AguardandoDocumento }, new { statusId = (int)VendaStatusEnum.DocumentoPendente },
-                        new { statusId = (int)VendaStatusEnum.CanceladoFaltaDocumento }, new { statusId = (int)VendaStatusEnum.DocumentoOk },
-                        new { statusId = (int)VendaStatusEnum.AguardandoHiscon }, new { statusId = (int)VendaStatusEnum.HisconOk },
-                        new { statusId = (int)VendaStatusEnum.AguardandoCalculo }, new { statusId = (int)VendaStatusEnum.CanceladoPorCalculo },
-                        new { statusId = (int)VendaStatusEnum.CalculoOk }, new { statusId = (int)VendaStatusEnum.RepassandoProposta },
-                        new { statusId = (int)VendaStatusEnum.CanceladoRepasseProposta }, new { statusId = (int)VendaStatusEnum.PosVenda },
-                        new { statusId = (int)VendaStatusEnum.PosVendaOK }, new { statusId = (int)VendaStatusEnum.RegistroProposta },
-                        new { statusId = (int)VendaStatusEnum.PropostaRegistrada } })
+            <!-- @Html.MenuDropDown("Vendas",
+     new[] { Model.ArrayQtdPorStatus[0] + " - Aguardando Documento", Model.ArrayQtdPorStatus[1] + " - Documento Pendente",
+                    Model.ArrayQtdPorStatus[2] + " - Cancelado Falta Doc", Model.ArrayQtdPorStatus[3] + " - Documento Ok",
+                    Model.ArrayQtdPorStatus[4] + " - Aguardando Hiscon", Model.ArrayQtdPorStatus[5] + " - Hiscon OK",
+                    Model.ArrayQtdPorStatus[5] + " - Aguardando Calculo", Model.ArrayQtdPorStatus[7] + " - Cancelado Calculo",
+                    Model.ArrayQtdPorStatus[8] + " - Calculo Ok", Model.ArrayQtdPorStatus[9] + " - Repassando Proposta",
+                    Model.ArrayQtdPorStatus[10] + " - Cancelado Repasse", Model.ArrayQtdPorStatus[11] + " - Pos Venda",
+                    Model.ArrayQtdPorStatus[12] + " - Pos Venda Ok", Model.ArrayQtdPorStatus[13] + " - Registro Proposta",
+                    Model.ArrayQtdPorStatus[14] + " - Proposta Registrada"},
+     new[] { "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index", "Index" },
+     new[] { "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda", "Venda" },
+     new[] { new { statusId = (int)VendaStatusEnum.AguardandoDocumento }, new { statusId = (int)VendaStatusEnum.DocumentoPendente },
+                    new { statusId = (int)VendaStatusEnum.CanceladoFaltaDocumento }, new { statusId = (int)VendaStatusEnum.DocumentoOk },
+                    new { statusId = (int)VendaStatusEnum.AguardandoHiscon }, new { statusId = (int)VendaStatusEnum.HisconOk },
+                    new { statusId = (int)VendaStatusEnum.AguardandoCalculo }, new { statusId = (int)VendaStatusEnum.CanceladoPorCalculo },
+                    new { statusId = (int)VendaStatusEnum.CalculoOk }, new { statusId = (int)VendaStatusEnum.RepassandoProposta },
+                    new { statusId = (int)VendaStatusEnum.CanceladoRepasseProposta }, new { statusId = (int)VendaStatusEnum.PosVenda },
+                    new { statusId = (int)VendaStatusEnum.PosVendaOK }, new { statusId = (int)VendaStatusEnum.RegistroProposta },
+                    new { statusId = (int)VendaStatusEnum.PropostaRegistrada } })
 
-            @Html.MenuDropDown("Tarefas",
-                Model.ArrayNomesStatusTarefa(),
-                Model.ArrayActionStatusTarefa(),
-                Model.ArrayControllerStatusTarefa(),
-                Model.ArrayParametrosStatusTarefa())
+        @Html.MenuDropDown("Tarefas",
+            Model.ArrayNomesStatusTarefa(),
+            Model.ArrayActionStatusTarefa(),
+            Model.ArrayControllerStatusTarefa(),
+            Model.ArrayParametrosStatusTarefa()) -->
 
             @Html.MenuItem("Financeiro", "Index", "Financeiro")
 
         </ul>
-    </section>
-</aside>
+        </section>
+    </aside>

@@ -229,11 +229,13 @@
     <Compile Include="ViewModels\Especie\EspecieViewModel.cs" />
     <Compile Include="ViewModels\Filtro\FiltroIndexViewModel.cs" />
     <Compile Include="ViewModels\Filtro\FiltroViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\ContratoPagamentoViewModel.cs" />
     <Compile Include="ViewModels\Financeiro\ContratoRelatorioErroViewModel.cs" />
     <Compile Include="ViewModels\Financeiro\ContratoRelatorioViewModel.cs" />
     <Compile Include="ViewModels\Financeiro\FinanceiroErroImportarViewModel.cs" />
     <Compile Include="ViewModels\Financeiro\FinanceiroIndexViewModel.cs" />
     <Compile Include="ViewModels\Financeiro\ImportarViewModel.cs" />
+    <Compile Include="ViewModels\Financeiro\VerContratoViewModel.cs" />
     <Compile Include="ViewModels\Shared\BaseViewModel.cs" />
     <Compile Include="ViewModels\TabelaComissao\TabelaComissaoIndexViewModel.cs" />
     <Compile Include="ViewModels\TabelaComissao\TabelaComissaoViewModel.cs" />
@@ -964,6 +966,7 @@
     <Content Include="Views\Financeiro\Importar.cshtml" />
     <Content Include="Views\Financeiro\Erro.cshtml" />
     <Content Include="Views\Financeiro\ErroImportar.cshtml" />
+    <Content Include="Views\Financeiro\VerContrato.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />

@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\ContratoRelatorioDto.cs" />
     <Compile Include="Dto\ContratoRelatorioErroDto.cs" />
     <Compile Include="Dto\ImportarPlanilhaPagamentosDto.cs" />
     <Compile Include="Dto\ImportarPlanilhaDto.cs" />

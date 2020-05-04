@@ -7,11 +7,13 @@ namespace SistemaCred9.Web.UI.ViewModels.Financeiro
     {
         public int Mes { get; set; }
         public int Ano { get; set; }
+        public bool ComPagamento { get; set; }
         public List<ContratoRelatorioViewModel> ListaContratos { get; set; }
 
         public FinanceiroIndexViewModel()
         {
             ListaContratos = new List<ContratoRelatorioViewModel>();
+            ComPagamento = true;
         }
 
     }

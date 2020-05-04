@@ -1,63 +1,87 @@
-﻿@model SistemaCred9.Web.UI.ViewModels.Financeiro.FinanceiroIndexViewModel
+﻿@model SistemaCred9.Web.UI.ViewModels.Financeiro.VerContratoViewModel
 
 @{
     ViewBag.TitleSmall = "Financeiro";
 }
 
 <div class="row">
-    <div class="col-md-2">
-        @Html.ActionLink("Importar Contratos", "Importar", "Financeiro", new { @class = "btn btn-primary btn-block margin-bottom" })
 
-    </div>
-</div>
+    <div class="col-md-12">
 
-<div class="row">
+        <div class="box">
 
-    <div class="col-md-2">
-
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <b>Contratos</b>
+            <div class="box-header">
+                <div class="box-header">
+                    <h3 class="box-title">Dados do contrato</h3>
+                </div>
             </div>
-            <div class="box-body no-padding" style="display: block;">
-                <ul class="nav nav-pills nav-stacked">
-                    @Html.MenuItem("Com pagamentos", "Index", "Financeiro", new { @comPagamentos = true }, (Model.ComPagamento))
-                    @Html.MenuItem("Sem pagamentos", "Index", "Financeiro", new { @comPagamentos = false }, (!Model.ComPagamento))
-                </ul>
+
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <label>Contrato: </label> @Model.Contrato
+                    </div>
+
+                    <div class="col-md-2">
+                        <label>Data Lançamento: </label> @Model.DataLancamento
+                    </div>
+
+                    <div class="col-md-2">
+                        <label>CPF: </label> @Model.Cpf
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Cliente: </label> @Model.NomeCliente
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Assessor: </label> @Model.NomeAssessor
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
 
     </div>
 
-    <div class="col-md-10">
+</div>
+
+<div class="row">
+    <div class="col-md-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Contratos</h3>
+                <h3 class="box-title">Pagamentos importados</h3>
             </div>
             <div class="box-body">
 
                 <table id="contratos" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Contrato</th>
-                            <th>Tabela</th>
                             <th>Cliente</th>
-                            <th>Assesor</th>
+                            <th>CPF</th>
+                            <th>Tabela</th>
                             <th>Percentual Comissão</th>
+                            <th>Data Comissão</th>
+                            <th>Tipo Planilha</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.ListaContratos)
+                        @foreach (var item in Model.ListaContratoPagamento)
                         {
                         <tr>
-                            <td>@item.Id</td>
                             <td>@item.Contrato</td>
-                            <td>@item.Tabela</td>
                             <td>@item.NomeCliente</td>
-                            <td>@item.NomeAssessor</td>
-                            <td>@item.PercentualComissaoCalculado</td>
+                            <td>@item.Cpf</td>
+                            <td>@item.Tabela</td>
+                            <td>@item.PercentualComissao</td>
+                            <td>@item.DataComissao</td>
+                            <td>@item.TipoPlanilha</td>
                             <td>
                                 @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs" })
                             </td>
@@ -67,12 +91,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Id</th>
                             <th>Contrato</th>
-                            <th>Tabela</th>
                             <th>Cliente</th>
-                            <th>Assesor</th>
+                            <th>CPF</th>
+                            <th>Tabela</th>
                             <th>Percentual Comissão</th>
+                            <th>Data Comissão</th>
+                            <th>Tipo Planilha</th>
                             <th></th>
                         </tr>
                     </tfoot>

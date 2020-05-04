@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace SistemaCred9.Modelo
+namespace SistemaCred9.Core.Dto
 {
-    public class ContratoRelatorio : EntitadeBase
+    public class ContratoRelatorioDto
     {
+        public int Id { get; set; }
         public int Contrato { get; set; }
         public string Cpf { get; set; }
         public string NomeCliente { get; set; }
@@ -19,7 +19,6 @@ namespace SistemaCred9.Modelo
         public DateTime? DataLancamento { get; set; }
         public int? TabelaComissaoId { get; set; }
 
-        public virtual List<ContratoRelatorioPagamento> ContratoRelatorioPagamento { get; set; }
-        public virtual TabelaComissao TabelaComissao { get; set; }
+        public float PercentualComissaoCalculado { get; set; }
     }
 }

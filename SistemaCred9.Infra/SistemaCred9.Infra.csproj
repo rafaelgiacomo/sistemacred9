@@ -49,6 +49,7 @@
     <Compile Include="Interface\ILeitorArquivoContratoPagamento.cs" />
     <Compile Include="Interface\ILogger.cs" />
     <Compile Include="LeitorArquivo.cs" />
+    <Compile Include="LeitorContratoBancoSafraArquivo.cs" />
     <Compile Include="LeitorContratoCorretoraArquivo.cs" />
     <Compile Include="LeitorContratoPanoramaArquivo.cs" />
     <Compile Include="LinhaErroArquivo.cs" />

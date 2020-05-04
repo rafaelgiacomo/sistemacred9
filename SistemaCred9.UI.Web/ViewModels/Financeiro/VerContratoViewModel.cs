@@ -1,8 +1,12 @@
-﻿using System;
+﻿using SistemaCred9.Web.UI.ViewModels.Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace SistemaCred9.Web.UI.ViewModels.Financeiro
 {
-    public class ContratoRelatorioViewModel
+    public class VerContratoViewModel : BaseViewModel
     {
         public int Id { get; set; }
         public int Contrato { get; set; }
@@ -16,9 +20,19 @@ namespace SistemaCred9.Web.UI.ViewModels.Financeiro
         public float ValorCalculo { get; set; }
         public float ValorEmprestimo { get; set; }
         public string TarefaExecucaoStatus { get; set; }
-        public DateTime DataLancamento { get; set; }
+        public string DataLancamento { get; set; }
         public int TabelaComissaoId { get; set; }
 
-        public float PercentualComissaoCalculado { get; set; }
+        public List<ContratoPagamentoViewModel> ListaContratoPagamento { get; set; }
+
+        public VerContratoViewModel(List<ContratoPagamentoViewModel> listaContratoPagamento)
+        {
+            ListaContratoPagamento = listaContratoPagamento;
+        }
+
+        public VerContratoViewModel()
+        {
+            ListaContratoPagamento = new List<ContratoPagamentoViewModel>();
+        }
     }
 }

@@ -91,6 +91,14 @@
     <Compile Include="Migrations\202004291719111_ContratoRelatorioPagamento.designer.cs">
       <DependentUpon>202004291719111_ContratoRelatorioPagamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004301738264_IndiceNaColunaContrato.cs" />
+    <Compile Include="Migrations\202004301738264_IndiceNaColunaContrato.designer.cs">
+      <DependentUpon>202004301738264_IndiceNaColunaContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005041113010_ContratoPanoramaUnico.cs" />
+    <Compile Include="Migrations\202005041113010_ContratoPanoramaUnico.designer.cs">
+      <DependentUpon>202005041113010_ContratoPanoramaUnico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004291719111_ContratoRelatorioPagamento.resx">
       <DependentUpon>202004291719111_ContratoRelatorioPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004301738264_IndiceNaColunaContrato.resx">
+      <DependentUpon>202004301738264_IndiceNaColunaContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005041113010_ContratoPanoramaUnico.resx">
+      <DependentUpon>202005041113010_ContratoPanoramaUnico.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
