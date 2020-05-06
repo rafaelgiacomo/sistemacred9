@@ -99,6 +99,10 @@
     <Compile Include="Migrations\202005041113010_ContratoPanoramaUnico.designer.cs">
       <DependentUpon>202005041113010_ContratoPanoramaUnico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005060144158_ContratoExportado.cs" />
+    <Compile Include="Migrations\202005060144158_ContratoExportado.designer.cs">
+      <DependentUpon>202005060144158_ContratoExportado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005041113010_ContratoPanoramaUnico.resx">
       <DependentUpon>202005041113010_ContratoPanoramaUnico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005060144158_ContratoExportado.resx">
+      <DependentUpon>202005060144158_ContratoExportado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

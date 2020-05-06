@@ -34,13 +34,6 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Index()
         {
             var viewModel = new FiltroIndexViewModel();
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
 
             var listaFiltros = _filtroNegocio.ListarTodos();
 
@@ -78,9 +71,6 @@ namespace SistemaCred9.Web.UI.Controllers
                 viewModel.Filtros.Add(itemVm);
             }
 
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
-
             return View(viewModel);
         }
 
@@ -89,18 +79,9 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var viewModel = new FiltroViewModel();
             var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
 
             viewModel.BancosDisponiveis = _bancoNegocio.ListarTodos();
             viewModel.EspeciesDisponiveis = _especieNegocio.ListarTodos();
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
-            viewModel.ListaAgrupamentos = _agrupamentoNegocio.ListarAgrupamentos();
 
             return View(viewModel);
         }
@@ -137,8 +118,6 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Editar(int entidadeId)
         {
             var entidade = _filtroNegocio.SelecionarPorId(entidadeId);
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
 
             var viewModel = new FiltroViewModel()
             {
@@ -150,16 +129,8 @@ namespace SistemaCred9.Web.UI.Controllers
                 MinDataNascimento = entidade.MinDataNascimento
             };
 
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
             viewModel.BancosDisponiveis = _bancoNegocio.ListarTodos();
             viewModel.EspeciesDisponiveis = _especieNegocio.ListarTodos();
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
-            viewModel.ListaAgrupamentos = _agrupamentoNegocio.ListarAgrupamentos();
 
             return View(viewModel);
         }
@@ -186,16 +157,6 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var entidade = _filtroNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<FiltroViewModel>(entidade);
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }

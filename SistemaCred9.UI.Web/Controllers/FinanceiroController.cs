@@ -8,6 +8,7 @@ using SistemaCred9.Web.UI.ViewModels.Financeiro;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SistemaCred9.Web.UI.Controllers
@@ -22,20 +23,28 @@ namespace SistemaCred9.Web.UI.Controllers
             _contratoNegocio = new ContratoRelatorioNegocio(unitOfWork);
         }
 
-        public ActionResult Index(bool? comPagamentos)
+        public ActionResult Index(int? menu)
         {
             try
             {
                 var dataAtual = DateTime.Now;
                 var viewModel = new FinanceiroIndexViewModel();
 
-                if (!comPagamentos.HasValue)
+                if (!menu.HasValue)
                 {
-                    comPagamentos = true;
+                    menu = 1;
                 }
 
-                viewModel.ComPagamento = comPagamentos.Value;
-                viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(comPagamentos.Value));
+                viewModel.Menu = menu.Value;
+
+                if (viewModel.Menu != 4)
+                {
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(menu.Value != 2, menu.Value == 3));
+                }
+                else
+                {
+                    viewModel.ListaContratoPagamento = Mapper.Map<List<ContratoPagamentoViewModel>>(_contratoNegocio.ListarPagamentosSemContrato());
+                }
 
                 return View(viewModel);
             }
@@ -49,8 +58,32 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Importar()
         {
             var viewModel = new ImportarViewModel();
-            
+
             return View(viewModel);
+        }
+
+        public ActionResult ValidarContratos()
+        {
+            try
+            {
+                var contratos = _contratoNegocio.ListarContratosPorMes(true, false);
+                var response = _contratoNegocio.ValidarContratos(contratos.Select(x => x.Id).ToList());
+
+                if (response.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["mensagem"] = response.FriendlyMessage;
+                    return RedirectToAction("Erro");
+                }                
+            }
+            catch (Exception ex)
+            {
+                TempData["mensagem"] = ex.Message;
+                return RedirectToAction("Erro");
+            }
         }
 
         [HttpPost]
@@ -72,7 +105,7 @@ namespace SistemaCred9.Web.UI.Controllers
                         var response = _contratoNegocio.RealizarImportacao((TipoPlanilhaEnum)viewModel.TipoPlanilhaId, caminho);
 
                         if (!response.Success)
-                        { 
+                        {
                             TempData["ContratosErro"] = response.Data;
                             return RedirectToAction("ErroImportar");
                         }
@@ -103,8 +136,8 @@ namespace SistemaCred9.Web.UI.Controllers
                     viewModel.NomeCliente = response.Data.NomeCliente;
                     viewModel.DataLancamento = response.Data.DataLancamento.HasValue ? response.Data.DataLancamento.Value.ToString("dd/MM/yyyy") : string.Empty;
                     viewModel.NomeAssessor = response.Data.NomeAssessor;
-                    
-                    viewModel.ListaContratoPagamento = 
+
+                    viewModel.ListaContratoPagamento =
                                             Mapper.Map<List<ContratoPagamentoViewModel>>(_contratoNegocio.ListarPagamentosDeContrato(viewModel.Contrato));
 
                     return View(viewModel);
@@ -124,7 +157,7 @@ namespace SistemaCred9.Web.UI.Controllers
 
         public ActionResult ErroImportar()
         {
-            var listaErro = (List<ContratoRelatorioErroDto>) TempData["ContratosErro"];
+            var listaErro = (List<ContratoRelatorioErroDto>)TempData["ContratosErro"];
             FinanceiroErroImportarViewModel viewModel = null;
 
             if (listaErro == null)
@@ -134,7 +167,7 @@ namespace SistemaCred9.Web.UI.Controllers
             else
             {
                 viewModel = new FinanceiroErroImportarViewModel(listaErro);
-            }  
+            }
 
             return View(viewModel);
         }

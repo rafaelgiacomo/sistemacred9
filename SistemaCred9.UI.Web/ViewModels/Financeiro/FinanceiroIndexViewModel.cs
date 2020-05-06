@@ -5,14 +5,16 @@ namespace SistemaCred9.Web.UI.ViewModels.Financeiro
 {
     public class FinanceiroIndexViewModel : BaseViewModel
     {
-        public int Mes { get; set; }
-        public int Ano { get; set; }
+        public int Menu { get; set; }
         public bool ComPagamento { get; set; }
         public List<ContratoRelatorioViewModel> ListaContratos { get; set; }
+        public List<ContratoPagamentoViewModel> ListaContratoPagamento { get; set; }
 
         public FinanceiroIndexViewModel()
         {
             ListaContratos = new List<ContratoRelatorioViewModel>();
+            ListaContratoPagamento = new List<ContratoPagamentoViewModel>();
+            Menu = 1;
             ComPagamento = true;
         }
 

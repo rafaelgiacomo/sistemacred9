@@ -20,17 +20,8 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Index()
         {
             var viewModel = new UsuarioIndexViewModel();
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
 
             viewModel.Usuarios = Mapper.Map<List<UsuarioViewModel>>(_usuarioNegocio.ListarTodosSemAdm());
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -39,17 +30,7 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Adicionar()
         {
             var viewModel = new UsuarioViewModel();
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
             viewModel.TipoUsuario = new SelectList(TipoUsuarioModelo.ListarTodos(), "Id", "Descricao");
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -77,17 +58,8 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var entidade = _usuarioNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<UsuarioViewModel>(entidade);
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
 
             viewModel.TipoUsuario = new SelectList(TipoUsuarioModelo.ListarTodos(), "Id", "Descricao");
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -115,16 +87,6 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var entidade = _usuarioNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<UsuarioViewModel>(entidade);
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -169,8 +131,6 @@ namespace SistemaCred9.Web.UI.Controllers
 
                 viewModel.Login = usuario.NomeUsuario;
                 viewModel.Senha = string.Empty;
-                viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-                viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
                 return View(viewModel);
             }
@@ -221,17 +181,6 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult SenhaAlterada()
         {
             var viewModel = new BaseViewModel();
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Administrador
-                && usuario.TipoUsuarioId != (int)TipoUsuarioEnum.Coordenador)
-            {
-                usuarioId = usuario.Id;
-            }
-
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }

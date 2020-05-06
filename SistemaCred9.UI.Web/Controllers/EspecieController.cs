@@ -28,16 +28,8 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var viewModel = new EspecieIndexViewModel();
             var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
 
             viewModel.Especies = Mapper.Map<List<EspecieViewModel>>(_especieNegocio.ListarTodos());
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -46,16 +38,6 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Adicionar()
         {
             var viewModel = new EspecieViewModel();
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -82,15 +64,6 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var entidade = _especieNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<EspecieViewModel>(entidade);
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
@@ -117,16 +90,6 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             var entidade = _especieNegocio.SelecionarPorId(entidadeId);
             var viewModel = Mapper.Map<EspecieViewModel>(entidade);
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             return View(viewModel);
         }
