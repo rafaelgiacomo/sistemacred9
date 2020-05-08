@@ -82,6 +82,11 @@ namespace SistemaCred9.Infra
             entidade.PercentualComissao = float.Parse(linha[INDEX_PERCENTUAL_COMISSAO].Replace(".", ","));
             entidade.Contrato = int.Parse(linha[INDEX_CONTRATO].Replace(".", "").Replace(" ", "").Replace("-", ""));
 
+            if (entidade.ValorComissao < 0)
+            {
+                entidade.PercentualComissao *= (-1);
+            }
+
             return entidade;
         }
 
