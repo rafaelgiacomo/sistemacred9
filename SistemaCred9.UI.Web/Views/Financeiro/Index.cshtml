@@ -71,7 +71,7 @@
                                     <td>@item.NomeAssessor</td>
                                     <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
                                     <td>
-                                        @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs", @target = "_blank" })
                                     </td>
                                 </tr>
                             }
