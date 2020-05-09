@@ -69,7 +69,7 @@
                                     <td>@item.Tabela</td>
                                     <td>@item.NomeCliente</td>
                                     <td>@item.NomeAssessor</td>
-                                    <td>@item.PercentualComissaoCalculado</td>
+                                    <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
                                     <td>
                                         @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs" })
                                     </td>
