@@ -6,19 +6,23 @@ using System.Collections.Generic;
 
 namespace SistemaCred9.Infra
 {
-    public class LeitorContratoBancoSafraArquivo : ILeitorArquivoContratoPagamento
+    public class LeitorContratoOutrosArquivo : ILeitorArquivoContratoPagamento
     {
         private readonly ILeitorArquivo _leitorArquivo;
-        public const int INDEX_DATA_COMISSAO = 8;
-        public const int INDEX_TABELA = 10;
-        public const int INDEX_PRODUTO = 09;
-        public const int INDEX_PERCENTUAL_COMISSAO = 4;
-        public const int INDEX_CONTRATO = 0;
-        public const int INDEX_VALOR_COMISSAO = 3;
-        public const int INDEX_VALOR_EMPRESTIMO = 1;
+        public const int INDEX_NOME_CLIENTE = 1;
+        public const int INDEX_CPF = 0;
+        public const int INDEX_DATA_COMISSAO = 6;
+        public const int INDEX_TABELA = 4;
+        public const int INDEX_PRODUTO = 5;
+        public const int INDEX_BANCO = 3;
+        public const int INDEX_PERCENTUAL_COMISSAO = 8;
+        public const int INDEX_CONTRATO = 2;
+        public const int INDEX_VALOR_COMISSAO = 7;
+        public const int INDEX_VALOR_EMPRESTIMO = 9;
         public const string CHARACTER_NULO = "";
 
         private bool _ehFimArquivo;
+        private string _nomeArquivo;
 
         #region Propriedades
 
@@ -28,9 +32,10 @@ namespace SistemaCred9.Infra
 
         #endregion
 
-        public LeitorContratoBancoSafraArquivo(ILeitorArquivo leitorArquivo)
+        public LeitorContratoOutrosArquivo(ILeitorArquivo leitorArquivo, string nomeArquivo)
         {
             _leitorArquivo = leitorArquivo;
+            _nomeArquivo = nomeArquivo;
             Contratos = new List<ContratoRelatorioPagamento>();
             LinhasComErro = new List<ContratoRelatorioErroDto>();
         }
@@ -70,10 +75,13 @@ namespace SistemaCred9.Infra
             entidade.DataComissao = DateTime.Parse(linha[INDEX_DATA_COMISSAO]);
             entidade.ValorComissao = float.Parse(linha[INDEX_VALOR_COMISSAO].Replace("R$", "").Replace(" ", ""));
             entidade.ValorEmprestimo = float.Parse(linha[INDEX_VALOR_EMPRESTIMO].Replace("R$", "").Replace(" ", ""));
+            entidade.NomeCliente = linha[INDEX_NOME_CLIENTE];
+            entidade.Cpf = linha[INDEX_CPF];
             entidade.Tabela = linha[INDEX_TABELA];
-            entidade.Banco = "SAFRA";
+            entidade.Banco = linha[INDEX_BANCO];
             entidade.Produto = linha[INDEX_PRODUTO];
-            entidade.TipoPlanilha = TipoPlanilhaEnum.Banco;
+            entidade.NomeArquivo = _nomeArquivo;
+            entidade.TipoPlanilha = TipoPlanilhaEnum.Outros;
             entidade.PercentualComissao = float.Parse(linha[INDEX_PERCENTUAL_COMISSAO].Replace(".", ","));
             entidade.Contrato = int.Parse(linha[INDEX_CONTRATO].Replace(".", "").Replace(" ", "").Replace("-", ""));
 
@@ -94,8 +102,10 @@ namespace SistemaCred9.Infra
             entidade.ValorCalculo = linha[INDEX_VALOR_COMISSAO];
             entidade.ValorEmprestimo = linha[INDEX_VALOR_EMPRESTIMO];
             entidade.Contrato = linha[INDEX_CONTRATO];
+            entidade.NomeCliente = linha[INDEX_NOME_CLIENTE];
+            entidade.Cpf = linha[INDEX_CPF];
             entidade.Tabela = linha[INDEX_TABELA];
-            entidade.Banco = "SAFRA";
+            entidade.Banco = linha[INDEX_BANCO];
             entidade.Produto = linha[INDEX_PRODUTO];
 
             return entidade;

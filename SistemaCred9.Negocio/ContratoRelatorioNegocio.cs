@@ -67,7 +67,7 @@ namespace SistemaCred9.Negocio
             return response;
         }
 
-        public DataResponse<List<ContratoRelatorioErroDto>> RealizarImportacao(TipoPlanilhaEnum tipoPlanilha, string caminho)
+        public DataResponse<List<ContratoRelatorioErroDto>> RealizarImportacao(TipoPlanilhaEnum tipoPlanilha, string caminho, string nomeArquivo)
         {
             var respostaFinal = new DataResponse<List<ContratoRelatorioErroDto>>();
 
@@ -88,7 +88,7 @@ namespace SistemaCred9.Negocio
             }
             else
             {
-                var response = ListarContratosArquivoPagamentos(tipoPlanilha, caminho);
+                var response = ListarContratosArquivoPagamentos(tipoPlanilha, caminho, nomeArquivo);
 
                 if (response.Success)
                 {
@@ -188,7 +188,7 @@ namespace SistemaCred9.Negocio
             return response;
         }
 
-        public DataResponse<ImportarPlanilhaPagamentosDto> ListarContratosArquivoPagamentos(TipoPlanilhaEnum tipoPlanilha, string caminho)
+        public DataResponse<ImportarPlanilhaPagamentosDto> ListarContratosArquivoPagamentos(TipoPlanilhaEnum tipoPlanilha, string caminho, string nomeArquivo)
         {
             ILeitorArquivo leitor = new LeitorArquivo(caminho);
             var response = new DataResponse<ImportarPlanilhaPagamentosDto>();
@@ -199,9 +199,13 @@ namespace SistemaCred9.Negocio
             {
                 leitorEntidades = new LeitorContratoCorretoraArquivo(leitor);
             }
-            else
+            else if (TipoPlanilhaEnum.Banco == tipoPlanilha)
             {
                 leitorEntidades = new LeitorContratoBancoSafraArquivo(leitor);
+            }
+            else
+            {
+                leitorEntidades = new LeitorContratoOutrosArquivo(leitor, nomeArquivo);
             }
 
             leitorEntidades.PulaCabecalho();

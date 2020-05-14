@@ -15,6 +15,7 @@ namespace SistemaCred9.Modelo
         public float ValorEmprestimo { get; set; }
         public DateTime? DataComissao { get; set; }
         public TipoPlanilhaEnum TipoPlanilha { get; set; }
+        public string NomeArquivo { get; set; }
         public int? TabelaComissaoId { get; set; }
         public int? ContratoRelatorioId { get; set; }
 

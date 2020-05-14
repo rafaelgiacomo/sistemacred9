@@ -4,6 +4,7 @@
     {
         Panorama = 1,
         Corretora = 2,
-        Banco = 3
+        Banco = 3,
+        Outros = 4
     }
 }

@@ -102,7 +102,7 @@ namespace SistemaCred9.Web.UI.Controllers
 
                         file.SaveAs(caminho);
 
-                        var response = _contratoNegocio.RealizarImportacao((TipoPlanilhaEnum)viewModel.TipoPlanilhaId, caminho);
+                        var response = _contratoNegocio.RealizarImportacao((TipoPlanilhaEnum)viewModel.TipoPlanilhaId, caminho, file.FileName);
 
                         if (!response.Success)
                         {
