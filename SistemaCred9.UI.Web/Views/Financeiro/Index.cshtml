@@ -4,19 +4,28 @@
     ViewBag.TitleSmall = "Financeiro";
 }
 
-<div class="row">
-    <div class="col-md-2">
-        @Html.ActionLink("Importar Contratos", "Importar", "Financeiro", new { @class = "btn btn-primary btn-block margin-bottom" })
-    </div>
-
-    @if (Model.Menu == 1 && Model.ListaContratos.Count > 0)
-    {
+    <div class="row">
         <div class="col-md-2">
-            @Html.ActionLink("Validar Contratos", "ValidarContratos", "Financeiro", new { @class = "btn btn-success btn-block margin-bottom" })
+            @Html.ActionLink("Importar Contratos", "Importar", "Financeiro", new { @class = "btn btn-primary btn-block margin-bottom" })
         </div>
-    }
 
-</div>
+        @if (Model.Menu == 1 && Model.ListaContratos.Count > 0)
+        {
+            <div class="col-md-2">
+                @Html.ActionLink("Validar Contratos", "ValidarContratos", "Financeiro", new { @class = "btn btn-success btn-block margin-bottom" })
+            </div>
+        }
+
+        @if (Model.Menu == 1 && Model.ListaContratos.Count > 0)
+        {
+            <div class="col-md-2">
+                @Html.ActionLink("Colocar em Pendência", "ColocarContratosEmPendencia", "Financeiro", 
+                    new { ids = Model.ListaContratos.Where(x => x.Selecionado).Select(x => x.Id).ToArray() }, 
+                    new { @class = "btn btn-warning btn-block margin-bottom" })
+            </div>
+        }
+
+    </div>
 
 <div class="row">
 
@@ -32,6 +41,7 @@
                     @Html.MenuItem("Sem pagamentos", "Index", "Financeiro", new { @menu = 2 }, (Model.Menu == 2))
                     @Html.MenuItem("Validados", "Index", "Financeiro", new { @menu = 3 }, (Model.Menu == 3))
                     @Html.MenuItem("Pgtos sem contrato", "Index", "Financeiro", new { @menu = 4 }, (Model.Menu == 4))
+                    @Html.MenuItem("Pendentes", "Index", "Financeiro", new { @menu = 5 }, (Model.Menu == 5))
                 </ul>
             </div>
         </div>
@@ -51,24 +61,27 @@
                     {
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>CPF</th>
                                 <th>Contrato</th>
                                 <th>Tabela</th>
                                 <th>Cliente</th>
-                                <th>Assesor</th>
+                                <th>Data Lançamento</th>
                                 <th>Percentual Comissão</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.ListaContratos)
+                            @for (int i = 0; i < Model.ListaContratos.Count; i++)
                             {
+                                var item = Model.ListaContratos[i];
                                 <tr>
+                                    <td>@Html.EditorFor(x => x.ListaContratos[i].Selecionado)</td>
                                     <td>@item.Cpf</td>
                                     <td>@item.Contrato</td>
                                     <td>@item.Tabela</td>
                                     <td>@item.NomeCliente</td>
-                                    <td>@item.NomeAssessor</td>
+                                    <td>@item.DataLancamento</td>
                                     <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
                                     <td>
                                         @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs", @target = "_blank" })
@@ -79,11 +92,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th></th>
                                 <th>CPF</th>
                                 <th>Contrato</th>
                                 <th>Tabela</th>
                                 <th>Cliente</th>
-                                <th>Assesor</th>
+                                <th>Data Lançamento</th>
                                 <th>Percentual Comissão</th>
                                 <th></th>
                             </tr>
@@ -167,6 +181,7 @@
                 language: {
                     "url": 'http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json'
                 },
+                pageLength: 100,
                 dom: 'Bfrtip',
                 buttons: [
                     'csv', 'excel'

@@ -18,7 +18,7 @@ namespace SistemaCred9.Core.Dto
         public string TarefaExecucaoStatus { get; set; }
         public DateTime? DataLancamento { get; set; }
         public int? TabelaComissaoId { get; set; }
-        public bool Exportado { get; set; }
+        public int? Status { get; set; }
 
         public float PercentualComissaoCalculado { get; set; }
     }

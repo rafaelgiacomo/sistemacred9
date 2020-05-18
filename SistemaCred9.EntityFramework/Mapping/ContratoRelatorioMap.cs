@@ -16,14 +16,14 @@ namespace SistemaCred9.EntityFramework.Mapping
             Property(t => t.Contrato)
                 .IsRequired();
 
-            Property(t => t.Exportado)
-                .IsRequired();
-
             Property(t => t.Cpf)
                 .HasMaxLength(20)
                 .IsOptional();
 
             Property(t => t.NomeCliente)
+                .IsOptional();
+
+            Property(t => t.Status)
                 .IsOptional();
 
             Property(t => t.NomeAssessor)

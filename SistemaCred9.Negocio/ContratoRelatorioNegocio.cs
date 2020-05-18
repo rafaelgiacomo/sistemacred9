@@ -37,6 +37,35 @@ namespace SistemaCred9.Negocio
             return response;
         }
 
+        public BaseResponse ColocarContratosComPendencia(int[] ids)
+        {
+            var response = new BaseResponse();
+
+            try
+            {
+                _unitOfWork.BeginTransaction();
+
+                var contratos = ListarContratosPorId(ids);
+
+                foreach (var item in contratos)
+                {
+                    item.Status = (int) ContratoStatusEnum.PendenteAnalise;
+                }
+
+                _unitOfWork.Salvar();
+                _unitOfWork.CommitTransaction();
+
+                response.Success = true;
+            }
+            catch
+            {
+                _unitOfWork.RollbackTransaction();
+                response.FailWithMessage("Não foi possível colocar contratos como pendente!");
+            }
+
+            return response;
+        }
+
         public BaseResponse ValidarContratos(List<int> ids)
         {
             var response = new DataResponse<ContratoRelatorio>();
@@ -48,7 +77,7 @@ namespace SistemaCred9.Negocio
                 foreach (var id in ids)
                 {
                     var entidade = _unitOfWork.ContratoRelatorio.Obter(id);
-                    entidade.Exportado = true;
+                    entidade.Status = (int) ContratoStatusEnum.Validado;
 
                     _unitOfWork.ContratoRelatorio.Atualizar(entidade);
                 }
@@ -146,7 +175,7 @@ namespace SistemaCred9.Negocio
 
                 foreach (var entidade in listaEntidade)
                 {
-                    var contratos = _unitOfWork.ContratoRelatorio.Listar(x => x.Contrato == entidade.Contrato && x.Exportado == false);
+                    var contratos = _unitOfWork.ContratoRelatorio.Listar(x => x.Contrato == entidade.Contrato && x.Status != (int) ContratoStatusEnum.Validado);
 
                     if (contratos.Count > 0)
                     {
@@ -224,7 +253,23 @@ namespace SistemaCred9.Negocio
             return response;
         }
 
-        public List<ContratoRelatorioDto> ListarContratosPorMes(bool comPagamentos, bool exportado)
+        private List<ContratoRelatorio> ListarContratosPorId(int[] ids)
+        {
+            var listaRetorno = new List<ContratoRelatorio>();
+
+            try
+            {
+                listaRetorno = _unitOfWork.ContratoRelatorio.Listar(x => ids.Contains(x.Id));
+            }
+            catch
+            {
+
+            }
+
+            return listaRetorno;
+        }
+
+        public List<ContratoRelatorioDto> ListarContratosPorMes(bool? comPagamentos, ContratoStatusEnum status)
         {
             try
             {
@@ -232,8 +277,8 @@ namespace SistemaCred9.Negocio
                 List<ContratoRelatorio> listaRelatorios = null;
 
                 listaRelatorios = _unitOfWork.ContratoRelatorio.Listar(x => x.Id == x.Id 
-                                                                            && (x.ContratoRelatorioPagamento.Any() == comPagamentos) 
-                                                                            && x.Exportado == exportado);
+                                                                            && (!comPagamentos.HasValue || (x.ContratoRelatorioPagamento.Any() == comPagamentos)) 
+                                                                            && x.Status == (int) status);
 
                 foreach (var item in listaRelatorios)
                 {
@@ -254,7 +299,7 @@ namespace SistemaCred9.Negocio
                         TarefaExecucaoStatus = item.TarefaExecucaoStatus,
                         ValorCalculo = item.ValorCalculo,
                         ValorEmprestimo = item.ValorEmprestimo,
-                        Exportado = exportado
+                        Status = item.Status
                     });
                 }
 

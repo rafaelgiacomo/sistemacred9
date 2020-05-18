@@ -29,22 +29,22 @@ namespace SistemaCred9.Web.UI.Controllers
             {
                 var dataAtual = DateTime.Now;
                 var viewModel = new FinanceiroIndexViewModel();
+                viewModel.Menu = menu.HasValue ? menu.Value : 1;
 
-                if (!menu.HasValue)
-                {
-                    menu = 1;
-                }
+                if (viewModel.Menu == 1)
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(true, ContratoStatusEnum.Novo));
 
-                viewModel.Menu = menu.Value;
+                if (viewModel.Menu == 2)
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(false, ContratoStatusEnum.Novo));
 
-                if (viewModel.Menu != 4)
-                {
-                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(menu.Value != 2, menu.Value == 3));
-                }
-                else
-                {
+                if (viewModel.Menu == 3)
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(null, ContratoStatusEnum.Validado));
+
+                if (viewModel.Menu == 4)
                     viewModel.ListaContratoPagamento = Mapper.Map<List<ContratoPagamentoViewModel>>(_contratoNegocio.ListarPagamentosSemContrato());
-                }
+
+                if (viewModel.Menu == 5)
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(null, ContratoStatusEnum.PendenteAnalise));
 
                 return View(viewModel);
             }
@@ -66,7 +66,7 @@ namespace SistemaCred9.Web.UI.Controllers
         {
             try
             {
-                var contratos = _contratoNegocio.ListarContratosPorMes(true, false);
+                var contratos = _contratoNegocio.ListarContratosPorMes(true, ContratoStatusEnum.Novo);
                 var response = _contratoNegocio.ValidarContratos(contratos.Select(x => x.Id).ToList());
 
                 if (response.Success)
@@ -78,6 +78,29 @@ namespace SistemaCred9.Web.UI.Controllers
                     TempData["mensagem"] = response.FriendlyMessage;
                     return RedirectToAction("Erro");
                 }                
+            }
+            catch (Exception ex)
+            {
+                TempData["mensagem"] = ex.Message;
+                return RedirectToAction("Erro");
+            }
+        }
+
+        public ActionResult ColocarContratosEmPendencia(int[] ids)
+        {
+            try
+            {
+                var response = _contratoNegocio.ColocarContratosComPendencia(ids);
+
+                if (response.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["mensagem"] = response.FriendlyMessage;
+                    return RedirectToAction("Erro");
+                }
             }
             catch (Exception ex)
             {

@@ -107,6 +107,14 @@
     <Compile Include="Migrations\202005140150405_NomeArquivoImportacao.designer.cs">
       <DependentUpon>202005140150405_NomeArquivoImportacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005181614140_StatusContrato.cs" />
+    <Compile Include="Migrations\202005181614140_StatusContrato.designer.cs">
+      <DependentUpon>202005181614140_StatusContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005181642371_Removendo_FlagExportado.cs" />
+    <Compile Include="Migrations\202005181642371_Removendo_FlagExportado.designer.cs">
+      <DependentUpon>202005181642371_Removendo_FlagExportado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005140150405_NomeArquivoImportacao.resx">
       <DependentUpon>202005140150405_NomeArquivoImportacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181614140_StatusContrato.resx">
+      <DependentUpon>202005181614140_StatusContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181642371_Removendo_FlagExportado.resx">
+      <DependentUpon>202005181642371_Removendo_FlagExportado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

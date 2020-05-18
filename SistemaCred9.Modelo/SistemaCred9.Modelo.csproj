@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ContratoRelatorio.cs" />
     <Compile Include="ContratoRelatorioPagamento.cs" />
+    <Compile Include="ContratoStatusEnum.cs" />
     <Compile Include="EntitadeBase.cs" />
     <Compile Include="Filtro.cs" />
     <Compile Include="FiltroEspecie.cs" />

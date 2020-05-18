@@ -18,7 +18,7 @@ namespace SistemaCred9.Modelo
         public string TarefaExecucaoStatus { get; set; }
         public DateTime? DataLancamento { get; set; }
         public int? TabelaComissaoId { get; set; }
-        public bool Exportado { get; set; }
+        public int? Status { get; set; }
 
         public virtual List<ContratoRelatorioPagamento> ContratoRelatorioPagamento { get; set; }
         public virtual TabelaComissao TabelaComissao { get; set; }

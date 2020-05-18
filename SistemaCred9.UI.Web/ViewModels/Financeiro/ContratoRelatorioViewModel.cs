@@ -18,6 +18,7 @@ namespace SistemaCred9.Web.UI.ViewModels.Financeiro
         public string TarefaExecucaoStatus { get; set; }
         public DateTime DataLancamento { get; set; }
         public int TabelaComissaoId { get; set; }
+        public bool Selecionado { get; set; }
 
         public float PercentualComissaoCalculado { get; set; }
     }
