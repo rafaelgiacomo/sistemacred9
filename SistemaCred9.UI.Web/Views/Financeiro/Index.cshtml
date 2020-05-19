@@ -1,31 +1,37 @@
 ﻿@model SistemaCred9.Web.UI.ViewModels.Financeiro.FinanceiroIndexViewModel
 
 @{
+    ViewBag.Title = Model.Titulo;
     ViewBag.TitleSmall = "Financeiro";
 }
 
-    <div class="row">
-        <div class="col-md-2">
-            @Html.ActionLink("Importar Contratos", "Importar", "Financeiro", new { @class = "btn btn-primary btn-block margin-bottom" })
-        </div>
-
-        @if (Model.Menu == 1 && Model.ListaContratos.Count > 0)
-        {
-            <div class="col-md-2">
-                @Html.ActionLink("Validar Contratos", "ValidarContratos", "Financeiro", new { @class = "btn btn-success btn-block margin-bottom" })
-            </div>
-        }
-
-        @if (Model.Menu == 1 && Model.ListaContratos.Count > 0)
-        {
-            <div class="col-md-2">
-                @Html.ActionLink("Colocar em Pendência", "ColocarContratosEmPendencia", "Financeiro", 
-                    new { ids = Model.ListaContratos.Where(x => x.Selecionado).Select(x => x.Id).ToArray() }, 
-                    new { @class = "btn btn-warning btn-block margin-bottom" })
-            </div>
-        }
-
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Importar Contratos", "Importar", "Financeiro", new { @class = "btn btn-primary btn-block margin-bottom" })
     </div>
+
+    @if ((Model.Menu == 1 || Model.Menu == 5) && Model.ListaContratos.Count > 0)
+    {
+        <div class="col-md-2">
+            <input type="button" id="btnValidar" name="btnValidar" value="Validar Contratos" class="btn btn-success btn-block margin-bottom" />
+        </div>
+    }
+
+    @if ((Model.Menu == 1 || Model.Menu == 3) && Model.ListaContratos.Count > 0)
+    {
+        <div class="col-md-2">
+            <input type="button" id="btnPendente" name="btnPendente" value="Colocar em Pendência" class="btn btn-warning btn-block margin-bottom" />
+        </div>
+    }
+
+    @if ((Model.Menu != 4) && Model.ListaContratos.Count > 0)
+    {
+        <div class="col-md-2">
+            <input type="button" id="btnExcluir" name="btnExcluir" value="Excluir Contratos" class="btn btn-danger btn-block margin-bottom" />
+        </div>
+    }
+
+</div>
 
 <div class="row">
 
@@ -48,110 +54,124 @@
 
     </div>
 
+
     <div class="col-md-10">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Contratos</h3>
+
+        @using (Html.BeginForm("Index", "Financeiro", FormMethod.Post, new { id = "formContratos", name = "formContratos" }))
+        {
+
+            @Html.HiddenFor(x => x.AcaoForm)
+            @Html.HiddenFor(x => x.Menu)
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Contratos</h3>
+                </div>
+                <div class="box-body">
+
+                    <table id="contratos" class="table table-bordered table-striped">
+
+                        @if (Model.Menu != 4)
+                        {
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>CPF</th>
+                                    <th>Contrato</th>
+                                    <th>Tabela</th>
+                                    <th>Cliente</th>
+                                    <th>Data Lançamento</th>
+                                    <th>Percentual Comissão</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.ListaContratos.Count; i++)
+                                {
+                                    var item = Model.ListaContratos[i];
+                                    <tr>
+                                        @Html.HiddenFor(x => x.ListaContratos[i].Id)
+
+
+                                        <td>@Html.EditorFor(x => x.ListaContratos[i].Selecionado)</td>
+                                        <td>@item.Cpf</td>
+                                        <td>@item.Contrato</td>
+                                        <td>@item.Tabela</td>
+                                        <td>@item.NomeCliente</td>
+                                        <td>@item.DataLancamento.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
+                                        <td>
+                                            @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs", @target = "_blank" })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>CPF</th>
+                                    <th>Contrato</th>
+                                    <th>Tabela</th>
+                                    <th>Cliente</th>
+                                    <th>Data Lançamento</th>
+                                    <th>Percentual Comissão</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        }
+                        else
+                        {
+                            <thead>
+                                <tr>
+                                    <th>Contrato</th>
+                                    <th>Cliente</th>
+                                    <th>CPF</th>
+                                    <th>Tabela</th>
+                                    <th>Percentual Comissão</th>
+                                    <th>Data Comissão</th>
+                                    <th>Tipo Planilha</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ListaContratoPagamento)
+                                {
+                                    <tr>
+                                        <td>@item.Contrato</td>
+                                        <td>@item.NomeCliente</td>
+                                        <td>@item.Cpf</td>
+                                        <td>@item.Tabela</td>
+                                        <td>@item.PercentualComissao</td>
+                                        <td>@item.DataComissao</td>
+                                        <td>@item.TipoPlanilha</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Contrato</th>
+                                    <th>Cliente</th>
+                                    <th>CPF</th>
+                                    <th>Tabela</th>
+                                    <th>Percentual Comissão</th>
+                                    <th>Data Comissão</th>
+                                    <th>Tipo Planilha</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        }
+                    </table>
+
+                </div><!-- /.box-body -->
             </div>
-            <div class="box-body">
+        }
 
-                <table id="contratos" class="table table-bordered table-striped">
-
-                    @if (Model.Menu != 4)
-                    {
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>CPF</th>
-                                <th>Contrato</th>
-                                <th>Tabela</th>
-                                <th>Cliente</th>
-                                <th>Data Lançamento</th>
-                                <th>Percentual Comissão</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < Model.ListaContratos.Count; i++)
-                            {
-                                var item = Model.ListaContratos[i];
-                                <tr>
-                                    <td>@Html.EditorFor(x => x.ListaContratos[i].Selecionado)</td>
-                                    <td>@item.Cpf</td>
-                                    <td>@item.Contrato</td>
-                                    <td>@item.Tabela</td>
-                                    <td>@item.NomeCliente</td>
-                                    <td>@item.DataLancamento</td>
-                                    <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
-                                    <td>
-                                        @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs", @target = "_blank" })
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>CPF</th>
-                                <th>Contrato</th>
-                                <th>Tabela</th>
-                                <th>Cliente</th>
-                                <th>Data Lançamento</th>
-                                <th>Percentual Comissão</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                    }
-                    else
-                    {
-                        <thead>
-                            <tr>
-                                <th>Contrato</th>
-                                <th>Cliente</th>
-                                <th>CPF</th>
-                                <th>Tabela</th>
-                                <th>Percentual Comissão</th>
-                                <th>Data Comissão</th>
-                                <th>Tipo Planilha</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.ListaContratoPagamento)
-                            {
-                                <tr>
-                                    <td>@item.Contrato</td>
-                                    <td>@item.NomeCliente</td>
-                                    <td>@item.Cpf</td>
-                                    <td>@item.Tabela</td>
-                                    <td>@item.PercentualComissao</td>
-                                    <td>@item.DataComissao</td>
-                                    <td>@item.TipoPlanilha</td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Contrato</th>
-                                <th>Cliente</th>
-                                <th>CPF</th>
-                                <th>Tabela</th>
-                                <th>Percentual Comissão</th>
-                                <th>Data Comissão</th>
-                                <th>Tipo Planilha</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                    }
-                </table>
-
-            </div><!-- /.box-body -->
-        </div><!-- /.box -->
     </div>
+
 </div>
 
 @section scripts
@@ -187,6 +207,22 @@
                     'csv', 'excel'
                 ]
             });
+
+            $('#btnValidar').click(function () {
+                $('#AcaoForm').val(1);
+                $('#formContratos').submit();
+            });
+
+            $('#btnPendente').click(function () {
+                $('#AcaoForm').val(2);
+                $('#formContratos').submit();
+            });
+
+            $('#btnExcluir').click(function () {
+                $('#AcaoForm').val(3);
+                $('#formContratos').submit();
+            });
+
         });
     </script>
 }

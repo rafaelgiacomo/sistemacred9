@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaCred9.Core.Dto;
+using SistemaCred9.Core.Resposta;
 using SistemaCred9.EntityFramework.Context;
 using SistemaCred9.Modelo;
 using SistemaCred9.Negocio;
@@ -32,19 +33,35 @@ namespace SistemaCred9.Web.UI.Controllers
                 viewModel.Menu = menu.HasValue ? menu.Value : 1;
 
                 if (viewModel.Menu == 1)
-                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(true, ContratoStatusEnum.Novo));
+                {
+                    viewModel.Titulo = "Com pagamentos";
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratos(true, ContratoStatusEnum.Novo));
+                }
 
                 if (viewModel.Menu == 2)
-                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(false, ContratoStatusEnum.Novo));
+                {
+                    viewModel.Titulo = "Sem pagamentos";
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratos(false, ContratoStatusEnum.Novo));
+                }
 
                 if (viewModel.Menu == 3)
-                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(null, ContratoStatusEnum.Validado));
+                {
+                    viewModel.Titulo = "Validados";
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratos(null, ContratoStatusEnum.Validado));
+                }
 
                 if (viewModel.Menu == 4)
+                {
+                    viewModel.Titulo = "Pgtos sem contrato";
                     viewModel.ListaContratoPagamento = Mapper.Map<List<ContratoPagamentoViewModel>>(_contratoNegocio.ListarPagamentosSemContrato());
+                }
 
                 if (viewModel.Menu == 5)
-                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratosPorMes(null, ContratoStatusEnum.PendenteAnalise));
+                {
+                    viewModel.Titulo = "Pendentes";
+                    viewModel.ListaContratos = Mapper.Map<List<ContratoRelatorioViewModel>>(_contratoNegocio.ListarContratos(null, ContratoStatusEnum.PendenteAnalise));
+                }
+                    
 
                 return View(viewModel);
             }
@@ -55,58 +72,60 @@ namespace SistemaCred9.Web.UI.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Index(FinanceiroIndexViewModel viewModel)
+        {
+            BaseResponse response = new BaseResponse();
+
+            try
+            {
+                var listaSelecionados = viewModel.ListaContratos.Where(x => x.Selecionado).ToList();
+
+                if (listaSelecionados.Count > 0)
+                {
+                    if (viewModel.AcaoForm == 1)
+                    {
+                        response = _contratoNegocio.ValidarContratos(listaSelecionados.Select(x => x.Id).ToList());
+                    }
+
+                    if (viewModel.AcaoForm == 2)
+                    {
+                        response = _contratoNegocio.ColocarContratosComPendencia(listaSelecionados.Select(x => x.Id).ToArray());
+                    }
+
+                    if (viewModel.AcaoForm == 3)
+                    {
+                        response = _contratoNegocio.Excluir(listaSelecionados.Select(x => x.Id).ToArray());
+                    }
+
+                    if (response.Success)
+                    {
+                        return RedirectToAction("Index", new { menu = viewModel.Menu });
+                    }
+                    else
+                    {
+                        TempData["mensagem"] = "Não foi possível completar a operação";
+                        return RedirectToAction("Erro");
+                    }
+                }
+                else
+                {
+                    TempData["mensagem"] = "Nnenhum item foi selecionado";
+                    return RedirectToAction("Erro");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["mensagem"] = ex.Message;
+                return RedirectToAction("Erro");
+            }            
+        }
+
         public ActionResult Importar()
         {
             var viewModel = new ImportarViewModel();
 
             return View(viewModel);
-        }
-
-        public ActionResult ValidarContratos()
-        {
-            try
-            {
-                var contratos = _contratoNegocio.ListarContratosPorMes(true, ContratoStatusEnum.Novo);
-                var response = _contratoNegocio.ValidarContratos(contratos.Select(x => x.Id).ToList());
-
-                if (response.Success)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    TempData["mensagem"] = response.FriendlyMessage;
-                    return RedirectToAction("Erro");
-                }                
-            }
-            catch (Exception ex)
-            {
-                TempData["mensagem"] = ex.Message;
-                return RedirectToAction("Erro");
-            }
-        }
-
-        public ActionResult ColocarContratosEmPendencia(int[] ids)
-        {
-            try
-            {
-                var response = _contratoNegocio.ColocarContratosComPendencia(ids);
-
-                if (response.Success)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    TempData["mensagem"] = response.FriendlyMessage;
-                    return RedirectToAction("Erro");
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["mensagem"] = ex.Message;
-                return RedirectToAction("Erro");
-            }
         }
 
         [HttpPost]

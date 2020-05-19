@@ -5,6 +5,7 @@ namespace SistemaCred9.Modelo
 {
     public class ContratoRelatorio : EntitadeBase
     {
+        public bool Ativo { get; set; }
         public int Contrato { get; set; }
         public string Cpf { get; set; }
         public string NomeCliente { get; set; }

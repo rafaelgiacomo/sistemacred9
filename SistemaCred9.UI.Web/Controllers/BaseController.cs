@@ -23,7 +23,6 @@ namespace SistemaCred9.Web.UI.Controllers
         public BaseController()
         {
             _unitOfWork = new UnitOfWork(new Cred9DbContext());
-            _unitOfWorkPanorama = new RepositorioPanorama.UnitOfWork(_connectionString, new LoggerConsole());
 
             _usuarioNegocio = new UsuarioNegocio(_unitOfWork);
             _vendaNegocio = new VendaNegocio(_unitOfWork);
@@ -33,17 +32,6 @@ namespace SistemaCred9.Web.UI.Controllers
         public ActionResult Erro()
         {
             var viewModel = new BaseViewModel();
-
-            var usuario = _usuarioNegocio.SelecionarPorLogin(User.Identity.Name);
-            int? usuarioId = null;
-
-            if (usuario.TipoUsuarioId == (int)TipoUsuarioEnum.Operador)
-            {
-                usuarioId = usuario.Id;
-            }
-
-            viewModel.ArrayQtdPorStatus = _vendaNegocio.ListarQtdsVendaPorStatus(usuarioId);
-            viewModel.ListaStatusTarefa = _tarefaNegocio.ListarStatusTarefa(31);
 
             ViewBag.mensagem = TempData["mensagem"];
             return View(viewModel);
