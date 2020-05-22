@@ -82,6 +82,7 @@ namespace SistemaCred9.Web.UI.Controllers
 
             viewModel.BancosDisponiveis = _bancoNegocio.ListarTodos();
             viewModel.EspeciesDisponiveis = _especieNegocio.ListarTodos();
+            viewModel.ListaAgrupamentos = _agrupamentoNegocio.ListarAgrupamentos();
 
             return View(viewModel);
         }
@@ -131,6 +132,7 @@ namespace SistemaCred9.Web.UI.Controllers
 
             viewModel.BancosDisponiveis = _bancoNegocio.ListarTodos();
             viewModel.EspeciesDisponiveis = _especieNegocio.ListarTodos();
+            viewModel.ListaAgrupamentos = _agrupamentoNegocio.ListarAgrupamentos();
 
             return View(viewModel);
         }
