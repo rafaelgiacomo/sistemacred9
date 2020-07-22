@@ -1,4 +1,6 @@
-﻿namespace SistemaCred9.Web.UI.ViewModels.Financeiro
+﻿using System;
+
+namespace SistemaCred9.Web.UI.ViewModels.Financeiro
 {
     public class ContratoPagamentoViewModel
     {
@@ -13,6 +15,8 @@
         public string ValorComissao { get; set; }
         public string ValorEmprestimo { get; set; }
         public string DataComissao { get; set; }
+        public DateTime? DataImportacao { get; set; }
         public string TipoPlanilha { get; set; }
+        public string NomeArquivo { get; set; }
     }
 }

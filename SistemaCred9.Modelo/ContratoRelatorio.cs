@@ -18,6 +18,8 @@ namespace SistemaCred9.Modelo
         public float ValorEmprestimo { get; set; }
         public string TarefaExecucaoStatus { get; set; }
         public DateTime? DataLancamento { get; set; }
+        public DateTime? DataImportacao { get; set; }
+        public DateTime? DataCpc { get; set; }
         public int? TabelaComissaoId { get; set; }
         public int? Status { get; set; }
 

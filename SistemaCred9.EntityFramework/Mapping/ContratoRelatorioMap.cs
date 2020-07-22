@@ -54,7 +54,13 @@ namespace SistemaCred9.EntityFramework.Mapping
                 .IsOptional();
 
             Property(t => t.DataLancamento)
-                .IsOptional(); 
+                .IsOptional();
+
+            Property(t => t.DataImportacao)
+                .IsOptional();
+
+            Property(t => t.DataCpc)
+                .IsOptional();
         }
     }
 }

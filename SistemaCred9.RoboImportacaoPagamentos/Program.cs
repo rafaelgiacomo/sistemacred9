@@ -4,12 +4,15 @@ using SistemaCred9.Modelo;
 using SistemaCred9.Negocio;
 using SistemaCred9.Repositorio.UnitOfWork;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SistemaCred9.RoboImportacaoContratos
+namespace SistemaCred9.RoboImportacaoPagamentos
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -35,10 +38,9 @@ namespace SistemaCred9.RoboImportacaoContratos
                 logger.EscreveLinha("=== INICIANDO IMPORTACAO...");
                 logger.PulaLinhas(1);
 
-
-                var response = contratoNegocio.RealizarImportacao(TipoPlanilhaEnum.Panorama,
+                var response = contratoNegocio.RealizarImportacao(TipoPlanilhaEnum.Outros,
                                                                                    arquivo,
-                                                                                   arquivo.Replace(Directory.GetCurrentDirectory() + "\\PlanilhasContratos\\", ""));
+                                                                                   arquivo.Replace(Directory.GetCurrentDirectory() + "\\PlanilhasPagamentos\\", ""));
 
                 if (response.Success)
                 {
@@ -87,13 +89,13 @@ namespace SistemaCred9.RoboImportacaoContratos
                     Console.WriteLine("=== LENDO ARQUIVOS DISPONIVEIS...");
                     Console.WriteLine("");
 
-                    string[] arquivos = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\PlanilhasContratos");
+                    string[] arquivos = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\PlanilhasPagamentos");
 
                     int cont = 0;
                     foreach (var arq in arquivos)
                     {
                         cont++;
-                        Console.WriteLine(cont + " - " + arq.Replace(Directory.GetCurrentDirectory() + "\\PlanilhasContratos\\", ""));
+                        Console.WriteLine(cont + " - " + arq.Replace(Directory.GetCurrentDirectory() + "\\PlanilhasPagamentos\\", ""));
                     }
 
                     Console.WriteLine("");

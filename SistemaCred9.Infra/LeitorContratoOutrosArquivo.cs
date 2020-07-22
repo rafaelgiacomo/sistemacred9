@@ -72,10 +72,12 @@ namespace SistemaCred9.Infra
         {
             ContratoRelatorioPagamento entidade = new ContratoRelatorioPagamento();
 
-            entidade.DataComissao = DateTime.Parse(linha[INDEX_DATA_COMISSAO]);
-            entidade.ValorComissao = float.Parse(linha[INDEX_VALOR_COMISSAO].Replace("R$", "").Replace(" ", ""));
-            entidade.ValorEmprestimo = float.Parse(linha[INDEX_VALOR_EMPRESTIMO].Replace("R$", "").Replace(" ", ""));
+            var dataComissao = linha[INDEX_DATA_COMISSAO];
+            var valorComissao = linha[INDEX_VALOR_COMISSAO];
+
+            //entidade.ValorEmprestimo = float.Parse(linha[INDEX_VALOR_EMPRESTIMO].Replace("R$", "").Replace(" ", ""));
             entidade.NomeCliente = linha[INDEX_NOME_CLIENTE];
+            entidade.DataImportacao = DateTime.Now;
             entidade.Cpf = linha[INDEX_CPF];
             entidade.Tabela = linha[INDEX_TABELA];
             entidade.Banco = linha[INDEX_BANCO];
@@ -84,6 +86,16 @@ namespace SistemaCred9.Infra
             entidade.TipoPlanilha = TipoPlanilhaEnum.Outros;
             entidade.PercentualComissao = float.Parse(linha[INDEX_PERCENTUAL_COMISSAO].Replace(".", ","));
             entidade.Contrato = int.Parse(linha[INDEX_CONTRATO].Replace(".", "").Replace(" ", "").Replace("-", ""));
+
+            if (string.IsNullOrEmpty(dataComissao))
+            {
+                entidade.DataComissao = DateTime.Parse(linha[INDEX_DATA_COMISSAO]);
+            }
+
+            if (string.IsNullOrEmpty(valorComissao))
+            {
+                entidade.ValorComissao = float.Parse(linha[INDEX_VALOR_COMISSAO].Replace("R$", "").Replace(" ", ""));
+            }
 
             if (entidade.ValorComissao < 0)
             {

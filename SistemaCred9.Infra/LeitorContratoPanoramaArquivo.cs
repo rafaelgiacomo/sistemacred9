@@ -17,6 +17,7 @@ namespace SistemaCred9.Infra
         public const int INDEX_BANCO = 11;
         public const int INDEX_PERCENTUAL_COMISSAO = 17;
         public const int INDEX_CONTRATO = 26;
+        public const int INDEX_DATA_CPC = 7;
         public const string CHARACTER_NULO = "";
 
         private bool _ehFimArquivo;
@@ -68,11 +69,15 @@ namespace SistemaCred9.Infra
         {
             ContratoRelatorio entidade = new ContratoRelatorio();
 
+            entidade.Ativo = true;
+            entidade.Status = (int) ContratoStatusEnum.Novo;
+            entidade.DataImportacao = DateTime.Now;
             entidade.NomeCliente = linha[INDEX_NOME_CLIENTE];
             entidade.Cpf = linha[INDEX_CPF];
             entidade.NomeAssessor = linha[INDEX_ASSESSOR];
             entidade.Tabela = linha[INDEX_TABELA];
             entidade.Banco = linha[INDEX_BANCO];
+            entidade.DataCpc = DateTime.Parse(linha[INDEX_DATA_CPC]);
             entidade.DataLancamento = DateTime.Parse(linha[INDEX_DATA_LANCAMENTO]);
             entidade.PercentualComissao = float.Parse(linha[INDEX_PERCENTUAL_COMISSAO].Replace(".", ","));
             entidade.Contrato = int.Parse(linha[INDEX_CONTRATO].Replace(".", "").Replace(" ", "").Replace("-", ""));

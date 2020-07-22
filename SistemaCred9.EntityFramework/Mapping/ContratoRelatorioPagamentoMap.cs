@@ -52,6 +52,9 @@ namespace SistemaCred9.EntityFramework.Mapping
 
             Property(t => t.ContratoRelatorioId)
                 .IsOptional();
+
+            Property(t => t.DataImportacao)
+                .IsOptional();
         }
     }
 }

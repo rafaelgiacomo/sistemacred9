@@ -119,6 +119,14 @@
     <Compile Include="Migrations\202005190239374_ControleAtivoContrato.designer.cs">
       <DependentUpon>202005190239374_ControleAtivoContrato.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007061833362_DataImportacao.cs" />
+    <Compile Include="Migrations\202007061833362_DataImportacao.designer.cs">
+      <DependentUpon>202007061833362_DataImportacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007062047502_DataCpc.cs" />
+    <Compile Include="Migrations\202007062047502_DataCpc.designer.cs">
+      <DependentUpon>202007062047502_DataCpc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -174,6 +182,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005190239374_ControleAtivoContrato.resx">
       <DependentUpon>202005190239374_ControleAtivoContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007061833362_DataImportacao.resx">
+      <DependentUpon>202007061833362_DataImportacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007062047502_DataCpc.resx">
+      <DependentUpon>202007062047502_DataCpc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

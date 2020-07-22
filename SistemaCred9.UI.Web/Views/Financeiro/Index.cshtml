@@ -81,6 +81,8 @@
                                     <th>Tabela</th>
                                     <th>Cliente</th>
                                     <th>Data Lançamento</th>
+                                    <th>Data Importação</th>
+                                    <th>Data CPC</th>
                                     <th>Percentual Comissão</th>
                                     <th></th>
                                 </tr>
@@ -89,21 +91,33 @@
                                 @for (int i = 0; i < Model.ListaContratos.Count; i++)
                                 {
                                     var item = Model.ListaContratos[i];
-                                    <tr>
-                                        @Html.HiddenFor(x => x.ListaContratos[i].Id)
+                                <tr>
+                                    @Html.HiddenFor(x => x.ListaContratos[i].Id)
 
 
-                                        <td>@Html.EditorFor(x => x.ListaContratos[i].Selecionado)</td>
-                                        <td>@item.Cpf</td>
-                                        <td>@item.Contrato</td>
-                                        <td>@item.Tabela</td>
-                                        <td>@item.NomeCliente</td>
-                                        <td>@item.DataLancamento.ToString("dd/MM/yyyy")</td>
-                                        <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
-                                        <td>
-                                            @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs", @target = "_blank" })
-                                        </td>
-                                    </tr>
+                                    <td>@Html.EditorFor(x => x.ListaContratos[i].Selecionado)</td>
+                                    <td>@item.Cpf</td>
+                                    <td>@item.Contrato</td>
+                                    <td>@item.Tabela</td>
+                                    <td>@item.NomeCliente</td>
+                                    <td>@item.DataLancamento.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                                        @if (item.DataImportacao.HasValue)
+                                        {
+                                            @item.DataImportacao.Value.ToString("dd/MM/yyyy")
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.DataCpc.HasValue)
+                                        {
+                                            @item.DataCpc.Value.ToString("dd/MM/yyyy")
+                                        }
+                                    </td>
+                                    <td>@item.PercentualComissaoCalculado.ToString().Replace(",", ".")</td>
+                                    <td>
+                                        @Html.ActionLink("Ver", "VerContrato", "Financeiro", new { @entidadeId = item.Id }, new { @class = "btn btn-primary btn-xs", @target = "_blank" })
+                                    </td>
+                                </tr>
                                 }
 
                             </tbody>
@@ -115,6 +129,8 @@
                                     <th>Tabela</th>
                                     <th>Cliente</th>
                                     <th>Data Lançamento</th>
+                                    <th>Data Importação</th>
+                                    <th>Data CPC</th>
                                     <th>Percentual Comissão</th>
                                     <th></th>
                                 </tr>
@@ -130,8 +146,9 @@
                                     <th>Tabela</th>
                                     <th>Percentual Comissão</th>
                                     <th>Data Comissão</th>
+                                    <th>Data Importação</th>
                                     <th>Tipo Planilha</th>
-                                    <th></th>
+                                    <th>Arquivo</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,8 +161,15 @@
                                         <td>@item.Tabela</td>
                                         <td>@item.PercentualComissao</td>
                                         <td>@item.DataComissao</td>
+                                        <td>
+                                            @if (item.DataImportacao.HasValue)
+                                            {
+                                                @item.DataImportacao.Value.ToString("dd/MM/yyyy")
+                                            }
+                                        </td>
                                         <td>@item.TipoPlanilha</td>
                                         <td>
+                                            @item.NomeArquivo
                                         </td>
                                     </tr>
                                 }
@@ -159,8 +183,9 @@
                                     <th>Tabela</th>
                                     <th>Percentual Comissão</th>
                                     <th>Data Comissão</th>
+                                    <th>Data Importação</th>
                                     <th>Tipo Planilha</th>
-                                    <th></th>
+                                    <th>Arquivo</th>
                                 </tr>
                             </tfoot>
                         }

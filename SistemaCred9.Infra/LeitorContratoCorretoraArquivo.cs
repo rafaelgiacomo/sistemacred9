@@ -74,6 +74,7 @@ namespace SistemaCred9.Infra
             entidade.ValorComissao = float.Parse(linha[INDEX_VALOR_COMISSAO].Replace("R$", "").Replace(" ", ""));
             entidade.ValorEmprestimo = float.Parse(linha[INDEX_VALOR_EMPRESTIMO].Replace("R$", "").Replace(" ", ""));
             entidade.NomeCliente = linha[INDEX_NOME_CLIENTE];
+            entidade.DataImportacao = DateTime.Now;
             entidade.Cpf = linha[INDEX_CPF];
             entidade.Tabela = linha[INDEX_TABELA];
             entidade.Banco = linha[INDEX_BANCO];

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.Core", "Sistem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.RoboImportacaoContratos", "SistemaCred9.RoboImportacaoContratos\SistemaCred9.RoboImportacaoContratos.csproj", "{C1516CE0-489A-4C8F-8463-4ADBEB946571}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCred9.RoboImportacaoPagamentos", "SistemaCred9.RoboImportacaoPagamentos\SistemaCred9.RoboImportacaoPagamentos.csproj", "{3B182ECA-267A-4035-84C8-061F2D49E3DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{C1516CE0-489A-4C8F-8463-4ADBEB946571}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1516CE0-489A-4C8F-8463-4ADBEB946571}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1516CE0-489A-4C8F-8463-4ADBEB946571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B182ECA-267A-4035-84C8-061F2D49E3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B182ECA-267A-4035-84C8-061F2D49E3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B182ECA-267A-4035-84C8-061F2D49E3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B182ECA-267A-4035-84C8-061F2D49E3DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

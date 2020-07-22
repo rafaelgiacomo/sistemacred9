@@ -319,6 +319,7 @@ namespace SistemaCred9.Negocio
                         BancoCredor = item.BancoCredor,
                         Contrato = item.Contrato,
                         DataLancamento = item.DataLancamento,
+                        DataCpc = item.DataCpc,
                         NomeAssessor = item.NomeAssessor,
                         NomeCliente = item.NomeCliente,
                         PercentualComissao = item.PercentualComissao,
